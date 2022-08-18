@@ -1,0 +1,1919 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  {% include 'dashhead.html' %}
+  <body class="app">
+    {% include 'header.html' %}
+
+    <div class="app-wrapper">
+      <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+          <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+              <h1 class="app-page-title mb-0">Mon Etablissement</h1>
+            </div>
+          </div>
+          <!-- tab navigation -->
+          <nav
+            id="orders-table-tab"
+            class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4"
+          >
+            <a
+              class="flex-sm-fill text-sm-center nav-link active"
+              id="general-tab"
+              data-bs-toggle="tab"
+              href="#general"
+              role="tab"
+              aria-controls="general"
+              aria-selected="true"
+              >Générales</a
+            >
+            <a
+              class="flex-sm-fill text-sm-center nav-link"
+              id="academique-tab"
+              data-bs-toggle="tab"
+              href="#academique"
+              role="tab"
+              aria-controls="academique"
+              aria-selected="false"
+              >Académiques</a
+            >
+            <a
+              class="flex-sm-fill text-sm-center nav-link"
+              id="autres-tab"
+              data-bs-toggle="tab"
+              href="#autres"
+              role="tab"
+              aria-controls="autres"
+              aria-selected="false"
+              >Autres</a
+            >
+          </nav>
+          <!-- tabs -->
+          <div class="tab-content" id="orders-table-tab-content">
+            <div
+              class="tab-pane fade show active"
+              id="general"
+              role="tabpanel"
+              aria-labelledby="general-tab"
+            >
+              <div class="row gx-3">
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                          <!--//icon-holder-->
+                        </div>
+                        <!--//col-->
+                        <div class="col-auto">
+                          <h4 class="app-card-title">
+                            Profil de l'établissement
+                          </h4>
+                        </div>
+                        <!--//col-->
+                      </div>
+                      <!--//row-->
+                    </div>
+                    <!--//app-card-header-->
+                    <form
+                      class="app-card-body px-4 w-100"
+                      method="POST"
+                      action=""
+                    >
+                      {% csrf_token %}
+
+                      <div class="item py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-auto">
+                            <div class="item-label mb-2">
+                              <strong>Embleme de l'etablissement</strong>
+                            </div>
+                            <div class="item-data">
+                              <img
+                                class="profile-image"
+                                src="
+                                {% if user.profile_img %}
+                                {{ accounts.profile_img.url }} 
+                                {% else %}
+                                {% static 'img/logo.png' %}
+                                {% endif %}
+                                "
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--  -->
+                      {% for field in profile_form %}
+                      <div class="item border-top py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-12">
+                            <label class="item-label col-12"
+                              ><strong>{{field.label}}</strong></label
+                            >
+                            <div
+                              class="form-control col-12"
+                              type="text"
+                              id="input-border-none"
+                            >
+                              {{field}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                      <input
+                        class="btn app-btn-primary mx-2 my-4"
+                        type="submit"
+                        value="Enregistrer"
+                      />
+                    </form>
+                  </div>
+                </div>
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                          <!--//icon-holder-->
+                        </div>
+                        <!--//col-->
+                        <div class="col-auto">
+                          <h4 class="app-card-title">
+                            Info suplémentaires de l'établissement
+                          </h4>
+                        </div>
+                        <!--//col-->
+                      </div>
+                      <!--//row-->
+                    </div>
+                    <!--//app-card-header-->
+                    <form
+                      class="app-card-body px-4 w-100"
+                      method="POST"
+                      action=""
+                    >
+                      {% csrf_token %}
+                      <!--  -->
+                      {% for field in detail_form %}
+                      <div class="item border-top py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-12">
+                            <label class="item-label col-12"
+                              ><strong>{{field.label}}</strong></label
+                            >
+                            <div
+                              class="form-control col-12"
+                              type="text"
+                              id="input-border-none"
+                            >
+                              {{field}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                      <input
+                        class="btn app-btn-primary mx-2 my-4"
+                        type="submit"
+                        value="Enregistrer"
+                      />
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="academique"
+              role="tabpanel"
+              aria-labelledby="academique-tab"
+            >
+              <div class="row gx-3">
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                          <!--//icon-holder-->
+                        </div>
+                        <!--//col-->
+                        <div class="col-auto">
+                          <h4 class="app-card-title">
+                            Info Académiques de l'établissement
+                          </h4>
+                        </div>
+                        <!--//col-->
+                      </div>
+                      <!--//row-->
+                    </div>
+                    <!--//app-card-header-->
+                    <form
+                      class="app-card-body px-4 w-100"
+                      method="POST"
+                      action=""
+                    >
+                      {% csrf_token %}
+
+                      <!--  -->
+                      {% for field in academia_form %}
+                      <div class="item border-top py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-12">
+                            <label class="item-label col-12"
+                              ><strong>{{field.label}}</strong></label
+                            >
+                            <div
+                              class="form-control col-12"
+                              type="text"
+                              id="input-border-none"
+                            >
+                              {{field}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                      <input
+                        class="btn app-btn-primary mx-2 my-4"
+                        type="submit"
+                        value="Enregistrer"
+                      />
+                    </form>
+                  </div>
+                </div>
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                          <!--//icon-holder-->
+                        </div>
+                        <!--//col-->
+                        <div class="col-auto">
+                          <h4 class="app-card-title">
+                            Info Pédagogiques de l'établissement
+                          </h4>
+                        </div>
+                        <!--//col-->
+                      </div>
+                      <!--//row-->
+                    </div>
+                    <!--//app-card-header-->
+                    <form
+                      class="app-card-body px-4 w-100"
+                      method="POST"
+                      action=""
+                    >
+                      {% csrf_token %}
+                      <!--  -->
+                      {% for field in structure_form %}
+                      <div class="item border-top py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-12">
+                            <label class="item-label col-12"
+                              ><strong>{{field.label}}</strong></label
+                            >
+                            <div
+                              class="form-control col-12"
+                              type="text"
+                              id="input-border-none"
+                            >
+                              {{field}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                      <input
+                        class="btn app-btn-primary mx-2 my-4"
+                        type="submit"
+                        value="Enregistrer"
+                      />
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- other fields -->
+            <div
+              class="tab-pane fade"
+              id="autres"
+              role="tabpanel"
+              aria-labelledby="autres-tab"
+            >
+              <!-- Prof section -->
+              <div class="row gx-3">
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                          <!--//icon-holder-->
+                        </div>
+                        <!--//col-->
+                        <div class="col-auto">
+                          <h4 class="app-card-title">Ajouter un enseignant</h4>
+                        </div>
+                        <!--//col-->
+                      </div>
+                      <!--//row-->
+                    </div>
+                    <!--//app-card-header-->
+                    <form class="app-card-body px-4 w-100">
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-auto">
+                            <div class="item-label mb-2">
+                              <strong>Photo</strong>
+                            </div>
+                            <div class="item-data">
+                              <img
+                                class="profile-image"
+                                src="{% static 'img/anon.jpg' %}"
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                          <!--//col-->
+                          <div class="col text-end">
+                            <!-- <a class="btn-sm app-btn-secondary" href="#">Modifier</a> -->
+                            <input
+                              class="btn-sm app-btn-secondary"
+                              type="file"
+                              name=""
+                              id=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-12">
+                            <label class="item-label col-12"
+                              ><strong>Nom</strong></label
+                            >
+                            <input
+                              class="form-control col-12"
+                              type="text"
+                              id="input-border-none"
+                              placeholder="Nom de l'Enseignant"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-12">
+                            <label class="item-label col-12"
+                              ><strong>Domaine</strong></label
+                            >
+                            <input
+                              class="form-control col-12"
+                              type="text"
+                              id="input-border-none"
+                              placeholder="eg : mathématique"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="app-card-footer p-4 mt-auto">
+                        <button class="btn app-btn-primary" href="#">
+                          Enregistrer
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="col-auto">
+                          <h4 class="app-card-title">
+                            Les enseignants enregistrés
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row app-card-body px-4 w-100 mb-4">
+                      <!-- prof card -->
+                      <div
+                        class="col-12 col-lg-6 col-md-6 app-card app-card-doc shadow-sm h-100"
+                      >
+                        <div class="app-card-thumb-holder p-3">
+                          <div class="app-card-thumb">
+                            <img
+                              class="thumb-image"
+                              src="assets/images/doc-thumb-2.jpg"
+                              alt=""
+                            />
+                          </div>
+                          <a class="app-card-link-mask" href="#file-link"></a>
+                        </div>
+                        <div class="app-card-body p-3 has-card-actions">
+                          <h4 class="app-doc-title truncate mb-0">
+                            <a href="#file-link">Full name</a>
+                          </h4>
+                          <div class="app-doc-meta">
+                            <ul class="list-unstyled mb-0">
+                              <li>Domaine</li>
+                            </ul>
+                          </div>
+                          <!--//app-doc-meta-->
+
+                          <div class="app-card-actions">
+                            <div class="dropdown">
+                              <div
+                                class="dropdown-toggle no-toggle-arrow"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                <svg
+                                  width="1em"
+                                  height="1em"
+                                  viewBox="0 0 16 16"
+                                  class="bi bi-three-dots-vertical"
+                                  fill="currentColor"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                                  />
+                                </svg>
+                              </div>
+                              <!--//dropdown-toggle-->
+                              <ul class="dropdown-menu">
+                                <li>
+                                  <a class="dropdown-item" href="#">
+                                    <svg
+                                      width="1em"
+                                      height="1em"
+                                      viewBox="0 0 16 16"
+                                      class="bi bi-eye me-2"
+                                      fill="currentColor"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z"
+                                      />
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+                                      />
+                                    </svg>
+                                    Voir
+                                  </a>
+                                </li>
+
+                                <li>
+                                  <hr class="dropdown-divider" />
+                                </li>
+                                <li>
+                                  <a class="dropdown-item" href="#"
+                                    ><svg
+                                      width="1em"
+                                      height="1em"
+                                      viewBox="0 0 16 16"
+                                      class="bi bi-trash me-2"
+                                      fill="currentColor"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                                      />
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                                      />
+                                    </svg>
+                                    Supprimer
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <!--//dropdown-->
+                          </div>
+                          <!--//app-card-actions-->
+                        </div>
+                        <!--//app-card-body-->
+                      </div>
+
+                      <!-- prof card -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Prof section -->
+
+              <!-- classes section -->
+              <div class="row gx-3">
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                          <!--//icon-holder-->
+                        </div>
+                        <!--//col-->
+                        <div class="col-auto">
+                          <h4 class="app-card-title">Ajouter les Classes</h4>
+                        </div>
+                        <!--//col-->
+                      </div>
+                      <!--//row-->
+                    </div>
+                    <!--//app-card-header-->
+                    <form class="app-card-body px-4 w-100">
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-12">
+                            <label class="item-label col-12"
+                              ><strong>Nombre de classes</strong></label
+                            >
+                            <input
+                              class="form-control col-12"
+                              type="number"
+                              id="input-border-none"
+                              placeholder="Ajouter le nombre"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-auto">
+                            <div class="item-label mb-2">
+                              <strong>Photo 1</strong>
+                            </div>
+                            <div class="item-data">
+                              <img
+                                class="profile-image"
+                                src="assets/images/background/background-2.jpg"
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                          <!--//col-->
+                          <div class="col text-end">
+                            <!-- <a class="btn-sm app-btn-secondary" href="#">Modifier</a> -->
+                            <input
+                              class="btn-sm app-btn-secondary"
+                              type="file"
+                              name=""
+                              id=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-auto">
+                            <div class="item-label mb-2">
+                              <strong>Photo 2</strong>
+                            </div>
+                            <div class="item-data">
+                              <img
+                                class="profile-image"
+                                src="assets/images/background/background-1.jpg"
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                          <!--//col-->
+                          <div class="col text-end">
+                            <!-- <a class="btn-sm app-btn-secondary" href="#">Modifier</a> -->
+                            <input
+                              class="btn-sm app-btn-secondary"
+                              type="file"
+                              name=""
+                              id=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="app-card-footer p-4 mt-auto">
+                        <button class="btn app-btn-primary" href="#">
+                          Enregistrer
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="col-auto">
+                          <h4 class="app-card-title">
+                            les classes enregistrées
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row app-card-body px-4 w-100 mb-4">
+                      <!-- prof card -->
+                      <div
+                        class="col-12 col-lg-6 col-md-6 app-card app-card-doc shadow-sm py-3 h-100"
+                      >
+                        <div class="app-card-thumb-holder p-3">
+                          <div class="app-card-thumb">
+                            <img
+                              class="thumb-image"
+                              src="assets/images/background/background-1.jpg"
+                              alt=""
+                            />
+                          </div>
+                          <a class="app-card-link-mask" href="#file-link"></a>
+                        </div>
+                        <div class="app-card-body p-3 has-card-actions">
+                          <!--//app-doc-meta-->
+
+                          <div class="app-card-actions">
+                            <div class="dropdown">
+                              <div
+                                class="dropdown-toggle no-toggle-arrow"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                <svg
+                                  width="1em"
+                                  height="1em"
+                                  viewBox="0 0 16 16"
+                                  class="bi bi-three-dots-vertical"
+                                  fill="currentColor"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                                  />
+                                </svg>
+                              </div>
+                              <!--//dropdown-toggle-->
+                              <ul class="dropdown-menu">
+                                <li>
+                                  <a class="dropdown-item" href="#">
+                                    <svg
+                                      width="1em"
+                                      height="1em"
+                                      viewBox="0 0 16 16"
+                                      class="bi bi-eye me-2"
+                                      fill="currentColor"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z"
+                                      />
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+                                      />
+                                    </svg>
+                                    Voir
+                                  </a>
+                                </li>
+
+                                <li>
+                                  <hr class="dropdown-divider" />
+                                </li>
+                                <li>
+                                  <a class="dropdown-item" href="#"
+                                    ><svg
+                                      width="1em"
+                                      height="1em"
+                                      viewBox="0 0 16 16"
+                                      class="bi bi-trash me-2"
+                                      fill="currentColor"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                                      />
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                                      />
+                                    </svg>
+                                    Supprimer
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <!--//dropdown-->
+                          </div>
+                          <!--//app-card-actions-->
+                        </div>
+                        <!--//app-card-body-->
+                      </div>
+
+                      <!-- prof card -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- classe section -->
+
+              <!-- labos section -->
+              <div class="row gx-3">
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                          <!--//icon-holder-->
+                        </div>
+                        <!--//col-->
+                        <div class="col-auto">
+                          <h4 class="app-card-title">Ajouter les Labos</h4>
+                        </div>
+                        <!--//col-->
+                      </div>
+                      <!--//row-->
+                    </div>
+                    <!--//app-card-header-->
+                    <form class="app-card-body px-4 w-100">
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-12">
+                            <label class="item-label col-12"
+                              ><strong>Nombre de labos</strong></label
+                            >
+                            <input
+                              class="form-control col-12"
+                              type="number"
+                              id="input-border-none"
+                              placeholder="Ajouter le nombre"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-auto">
+                            <div class="item-label mb-2">
+                              <strong>Photo 1</strong>
+                            </div>
+                            <div class="item-data">
+                              <img
+                                class="profile-image"
+                                src="assets/images/background/background-2.jpg"
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                          <!--//col-->
+                          <div class="col text-end">
+                            <!-- <a class="btn-sm app-btn-secondary" href="#">Modifier</a> -->
+                            <input
+                              class="btn-sm app-btn-secondary"
+                              type="file"
+                              name=""
+                              id=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-auto">
+                            <div class="item-label mb-2">
+                              <strong>Photo 2</strong>
+                            </div>
+                            <div class="item-data">
+                              <img
+                                class="profile-image"
+                                src="assets/images/background/background-1.jpg"
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                          <!--//col-->
+                          <div class="col text-end">
+                            <!-- <a class="btn-sm app-btn-secondary" href="#">Modifier</a> -->
+                            <input
+                              class="btn-sm app-btn-secondary"
+                              type="file"
+                              name=""
+                              id=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="app-card-footer p-4 mt-auto">
+                        <button class="btn app-btn-primary" href="#">
+                          Enregistrer
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="col-auto">
+                          <h4 class="app-card-title">les labos enregistrés</h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row app-card-body px-4 w-100 mb-4">
+                      <!-- prof card -->
+                      <div
+                        class="col-12 col-lg-6 col-md-6 app-card app-card-doc shadow-sm py-3 h-100"
+                      >
+                        <div class="app-card-thumb-holder p-3">
+                          <div class="app-card-thumb">
+                            <img
+                              class="thumb-image"
+                              src="assets/images/background/background-1.jpg"
+                              alt=""
+                            />
+                          </div>
+                          <a class="app-card-link-mask" href="#file-link"></a>
+                        </div>
+                        <div class="app-card-body p-3 has-card-actions">
+                          <!--//app-doc-meta-->
+
+                          <div class="app-card-actions">
+                            <div class="dropdown">
+                              <div
+                                class="dropdown-toggle no-toggle-arrow"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                <svg
+                                  width="1em"
+                                  height="1em"
+                                  viewBox="0 0 16 16"
+                                  class="bi bi-three-dots-vertical"
+                                  fill="currentColor"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                                  />
+                                </svg>
+                              </div>
+                              <!--//dropdown-toggle-->
+                              <ul class="dropdown-menu">
+                                <li>
+                                  <a class="dropdown-item" href="#">
+                                    <svg
+                                      width="1em"
+                                      height="1em"
+                                      viewBox="0 0 16 16"
+                                      class="bi bi-eye me-2"
+                                      fill="currentColor"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z"
+                                      />
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+                                      />
+                                    </svg>
+                                    Voir
+                                  </a>
+                                </li>
+
+                                <li>
+                                  <hr class="dropdown-divider" />
+                                </li>
+                                <li>
+                                  <a class="dropdown-item" href="#"
+                                    ><svg
+                                      width="1em"
+                                      height="1em"
+                                      viewBox="0 0 16 16"
+                                      class="bi bi-trash me-2"
+                                      fill="currentColor"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                                      />
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                                      />
+                                    </svg>
+                                    Supprimer
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <!--//dropdown-->
+                          </div>
+                          <!--//app-card-actions-->
+                        </div>
+                        <!--//app-card-body-->
+                      </div>
+
+                      <!-- prof card -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- classe section -->
+
+              <!-- Bibliotèques section -->
+              <div class="row gx-3">
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                          <!--//icon-holder-->
+                        </div>
+                        <!--//col-->
+                        <div class="col-auto">
+                          <h4 class="app-card-title">
+                            Ajouter les Bibliotèques
+                          </h4>
+                        </div>
+                        <!--//col-->
+                      </div>
+                      <!--//row-->
+                    </div>
+                    <!--//app-card-header-->
+                    <form class="app-card-body px-4 w-100">
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-12">
+                            <label class="item-label col-12"
+                              ><strong>Nombre de Bibliotèques</strong></label
+                            >
+                            <input
+                              class="form-control col-12"
+                              type="number"
+                              id="input-border-none"
+                              placeholder="Ajouter le nombre"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-auto">
+                            <div class="item-label mb-2">
+                              <strong>Photo 1</strong>
+                            </div>
+                            <div class="item-data">
+                              <img
+                                class="profile-image"
+                                src="assets/images/background/background-2.jpg"
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                          <!--//col-->
+                          <div class="col text-end">
+                            <!-- <a class="btn-sm app-btn-secondary" href="#">Modifier</a> -->
+                            <input
+                              class="btn-sm app-btn-secondary"
+                              type="file"
+                              name=""
+                              id=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-auto">
+                            <div class="item-label mb-2">
+                              <strong>Photo 2</strong>
+                            </div>
+                            <div class="item-data">
+                              <img
+                                class="profile-image"
+                                src="assets/images/background/background-1.jpg"
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                          <!--//col-->
+                          <div class="col text-end">
+                            <!-- <a class="btn-sm app-btn-secondary" href="#">Modifier</a> -->
+                            <input
+                              class="btn-sm app-btn-secondary"
+                              type="file"
+                              name=""
+                              id=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="app-card-footer p-4 mt-auto">
+                        <button class="btn app-btn-primary" href="#">
+                          Enregistrer
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="col-auto">
+                          <h4 class="app-card-title">
+                            les Bibliotèques enregistrées
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row app-card-body px-4 w-100 mb-4">
+                      <!-- prof card -->
+                      <div
+                        class="col-12 col-lg-6 col-md-6 app-card app-card-doc shadow-sm py-3 h-100"
+                      >
+                        <div class="app-card-thumb-holder p-3">
+                          <div class="app-card-thumb">
+                            <img
+                              class="thumb-image"
+                              src="assets/images/background/background-1.jpg"
+                              alt=""
+                            />
+                          </div>
+                          <a class="app-card-link-mask" href="#file-link"></a>
+                        </div>
+                        <div class="app-card-body p-3 has-card-actions">
+                          <!--//app-doc-meta-->
+
+                          <div class="app-card-actions">
+                            <div class="dropdown">
+                              <div
+                                class="dropdown-toggle no-toggle-arrow"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                <svg
+                                  width="1em"
+                                  height="1em"
+                                  viewBox="0 0 16 16"
+                                  class="bi bi-three-dots-vertical"
+                                  fill="currentColor"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                                  />
+                                </svg>
+                              </div>
+                              <!--//dropdown-toggle-->
+                              <ul class="dropdown-menu">
+                                <li>
+                                  <a class="dropdown-item" href="#">
+                                    <svg
+                                      width="1em"
+                                      height="1em"
+                                      viewBox="0 0 16 16"
+                                      class="bi bi-eye me-2"
+                                      fill="currentColor"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z"
+                                      />
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+                                      />
+                                    </svg>
+                                    Voir
+                                  </a>
+                                </li>
+
+                                <li>
+                                  <hr class="dropdown-divider" />
+                                </li>
+                                <li>
+                                  <a class="dropdown-item" href="#"
+                                    ><svg
+                                      width="1em"
+                                      height="1em"
+                                      viewBox="0 0 16 16"
+                                      class="bi bi-trash me-2"
+                                      fill="currentColor"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                                      />
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                                      />
+                                    </svg>
+                                    Supprimer
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <!--//dropdown-->
+                          </div>
+                          <!--//app-card-actions-->
+                        </div>
+                        <!--//app-card-body-->
+                      </div>
+
+                      <!-- prof card -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Bibliotèques section -->
+
+              <!-- cantines section -->
+              <div class="row gx-3">
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                          <!--//icon-holder-->
+                        </div>
+                        <!--//col-->
+                        <div class="col-auto">
+                          <h4 class="app-card-title">Ajouter les cantines</h4>
+                        </div>
+                        <!--//col-->
+                      </div>
+                      <!--//row-->
+                    </div>
+                    <!--//app-card-header-->
+                    <form class="app-card-body px-4 w-100">
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-12">
+                            <label class="item-label col-12"
+                              ><strong>Nombre de cantines</strong></label
+                            >
+                            <input
+                              class="form-control col-12"
+                              type="number"
+                              id="input-border-none"
+                              placeholder="Ajouter le nombre"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-auto">
+                            <div class="item-label mb-2">
+                              <strong>Photo 1</strong>
+                            </div>
+                            <div class="item-data">
+                              <img
+                                class="profile-image"
+                                src="assets/images/background/background-2.jpg"
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                          <!--//col-->
+                          <div class="col text-end">
+                            <!-- <a class="btn-sm app-btn-secondary" href="#">Modifier</a> -->
+                            <input
+                              class="btn-sm app-btn-secondary"
+                              type="file"
+                              name=""
+                              id=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-auto">
+                            <div class="item-label mb-2">
+                              <strong>Photo 2</strong>
+                            </div>
+                            <div class="item-data">
+                              <img
+                                class="profile-image"
+                                src="assets/images/background/background-1.jpg"
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                          <!--//col-->
+                          <div class="col text-end">
+                            <!-- <a class="btn-sm app-btn-secondary" href="#">Modifier</a> -->
+                            <input
+                              class="btn-sm app-btn-secondary"
+                              type="file"
+                              name=""
+                              id=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="app-card-footer p-4 mt-auto">
+                        <button class="btn app-btn-primary" href="#">
+                          Enregistrer
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="col-auto">
+                          <h4 class="app-card-title">
+                            les cantines enregistrées
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row app-card-body px-4 w-100 mb-4">
+                      <!-- prof card -->
+                      <div
+                        class="col-12 col-lg-6 col-md-6 app-card app-card-doc shadow-sm py-3 h-100"
+                      >
+                        <div class="app-card-thumb-holder p-3">
+                          <div class="app-card-thumb">
+                            <img
+                              class="thumb-image"
+                              src="assets/images/background/background-1.jpg"
+                              alt=""
+                            />
+                          </div>
+                          <a class="app-card-link-mask" href="#file-link"></a>
+                        </div>
+                        <div class="app-card-body p-3 has-card-actions">
+                          <!--//app-doc-meta-->
+
+                          <div class="app-card-actions">
+                            <div class="dropdown">
+                              <div
+                                class="dropdown-toggle no-toggle-arrow"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                <svg
+                                  width="1em"
+                                  height="1em"
+                                  viewBox="0 0 16 16"
+                                  class="bi bi-three-dots-vertical"
+                                  fill="currentColor"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                                  />
+                                </svg>
+                              </div>
+                              <!--//dropdown-toggle-->
+                              <ul class="dropdown-menu">
+                                <li>
+                                  <a class="dropdown-item" href="#">
+                                    <svg
+                                      width="1em"
+                                      height="1em"
+                                      viewBox="0 0 16 16"
+                                      class="bi bi-eye me-2"
+                                      fill="currentColor"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z"
+                                      />
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+                                      />
+                                    </svg>
+                                    Voir
+                                  </a>
+                                </li>
+
+                                <li>
+                                  <hr class="dropdown-divider" />
+                                </li>
+                                <li>
+                                  <a class="dropdown-item" href="#"
+                                    ><svg
+                                      width="1em"
+                                      height="1em"
+                                      viewBox="0 0 16 16"
+                                      class="bi bi-trash me-2"
+                                      fill="currentColor"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                                      />
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                                      />
+                                    </svg>
+                                    Supprimer
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <!--//dropdown-->
+                          </div>
+                          <!--//app-card-actions-->
+                        </div>
+                        <!--//app-card-body-->
+                      </div>
+
+                      <!-- prof card -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- cantines section -->
+
+              <!-- galerie section -->
+              <div class="row gx-3">
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                          <!--//icon-holder-->
+                        </div>
+                        <!--//col-->
+                        <div class="col-auto">
+                          <h4 class="app-card-title">
+                            Ajouter des photos à la galerie
+                          </h4>
+                        </div>
+                        <!--//col-->
+                      </div>
+                      <!--//row-->
+                    </div>
+                    <!--//app-card-header-->
+                    <form class="app-card-body px-4 w-100">
+                      <div class="item border-bottom py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-auto">
+                            <div class="item-label mb-2">
+                              <strong>Images</strong>
+                            </div>
+                            <div class="item-data">
+                              <img
+                                class="profile-image"
+                                src="assets/images/background/background-2.jpg"
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                          <!--//col-->
+                          <div class="col text-end">
+                            <!-- <a class="btn-sm app-btn-secondary" href="#">Modifier</a> -->
+                            <input
+                              class="btn-sm app-btn-secondary"
+                              type="file"
+                              name=""
+                              id=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="app-card-footer p-4 mt-auto">
+                        <button class="btn app-btn-primary" href="#">
+                          Enregistrer
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="mb-4 col-12 col-lg-6">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="col-auto">
+                          <h4 class="app-card-title">
+                            les cantines enregistrées
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row app-card-body px-4 w-100 mb-4">
+                      <!-- prof card -->
+                      <div
+                        class="col-12 col-lg-6 col-md-6 app-card app-card-doc shadow-sm py-3 h-100"
+                      >
+                        <div class="app-card-thumb-holder p-3">
+                          <div class="app-card-thumb">
+                            <img
+                              class="thumb-image"
+                              src="assets/images/background/background-1.jpg"
+                              alt=""
+                            />
+                          </div>
+                          <a class="app-card-link-mask" href="#file-link"></a>
+                        </div>
+                        <div class="app-card-body p-3 has-card-actions">
+                          <!--//app-doc-meta-->
+
+                          <div class="app-card-actions">
+                            <div class="dropdown">
+                              <div
+                                class="dropdown-toggle no-toggle-arrow"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                              >
+                                <svg
+                                  width="1em"
+                                  height="1em"
+                                  viewBox="0 0 16 16"
+                                  class="bi bi-three-dots-vertical"
+                                  fill="currentColor"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                                  />
+                                </svg>
+                              </div>
+                              <!--//dropdown-toggle-->
+                              <ul class="dropdown-menu">
+                                <li>
+                                  <a class="dropdown-item" href="#">
+                                    <svg
+                                      width="1em"
+                                      height="1em"
+                                      viewBox="0 0 16 16"
+                                      class="bi bi-eye me-2"
+                                      fill="currentColor"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z"
+                                      />
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+                                      />
+                                    </svg>
+                                    Voir
+                                  </a>
+                                </li>
+
+                                <li>
+                                  <hr class="dropdown-divider" />
+                                </li>
+                                <li>
+                                  <a class="dropdown-item" href="#"
+                                    ><svg
+                                      width="1em"
+                                      height="1em"
+                                      viewBox="0 0 16 16"
+                                      class="bi bi-trash me-2"
+                                      fill="currentColor"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                                      />
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                                      />
+                                    </svg>
+                                    Supprimer
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <!--//dropdown-->
+                          </div>
+                          <!--//app-card-actions-->
+                        </div>
+                        <!--//app-card-body-->
+                      </div>
+
+                      <!-- prof card -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- galerie section -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--//app-content-->
+    </div>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<!-- Header Start -->
+<div class="container-fluid header bg-white p-0">
+  <div
+    class="row g-0 align-items-center flex-column-reverse flex-md-row"
+    id="bg-color"
+  >
+    <div class="col-md-6 p-5 mt-lg-5">
+      <h1 class="display-5 animated fadeIn mb-4">Blog</h1>
+      <nav aria-label="breadcrumb animated fadeIn">
+        <ol class="breadcrumb text-uppercase">
+          <li class="breadcrumb-item">
+            <a href="{% url 'home' %}">Accueil</a>
+          </li>
+          <li class="breadcrumb-item text-body active" aria-current="page">
+            Blog
+          </li>
+        </ol>
+      </nav>
+      <p class="animated fadeIn mb-4 pb-2">
+        Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd
+        rebum ipsum et diam justo clita et kasd rebum sea elitr.
+      </p>
+    </div>
+    <div class="col-md-6 animated fadeIn">
+      <img class="img-fluid" src="{% static 'img/blog.jpg' %}" alt="" />
+    </div>
+  </div>
+</div>
+<!-- Header End -->
+<!-- Blog Start -->
+<div class="container py-5">
+  <div class="row g-5">
+    <!-- Blog list Start -->
+    <div class="col-lg-8">
+      <div class="row g-5 justify-content-center mb-5">
+        {% for blogpost in blogposts %}
+
+        <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="service-item bg-light overflow-hidden h-100">
+            <img
+              class="img-fluid"
+              src="{% if blogpost.image %} 
+                {{ blogpost.image.url }} 
+                {% else %} 
+                  {% static 'img/blogpost.jpg' %} 
+                  {% endif %}"
+              alt="Blogpost thumbnail"
+            />
+            <div class="service-text position-relative text-center h-100 p-4">
+              <h5 class="mb-3">{{blogpost.title}}</h5>
+              <p>{{blogpost.content}}</p>
+              <a class="small" href="{% url 'blogpost' blogpost.id %}"
+                >LIRE LA SUITE<i class="fa fa-arrow-right ms-3"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- Blog list End -->
+
+    <!-- Sidebar Start -->
+    <div class="col-lg-4">
+      <!-- Search Form Start -->
+      <div class="mb-5">
+        <form action="{% url 'blog' %}" method="get" class="input-group">
+          <input
+            type="text"
+            name="query"
+            class="form-control p-3"
+            placeholder="Keyword"
+          />
+          <button class="btn btn-primary px-4">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+      </div>
+      <!-- Search Form End -->
+
+      <!-- Recent Post Start -->
+      <div class="mb-5">
+        <h2 class="mb-4">Recent Post</h2>
+        <div class="bg-light p-4">
+          {% for blogpost in blogposts %}
+
+          <div class="d-flex overflow-hidden mb-3">
+            <img
+              class="img-fluid flex-shrink-0"
+              src="{% if blogpost.image %} 
+                {{ blogpost.image.url }} 
+                {% else %} 
+                  {% static 'img/blogpost.jpg' %} 
+                  {% endif %}"
+              style="width: 75px"
+              alt=""
+            />
+            <a
+              href="{% url 'blogpost' blogpost.id %}"
+              class="d-flex align-items-center bg-white text-dark fs-5 fw-bold px-3 mb-0"
+              >{{blogpost.title}}
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <!-- Recent Post End -->
+
+      <!-- Image Start -->
+      <div class="mb-5">
+        <img
+          src="{% static 'img/writer.jpg' %}"
+          alt=""
+          class="img-fluid rounded"
+        />
+      </div>
+      <!-- Image End -->
+    </div>
+    <!-- Sidebar End -->
+  </div>
+</div>
+<!-- Blog End -->
+{% endblock %}

@@ -1,0 +1,439 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+    <!-- Header Start -->
+    <div class="container-fluid header bg-white p-0">
+        <div class="row g-0 align-items-center flex-column-reverse flex-md-row" id="bg-color">
+            <div class="col-md-6 p-5 mt-lg-5">
+                <h1 class="display-5 animated fadeIn mb-4">Tarifs </h1>
+                <nav aria-label="breadcrumb animated fadeIn">
+                    <ol class="breadcrumb text-uppercase">
+                        <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+                        <li class="breadcrumb-item">INFOS</a></li>
+                        <li class="breadcrumb-item text-body active" aria-current="page">Tarifs</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-6 animated fadeIn">
+                <img class="img-fluid" src="{% static 'img/ccm.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+        
+    <!-- Pricing Start -->
+    <div class="container-xxl py-6" id="pricing">
+        <div class="container">
+            <div class="mx-auto text-center wow fadeInUp mt-5" data-wow-delay="0.1s" style="max-width: 600px;">
+                <h1 class="mb-3">Plan Tarifaire </h1>
+                <p class="mb-5">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat
+                    ipsum et lorem et sit, sed stet no labore lorem sit clita duo justo</p>
+            </div>
+            <div class="container-xxl py-2">
+                <div class="container">
+                    <div class="row g-0 gx-5 align-items-center">
+                        <div class="col-lg-12 col-sm-12 text-start text-lg wow slideInRight" data-wow-delay="0.1s" id="tabs-price">
+                            <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
+                                <li class="nav-item me-2">
+                                    <a class="btn btn-outline-primary active" data-bs-toggle="pill" href="#tab-1">Mois </a>
+                                </li>
+                                <li class="nav-item me-2">
+                                    <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-2">Trimestre</a>
+                                </li>
+                                <li class="nav-item me-2">
+                                    <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-3">Semestre</a>
+                                </li>
+                                <li class="nav-item me-2">
+                                    <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-4">Annuel </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+    
+    
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+    
+                            <div class="row g-4">
+                                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="price-item rounded overflow-hidden">
+                                        <div class="bg-dark p-4">
+                                            <h4 class="text-white mt-2">Gratuit</h4>
+                                            <div class="text-white">
+                                                <h1 class="d-inline display-6 text-primary mb-0"> 0 F CFA</h1>
+                                                <span class="align-baseline">/ Mois</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-light">
+                                            <div class="d-flex justify-content-between mb-3"><span>Création de profil
+                                                    public</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Présence du profil dans
+                                                    l'annuaire des ecoles</span><i
+                                                    class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Postuler aux demandes des
+                                                    parents
+                                                </span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Redaction des
+                                                    actualités</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Profil de l’ecolde en
+                                                    vedette</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Recommandations du
+                                                    profil aux
+                                                    visiteurs</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <a href="" class="btn btn-dark rounded-pill py-2 px-4 mt-3">Souscrire</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                                    <div class="price-item rounded overflow-hidden">
+                                        <div class="bg-primary p-4">
+                                            <h4 class="text-white mt-2">Basique</h4>
+                                            <div class="text-white">
+                                                <span class="align-top fs-4 fw-bold"></span>
+                                                <h1 class="d-inline display-6 text-dark mb-0"> 7 000 F CFA</h1>
+                                                <span class="align-baseline">/ Mois</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-light">
+                                            <div class="d-flex justify-content-between mb-3"><span>Création de profil
+                                                    public</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Présence du profil dans
+                                                    l'annuaire des ecoles</span><i
+                                                    class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Postuler aux demandes des
+                                                    parents
+                                                </span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Redaction des
+                                                    actualités</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Profil de l’ecolde en
+                                                    vedette</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Recommandations du
+                                                    profil aux
+                                                    visiteurs</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <a href="" class="btn btn-dark rounded-pill py-2 px-4 mt-3">Souscrire</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="price-item rounded overflow-hidden">
+                                        <div class="bg-dark p-4">
+                                            <h4 class="text-white mt-2">Professionnel</h4>
+                                            <div class="text-white">
+                                                <h1 class="d-inline display-8 text-primary mb-0"> 10 000 F CFA</h1>
+                                                <span class="align-baseline">/Mois</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-light">
+                                            <div class="d-flex justify-content-between mb-3"><span>Création de profil
+                                                    public</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Présence du profil dans
+                                                    l'annuaire des ecoles</span><i
+                                                    class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Postuler aux demandes des
+                                                    parents
+                                                </span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Redaction des
+                                                    actualités</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Profil de l’ecolde en
+                                                    vedette</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Recommandations du
+                                                    profil aux
+                                                    visiteurs</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <a href="" class="btn btn-dark rounded-pill py-2 px-4 mt-3">Souscrire</a>
+                                        </div>
+                                    </div>
+                                </div>
+    
+    
+                            </div>
+                        </div>
+    
+                        <div id="tab-2" class="tab-pane fade show p-0">
+                            <div class="row g-4">
+                                <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
+                                    <div class="price-item rounded overflow-hidden">
+                                        <div class="bg-dark p-4">
+                                            <h4 class="text-white mt-2">Gratuit</h4>
+                                            <div class="text-white">
+                                                <h1 class="d-inline display-6 text-primary mb-0"> 0 F CFA</h1>
+                                                <span class="align-baseline">/Mois</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-light">
+                                            <div class="d-flex justify-content-between mb-3"><span>Création de profil
+                                                    public</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Présence du profil
+                                                    dans
+                                                    l'annuaire des ecoles</span><i
+                                                    class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Postuler aux demandes
+                                                    des parents
+                                                </span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Redaction des
+                                                    actualités</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Profil de l’ecolde en
+                                                    vedette</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Recommandations du
+                                                    profil aux
+                                                    visiteurs</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <a href="" class="btn btn-dark rounded-pill py-2 px-4 mt-3">Souscrire</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6" data-wow-delay="0.3s">
+                                    <div class="price-item rounded overflow-hidden">
+                                        <div class="bg-primary p-4">
+                                            <h4 class="text-white mt-2">Basique</h4>
+                                            <div class="text-white">
+                                                <span class="align-top fs-4 fw-bold"></span>
+                                                <h1 class="d-inline display-8 text-dark mb-0"> 18 000 F CFA</h1>
+                                                <span class="align-baseline">/Mois</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-light">
+                                            <div class="d-flex justify-content-between mb-3"><span>Création de profil
+                                                    public</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Présence du profil
+                                                    dans
+                                                    l'annuaire des ecoles</span><i
+                                                    class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Postuler aux demandes
+                                                    des parents
+                                                </span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Redaction des
+                                                    actualités</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Profil de l’ecolde en
+                                                    vedette</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Recommandations du
+                                                    profil aux
+                                                    visiteurs</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <a href="" class="btn btn-dark rounded-pill py-2 px-4 mt-3">Souscrire</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6" data-wow-delay="0.5s">
+                                    <div class="price-item rounded overflow-hidden">
+                                        <div class="bg-dark p-4">
+                                            <h4 class="text-white mt-2">Professionnel</h4>
+                                            <div class="text-white" style="display: inline-table;">
+                                                <h1 class="d-inline display-9 text-primary mb-0">25 000 F CFA</h1>
+                                                <span class="align-baseline">/Mois</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-light">
+                                            <div class="d-flex justify-content-between mb-3"><span>Création de profil
+                                                    public</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Présence du profil
+                                                    dans
+                                                    l'annuaire des ecoles</span><i
+                                                    class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Postuler aux demandes
+                                                    des parents
+                                                </span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Redaction des
+                                                    actualités</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Profil de l’ecolde en
+                                                    vedette</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Recommandations du
+                                                    profil aux
+                                                    visiteurs</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <a href="" class="btn btn-dark rounded-pill py-2 px-4 mt-3">Souscrire</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div id="tab-3" class="tab-pane fade show p-0">
+                            <div class="row g-4">
+                                <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
+                                    <div class="price-item rounded overflow-hidden">
+                                        <div class="bg-dark p-4">
+                                            <h4 class="text-white mt-2">Gratuit</h4>
+                                            <div class="text-white" style="display: inline-table;">
+                                                <h1 class="d-inline display-6 text-primary mb-0"> 0 F CFA</h1>
+                                                <span class="align-baseline">/ Mois</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-light">
+                                            <div class="d-flex justify-content-between mb-3"><span>Création de profil
+                                                    public</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Présence du profil dans
+                                                    l'annuaire des ecoles</span><i
+                                                    class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Postuler aux demandes des
+                                                    parents
+                                                </span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Redaction des
+                                                    actualités</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Profil de l’ecolde en
+                                                    vedette</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Recommandations du
+                                                    profil aux
+                                                    visiteurs</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <a href="" class="btn btn-dark rounded-pill py-2 px-4 mt-3">Souscrire</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6" data-wow-delay="0.3s">
+                                    <div class="price-item rounded overflow-hidden">
+                                        <div class="bg-primary p-4">
+                                            <h4 class="text-white mt-2">Basique</h4>
+                                            <div class="text-white" style="display: inline-table;">
+                                                <span class="align-top fs-4 fw-bold"></span>
+                                                <h1 class="d-inline display-6 text-dark mb-0">30 000 F CFA</h1>
+                                                <span class="align-baseline">/ Mois</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-light">
+                                            <div class="d-flex justify-content-between mb-3"><span>Création de profil
+                                                    public</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Présence du profil dans
+                                                    l'annuaire des ecoles</span><i
+                                                    class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Postuler aux demandes des
+                                                    parents
+                                                </span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Redaction des
+                                                    actualités</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Profil de l’ecolde en
+                                                    vedette</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Recommandations du
+                                                    profil aux
+                                                    visiteurs</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <a href="" class="btn btn-dark rounded-pill py-2 px-4 mt-3">Souscrire</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6" data-wow-delay="0.5s">
+                                    <div class="price-item rounded overflow-hidden">
+                                        <div class="bg-dark p-4">
+                                            <h4 class="text-white mt-2">Professionnel</h4>
+                                            <div class="text-white" style="display: inline-table;" >
+                                                <h1 class="d-inline display-9 text-primary mb-0">45 000 F CFA</h1>
+                                                <span class="align-baseline">/Mois</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-light">
+                                            <div class="d-flex justify-content-between mb-3"><span>Création de profil
+                                                    public</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Présence du profil dans
+                                                    l'annuaire des ecoles</span><i
+                                                    class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Postuler aux demandes des
+                                                    parents
+                                                </span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Redaction des
+                                                    actualités</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Profil de l’ecolde en
+                                                    vedette</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Recommandations du
+                                                    profil aux
+                                                    visiteurs</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <a href="" class="btn btn-dark rounded-pill py-2 px-4 mt-3">Souscrire</a>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </div>
+                        <div id="tab-4" class="tab-pane fade show p-0">
+                            <div class="row g-4">
+                                <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
+                                    <div class="price-item rounded overflow-hidden">
+                                        <div class="bg-dark p-4">
+                                            <h4 class="text-white mt-2">Gratuit</h4>
+                                            <div class="text-white">
+                                                <h1 class="d-inline display-6 text-primary mb-0"> 0 F CFA</h1>
+                                                <span class="align-baseline">/ Mois</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-light">
+                                            <div class="d-flex justify-content-between mb-3"><span>Création de profil
+                                                    public</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Présence du profil dans
+                                                    l'annuaire des ecoles</span><i
+                                                    class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Postuler aux demandes des
+                                                    parents
+                                                </span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Redaction des
+                                                    actualités</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Profil de l’ecolde en
+                                                    vedette</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Recommandations du
+                                                    profil aux
+                                                    visiteurs</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <a href="" class="btn btn-dark rounded-pill py-2 px-4 mt-3">Souscrire</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6" data-wow-delay="0.3s">
+                                    <div class="price-item rounded overflow-hidden">
+                                        <div class="bg-primary p-4">
+                                            <h4 class="text-white mt-2">Basique</h4>
+                                            <div class="text-white">
+                                                <span class="align-top fs-4 fw-bold"></span>
+                                                <h1 class="d-inline display-6 text-dark mb-0"> 55 000 F CFA</h1>
+                                                <span class="align-baseline">/ Mois</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-light">
+                                            <div class="d-flex justify-content-between mb-3"><span>Création de profil
+                                                    public</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Présence du profil dans
+                                                    l'annuaire des ecoles</span><i
+                                                    class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Postuler aux demandes des
+                                                    parents
+                                                </span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Redaction des
+                                                    actualités</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Profil de l’ecolde en
+                                                    vedette</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Recommandations du
+                                                    profil aux
+                                                    visiteurs</span><i class="fa fa-times text-danger pt-1"></i></div>
+                                            <a href="" class="btn btn-dark rounded-pill py-2 px-4 mt-3">Souscrire</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6" data-wow-delay="0.5s">
+                                    <div class="price-item rounded overflow-hidden">
+                                        <div class="bg-dark p-4">
+                                            <h4 class="text-white mt-2">Professionnel</h4>
+                                            <div class="text-white">
+                                                <h1 class="d-inline display-8 text-primary mb-0"> 80 000 F CFA</h1>
+                                                <span class="align-baseline">/Mois</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-light">
+                                            <div class="d-flex justify-content-between mb-3"><span>Création de profil
+                                                    public</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Présence du profil dans
+                                                    l'annuaire des ecoles</span><i
+                                                    class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Postuler aux demandes des
+                                                    parents
+                                                </span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Redaction des
+                                                    actualités</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Profil de l’ecolde en
+                                                    vedette</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span> Recommandations du
+                                                    profil aux
+                                                    visiteurs</span><i class="fa fa-check text-success pt-1"></i></div>
+                                            <a href="" class="btn btn-dark rounded-pill py-2 px-4 mt-3">Souscrire</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Pricing End -->
+
+{% endblock %}

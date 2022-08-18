@@ -1,0 +1,188 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<!-- Header Start -->
+<div class="container-fluid header bg-white p-0">
+  <div
+    class="row g-0 align-items-center flex-column-reverse flex-md-row"
+    id="bg-color"
+  >
+    <div class="col-md-6 p-5 mt-lg-5">
+      <h1 class="display-5 animated fadeIn mb-4">A propos</h1>
+      <nav aria-label="breadcrumb animated fadeIn">
+        <ol class="breadcrumb text-uppercase">
+          <li class="breadcrumb-item">
+            <a href="{% url 'home' %}">Accueil</a>
+          </li>
+          <li class="breadcrumb-item"><a>INFOS</a></li>
+          <li class="breadcrumb-item text-body active" aria-current="page">
+            A propos
+          </li>
+        </ol>
+      </nav>
+      <p class="animated fadeIn mb-4 pb-2">
+        Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd
+        rebum ipsum et diam justo clita et kasd rebum sea elitr.
+      </p>
+    </div>
+    <div class="col-md-6 animated fadeIn">
+      <img class="img-fluid" src="{% static 'img/about.jpg' %}" alt="" />
+    </div>
+  </div>
+</div>
+<!-- Header End -->
+<!-- About Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+        <div class="about-img position-relative overflow-hidden p-5 pe-0">
+          <img
+            class="img-fluid w-100"
+            src="
+          {% static 'img/about-2.jpg' %}"
+          />
+        </div>
+      </div>
+      <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+        <!-- <h1 class="mb-4">#1 Place To Find The Perfect Property</h1> -->
+        <p class="mb-4">
+          Un recruteur de talent a toujours besoin de consulter le curriculum
+          vitae (CV) d’un candidat avant de le retenir pour un entretien pouvant
+          conduire à une embauche. Ainsi le CV permet de connaitre :
+        </p>
+
+        <p>
+          <i class="fa fa-check text-primary me-3"></i>Les informations sur le
+          candidat,
+        </p>
+        <p>
+          <i class="fa fa-check text-primary me-3"></i>L’expérience de travail
+          du candidat,
+        </p>
+        <p>
+          <i class="fa fa-check text-primary me-3"></i>et tout ce qui englobe
+          ses compétences.
+        </p>
+        <!-- <a class="btn btn-primary py-3 px-5 mt-3" href="">Read More</a> -->
+        <p class="mb-4">
+          Malheureusement, tel n’est pas le cas pour des parents quand il s’agit
+          de choisir les établissements scolaires pour leurs enfants, pas parce
+          qu’ils ne veulent pas s’informer avant de choisir mais parce que les
+          informations nécessaires pouvant permettre de choisir sont quasi
+          inexistantes ou difficile à obtenir avec assurance si elles existent.
+          En effet, pour ce faire, nos parents choisissent les établissements
+          suivant les critères suivants :
+        </p>
+
+        <p>
+          <i class="fa fa-check text-primary me-3"></i>Proximité de
+          l’établissement,
+        </p>
+        <p>
+          <i class="fa fa-check text-primary me-3"></i>Recommandation d’un
+          proche,
+        </p>
+        <p>
+          <i class="fa fa-check text-primary me-3"></i>Une quelque réputation
+          non avérée.
+        </p>
+      </div>
+
+      <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+        <!-- <h1 class="mb-4">#1 Place To Find The Perfect Property</h1> -->
+        <p class="mb-4">
+          La plateforme <strong>Findschola.com</strong> a été créé en 2021 par
+          la société <strong>It-Innovation</strong> et a été mise en ligne 2022
+          et vient en réponse aux problèmes évoqués. Le concept est né du
+          constat selon lequel tout parent devrait avoir la possibilité de
+          choisir une école pour ses enfants en se basant sur les informations
+          réelles telles que :
+        </p>
+
+        <p>
+          <i class="fa fa-check text-primary me-3"></i>Informations générales
+          sur les établissements (historique, autorisation, agrément des
+          autorités, filières effectives etc.) ;
+        </p>
+        <p>
+          <i class="fa fa-check text-primary me-3"></i>Images et vidéos des
+          salles de classe des établissements ;
+        </p>
+        <p>
+          <i class="fa fa-check text-primary me-3"></i>Réputation de l’école
+        </p>
+        <p>
+          <i class="fa fa-check text-primary me-3"></i>Qualification des
+          enseignants
+        </p>
+        <p>
+          <i class="fa fa-check text-primary me-3"></i>Taux de réussite des
+          apprenants aux examens
+        </p>
+        <p>
+          <i class="fa fa-check text-primary me-3"></i>Aménagement des salles de
+          classe
+        </p>
+        <p>
+          <i class="fa fa-check text-primary me-3"></i>Politique de cadre des
+          apprenants
+        </p>
+        <!-- <a class="btn btn-primary py-3 px-5 mt-3" href="">Read More</a> -->
+        <p class="mb-4">
+          Nous pensons arriver à la mise en place d’un outil intéressant qui
+          permet aux écoles d’être visibles aux parents qui veulent le
+          meilleures pour garantir une bonne éducation pour leur enfant.
+        </p>
+      </div>
+      <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+        <div class="about-img position-relative overflow-hidden p-5 pe-0">
+          <img
+            class="img-fluid w-100"
+            src="
+          {% static 'img/about-1.jpg' %}"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- About End -->
+
+<!-- Call to Action Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="bg-light rounded p-3">
+      <div
+        class="bg-white rounded p-4"
+        style="border: 1px dashed rgba(0, 185, 142, 0.3)"
+      >
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+            <img
+              class="img-fluid rounded w-100"
+              src="img/call-to-action.jpg"
+              alt=""
+            />
+          </div>
+          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+            <div class="mb-4">
+              <h1 class="mb-3">It-innovation.com ?</h1>
+              <p>
+                La société It Innovation a été fondée en 2018. Elle est
+                spécialisée dans le développement et la commercialisation des
+                solutions informatiques innovantes. Il s’agit principalement des
+                solution Web, Mobile, Desktop API et autres dans plusieurs
+                secteurs d’activités (Transport, Gestion, santé, Hôtels,
+                Agriculture, Mécanique, Professions libérales, écoles etc…)
+              </p>
+            </div>
+            <a href="contact" class="btn btn-primary py-3 px-4 me-2"
+              ><i class="fa fa-phone-alt me-2"></i>Contactez nous</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Call to Action End -->
+{% endblock %}

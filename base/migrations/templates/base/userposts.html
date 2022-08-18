@@ -1,0 +1,159 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<!-- Header Start -->
+<div class="container-fluid header bg-white p-0">
+  <div
+    class="row g-0 align-items-center flex-column-reverse flex-md-row"
+    id="bg-color"
+  >
+    <div class="col-md-6 p-5 mt-lg-5">
+      <h1 class="display-5 animated fadeIn mb-4">Demandes & Ofrres</h1>
+      <nav aria-label="breadcrumb animated fadeIn">
+        <ol class="breadcrumb text-uppercase">
+          <li class="breadcrumb-item">
+            <a href="{% url 'home' %}">Accueil</a>
+          </li>
+          <li class="breadcrumb-item"><a>INFOS</a></li>
+          <li class="breadcrumb-item text-body active" aria-current="page">
+            Demandes & Ofrres
+          </li>
+        </ol>
+      </nav>
+      <p class="animated fadeIn mb-4 pb-2">
+        Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd
+        rebum ipsum et diam justo clita et kasd rebum sea elitr.
+      </p>
+    </div>
+    <div class="col-md-6 animated fadeIn">
+      <img class="img-fluid" src="{% static 'img/demandes.jpg' %}" alt="" />
+    </div>
+  </div>
+</div>
+<!-- Header End -->
+<!-- Jobs Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+      Demandes récentes
+    </h1>
+    <div class="job-item p-4 mb-4">
+      {% for post in userposts %}
+      <div class="row g-4">
+        <div class="col-lg-6 col-sm-12 col-md-8 d-flex align-items-center">
+          <img
+            class="flex-shrink-0 img-fluid border rounded"
+            src="{% static 'img/anon.jpg' %}"
+            alt=""
+            style="width: 80px; height: 80px"
+          />
+          <div class="text-start ps-4">
+            <h5 class="mb-3">{{post.title}}</h5>
+            <span class="text-truncate me-3"
+              ><i class="fa fa-map-marker-alt text-primary me-2"></i
+              >@{{post.author.username}}</span
+            >
+            <p class="animated fadeIn mb-4 pb-2">{{post.content}}</p>
+            <!-- <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>$123 - $456</span> -->
+          </div>
+        </div>
+        <div
+          class="col-lg-6 col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center"
+        >
+          <div class="d-flex mb-3">
+            <a class="btn btn-dark" href="">Répondre</a>
+          </div>
+          <small class="text-truncate"
+            ><i class="far fa-calendar-alt text-primary me-2"></i
+            >{{post.date_added}}</small
+          >
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Jobs End -->
+
+<!-- Testimonial Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div
+      class="text-center mx-auto mb-5 wow fadeInUp"
+      data-wow-delay="0.1s"
+      style="max-width: 600px"
+    >
+      <h1 class="mb-3">Les retours d'expérience</h1>
+      <p>
+        Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore
+        lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero
+        dolor duo.
+      </p>
+    </div>
+    <div
+      class="owl-carousel testimonial-carousel wow fadeInUp"
+      data-wow-delay="0.1s"
+    >
+      <div class="testimonial-item bg-light rounded p-3">
+        <div class="bg-white border rounded p-4">
+          <p>
+            Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum
+            rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd
+            kasd erat eos
+          </p>
+          <div class="d-flex align-items-center">
+            <img
+              class="img-fluid flex-shrink-0 rounded"
+              src="img/testimonial-1.jpg"
+              style="width: 45px; height: 45px"
+            />
+            <div class="ps-3">
+              <h6 class="fw-bold mb-1">Client Name</h6>
+              <small>Profession</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-item bg-light rounded p-3">
+        <div class="bg-white border rounded p-4">
+          <p>
+            Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum
+            rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd
+            kasd erat eos
+          </p>
+          <div class="d-flex align-items-center">
+            <img
+              class="img-fluid flex-shrink-0 rounded"
+              src="img/testimonial-2.jpg"
+              style="width: 45px; height: 45px"
+            />
+            <div class="ps-3">
+              <h6 class="fw-bold mb-1">Client Name</h6>
+              <small>Profession</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-item bg-light rounded p-3">
+        <div class="bg-white border rounded p-4">
+          <p>
+            Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum
+            rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd
+            kasd erat eos
+          </p>
+          <div class="d-flex align-items-center">
+            <img
+              class="img-fluid flex-shrink-0 rounded"
+              src="img/testimonial-3.jpg"
+              style="width: 45px; height: 45px"
+            />
+            <div class="ps-3">
+              <h6 class="fw-bold mb-1">Client Name</h6>
+              <small>Profession</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Testimonial End -->
+{% endblock %}

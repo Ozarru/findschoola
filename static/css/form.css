@@ -1,0 +1,333 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+html {
+    height: 100%
+}
+
+p {
+    color: grey
+}
+
+#heading {
+    text-transform: uppercase;
+    color: #00B98E;
+    font-weight: normal
+}
+
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+}
+
+.form-card {
+    text-align: left
+}
+
+#msform fieldset:not(:first-of-type) {
+    display: none
+}
+
+#msform input,
+#msform textarea {
+    padding: 8px 15px 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 25px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #2C3E50;
+    background-color: #ECEFF1;
+    font-size: 16px;
+    letter-spacing: 1px
+}
+
+#msform input:focus,
+#msform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #00B98E;
+    outline-width: 0
+}
+
+#msform .action-button {
+    width: 100px;
+    background: #00B98E;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 0px 10px 5px;
+    float: right
+}
+
+#msform .action-button:hover,
+#msform .action-button:focus {
+    background-color: #311B92
+}
+
+#msform .action-button-previous {
+    width: 100px;
+    background: #616161;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 10px 0px;
+    float: right
+}
+
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus {
+    background-color: #000000
+}
+
+.card {
+    z-index: 0;
+    border: none;
+    position: relative
+}
+
+.fs-title {
+    font-size: 25px;
+    color: #00B98E;
+    margin-bottom: 15px;
+    font-weight: normal;
+    text-align: left
+}
+
+.purple-text {
+    color: #00B98E;
+    font-weight: normal
+}
+
+.steps {
+    font-size: 25px;
+    color: gray;
+    margin-bottom: 10px;
+    font-weight: normal;
+    text-align: right
+}
+
+.fieldlabels {
+    color: gray;
+    text-align: left
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+}
+
+#progressbar .active {
+    color: #00B98E
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400
+}
+
+#progressbar #account:before {
+    font-family: FontAwesome;
+    content: "\f13e"
+}
+
+#progressbar #personal:before {
+    font-family: FontAwesome;
+    content: "\f007"
+}
+#progressbar #building:before {
+    font-family: FontAwesome;
+    content: "\f0f7"
+}
+
+#progressbar #payment:before {
+    font-family: FontAwesome;
+    content: "\f030"
+}
+
+#progressbar #confirm:before {
+    font-family: FontAwesome;
+    content: "\f00c"
+}
+
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #00B98E
+}
+
+.progress {
+    height: 20px
+}
+
+.progress-bar {
+    background-color: #00B98E
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover
+}
+
+
+
+
+----------------------
+
+/* body {
+  font-family: "Karla", sans-serif;
+  background-color: #fff;
+  min-height: 100vh; } */
+
+  .brand-wrapper {
+    padding-top: 7px;
+    padding-bottom: 8px; }
+    .brand-wrapper .logo {
+      height: 25px; }
+  
+  .login-section-wrapper {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    padding: 68px 100px;
+    background-color: #fff; }
+    @media (max-width: 991px) {
+      .login-section-wrapper {
+        padding-left: 50px;
+        padding-right: 50px; } }
+    @media (max-width: 575px) {
+      .login-section-wrapper {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        min-height: 100vh; } }
+  
+  .login-wrapper {
+    width: 400px;
+    max-width: 100%;
+    padding-top: 24px;
+    padding-bottom: 24px; }
+    @media (max-width: 575px) {
+      .login-wrapper {
+        width: 100%; } }
+    .login-wrapper label {
+      font-size: 14px;
+      font-weight: bold;
+      color: #b0adad; }
+    .login-wrapper .form-control {
+      border: none;
+      border-bottom: 1px solid #e7e7e7;
+      border-radius: 0;
+      padding: 9px 5px;
+      min-height: 40px;
+      font-size: 18px;
+      font-weight: normal; }
+      .login-wrapper .form-control::-webkit-input-placeholder {
+        color: #b0adad; }
+      .login-wrapper .form-control::-moz-placeholder {
+        color: #b0adad; }
+      .login-wrapper .form-control:-ms-input-placeholder {
+        color: #b0adad; }
+      .login-wrapper .form-control::-ms-input-placeholder {
+        color: #b0adad; }
+      .login-wrapper .form-control::placeholder {
+        color: #b0adad; }
+    .login-wrapper .login-btn {
+      padding: 13px 20px;
+      background-color: #fdbb28;
+      border-radius: 0;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 14px; }
+      .login-wrapper .login-btn:hover {
+        border: 1px solid #fdbb28;
+        background-color: #fff;
+        color: #fdbb28; }
+    .login-wrapper a.forgot-password-link {
+      color: #080808;
+      font-size: 14px;
+      text-decoration: underline;
+      display: inline-block;
+      margin-bottom: 5px; }
+      @media (max-width: 575px) {
+        .login-wrapper a.forgot-password-link {
+          margin-bottom: 16px; } }
+    .login-wrapper-footer-text {
+      font-size: 16px;
+      color: #000;
+  
+     }
+  
+  .login-title {
+    font-size: 30px;
+    color: #000;
+    font-weight: bold;
+    margin-bottom: 25px; }
+  
+
+    .green-link{
+        color:#00B98E !important;
+        font-weight: 500;
+    }
+  .login-img {
+    width: 100%;
+    height: 100vh;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: left;
+       object-position: left; }
+  
+  /*# sourceMappingURL=login.css.map */
+  

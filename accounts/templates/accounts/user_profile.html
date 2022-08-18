@@ -1,0 +1,218 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  {% include 'dashhead.html' %}
+  <body class="app">
+    {% include 'header.html' %}
+
+    <div class="app-wrapper">
+      <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+          <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+              <h1 class="app-page-title mb-0">Profil d'Utilisateur</h1>
+            </div>
+          </div>
+          <!-- tabs nav -->
+          <nav
+            id="orders-table-tab"
+            class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4"
+          >
+            <a
+              class="flex-sm-fill text-sm-center nav-link active"
+              id="tab-1"
+              data-bs-toggle="tab"
+              href="#general"
+              role="tab"
+              aria-controls="general"
+              aria-selected="true"
+              >Mon Profil</a
+            >
+            <a
+              class="flex-sm-fill text-sm-center nav-link"
+              id="tab-2"
+              data-bs-toggle="tab"
+              href="#academique"
+              role="tab"
+              aria-controls="academique"
+              aria-selected="false"
+              >Mes Activités</a
+            >
+          </nav>
+          <!-- tabs -->
+          <div class="tab-content" id="orders-table-tab-content">
+            <!--tab-1-->
+
+            <div
+              class="tab-pane fade show active"
+              id="general"
+              role="tabpanel"
+              aria-labelledby="tab-1"
+            >
+              <div class="row gx-3">
+                <div class="col-12 col-lg-7">
+                  <div
+                    class="app-card app-card-account shadow-sm d-flex flex-column align-items-start my-2"
+                  >
+                    <div class="app-card-header p-3 border-bottom-0">
+                      <div class="row align-items-center gx-3">
+                        <div class="col-auto">
+                          <div class="app-icon-holder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-building"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"
+                              />
+                              <path
+                                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"
+                              />
+                            </svg>
+                          </div>
+                          <!--//icon-holder-->
+                        </div>
+                        <!--//col-->
+                        <div class="col-auto">
+                          <h4 class="app-card-title">
+                            Informations de mon compte
+                          </h4>
+                        </div>
+                        <!--//col-->
+                      </div>
+                      <!--//row-->
+                    </div>
+                    <!--//app-card-header-->
+                    <form
+                      id="msform"
+                      class="app-card-body px-4 w-100"
+                      method="POST"
+                      action=""
+                    >
+                      {% csrf_token %}
+
+                      <div class="item py-3">
+                        <div
+                          class="row justify-content-between align-items-center"
+                        >
+                          <div class="col-auto">
+                            <div class="item-label mb-2">
+                              <strong>Photo de profil</strong>
+                            </div>
+                            <div class="item-data">
+                              <img
+                                class="profile-image"
+                                src="
+                                {% if user.profile_img %}
+                                {{ accounts.profile_img.url }} 
+                                {% else %}
+                                {% static 'img/anon.jpg' %}
+                                {% endif %}
+                                "
+                                alt=""
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--  -->
+                      <div class="form-card">
+                        {% for field in form %}
+                        <div class="item border-top py-3">
+                          <div
+                            class="row justify-content-between align-items-center"
+                          >
+                            <div class="col-12">
+                              <label class="item-label col-12"
+                                ><strong>{{field.label}}</strong></label
+                              >
+                              <div
+                                class="form-control col-12"
+                                type="text"
+                                id="input-border-none"
+                              >
+                                {{field}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {% endfor %}
+                      </div>
+                      <input
+                        class="btn app-btn-primary mx-2"
+                        type="submit"
+                        value="Enregistrer"
+                      />
+                    </form>
+                  </div>
+                </div>
+                <!-- phase two -->
+                <div class="mt-2 col-12 col-lg-5">
+                  <div class="">
+                    <h1>....</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--tab-2-->
+
+            <div
+              class="tab-pane fade"
+              id="academique"
+              role="tabpanel"
+              aria-labelledby="tab-2"
+            >
+              <div class="tab-content container-xxl py-5">
+                <!-- demands -->
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+                  <h1
+                    class="text-center mb-5 wow fadeInUp"
+                    data-wow-delay="0.1s"
+                  >
+                    Mes Demandes
+                  </h1>
+                  <div class="row g-4">
+                    {% for demand in demands %}
+
+                    <div
+                      class="col-md-6 col-lg-4 wow fadeInUp"
+                      data-wow-delay="0.1s"
+                    >
+                      <div class="service-item">
+                        <div class="overflow-hidden">
+                          <img
+                            class="img-fluid"
+                            src="{% static 'img/job.jpg' %}"
+                            alt=""
+                          />
+                        </div>
+                        <div
+                          class="p-4 text-center border border-5 border-light border-top-0"
+                        >
+                          <h4 class="mb-3">{{demand.title}}</h4>
+                          <p>{{demand.content}}</p>
+                          <a class="fw-medium" href=""
+                            >Read More<i class="fa fa-arrow-right ms-2"></i
+                          ></a>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--//app-content-->
+    </div>
+  </body>
+</html>

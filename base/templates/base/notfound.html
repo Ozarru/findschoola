@@ -1,0 +1,26 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+        <!-- Header Start -->
+        <div class="container-fluid header bg-white p-0">
+          <div class="row g-0 align-items-center flex-column-reverse flex-md-row" id="bg-color">
+              <div class="col-md-6 p-5 mt-lg-5">
+                  <h1 class="display-5 animated fadeIn mb-4">404 Error</h1> 
+                      <nav aria-label="breadcrumb animated fadeIn">
+                      <ol class="breadcrumb text-uppercase">
+                          <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
+                          <li class="breadcrumb-item">INFOS</a></li>
+                          <li class="breadcrumb-item text-body active" aria-current="page">Page introuvable</li>
+                      </ol>
+                      <a
+                      href="{% url 'home' %}"
+                      class="btn btn-secondary py-3 px-5 me-3 animated fadeIn"
+                      > <- Retournez sur la page d'acceuil</a
+                    >
+                  </nav>
+              </div>
+              <div class="col-md-6 animated fadeIn">
+                  <img class="img-fluid" src="{% static 'img/404.webp' %}" alt="">
+              </div>
+          </div>
+      </div>
+      <!-- Header End -->
+{% endblock %}

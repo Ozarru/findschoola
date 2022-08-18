@@ -1,0 +1,155 @@
+{% load static %}
+<!--  -->
+<head>
+  <!-- FontAwesome JS-->
+  <!-- <script defer src="{% static 'plugins/fontawesome/js/all.min.js' %}"></script> -->
+
+  <!-- App CSS -->
+  <!-- <link
+    id="theme-style"
+    rel="stylesheet"
+    href="{% static 'css/dashboard.css' %}"
+  /> -->
+</head>
+
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-transparent">
+  <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+    <a
+      href="{% url 'home' %}"
+      class="navbar-brand d-flex align-items-center text-center"
+    >
+      <div class="icon p-2 me-2">
+        <img
+          class="img-fluid"
+          src=" {% static 'img/logo.png' %}"
+          alt="Icon"
+          style="width: 30px; height: 30px"
+        />
+      </div>
+      <h1 class="m-0 text-primary">FindSchola</h1>
+    </a>
+    <button
+      type="button"
+      class="navbar-toggler"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarCollapse"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto">
+        <a href="{% url 'home' %}" class="nav-item nav-link {{ home_page }}"
+          >Accueil</a
+        >
+        <a
+          href="{% url 'schools' %}"
+          class="nav-item nav-link {{ schools_page }}"
+          >Etablissements</a
+        >
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+            >Informations</a
+          >
+          <div class="dropdown-menu rounded-0 m-0">
+            <a href="{% url 'blog' %}" class="dropdown-item">Blog</a>
+            <a href="{% url 'tariff' %}" class="dropdown-item">Tarifs</a>
+            <a href="{% url 'about' %}" class="dropdown-item">A propos</a>
+            <a href="{% url 'ads' %}" class="dropdown-item"
+              >Demandes & Offres</a
+            >
+            <a href="{% url 'faq' %}" class="dropdown-item"
+              >Foire aux questions</a
+            >
+            <a href="{% url 'ccm' %}" class="dropdown-item"
+              >Comment ça marche ?</a
+            >
+          </div>
+        </div>
+
+        <a
+          href="{% url 'contact' %}"
+          class="nav-item nav-link {{ contact_page }}"
+          >Contact</a
+        >
+        {% if user.is_authenticated %}
+        <div class="app-utility-item app-user-dropdown dropdown mt-3">
+          <a
+            class="dropdown-toggle"
+            id="user-dropdown-toggle"
+            data-bs-toggle="dropdown"
+            href="#"
+            role="button"
+            aria-expanded="false"
+            ><img
+              src="
+            {% if user.profile_img %}
+            {{ accounts.profile_img.url }} 
+            {% else %}
+            {% static 'img/anon.jpg' %}
+            {% endif %}
+            "
+              width="40"
+              alt="user profile"
+          /></a>
+          <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
+            <li>
+              <a class="dropdown-item" href="{% url 'profile' user.id %}"
+                >Compte</a
+              >
+            </li>
+            {% if user.role == 'gestionaire' %}
+
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'dashboard' %}"
+                >Dashboard</a
+              >
+            </li>
+            {% endif %}
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'settings' %}"
+                >Parametres</a
+              >
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'logout' %}">Deconnexion</a>
+            </li>
+            <!--  -->
+            {% if user.is_superuser %}
+
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'admin:index' %}"
+                >Admin Dashboard</a
+              >
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+        <!--//app-user-dropdown-->
+        {% else %}
+        <a href="{% url 'login' %}" class="nav-item nav-link {{login_page}}"
+          >Connexion</a
+        >
+      </div>
+      <a
+        href="{% url 'signup' %}"
+        class="btn btn-primary px-3 d-none d-lg-flex {{signup_page}}"
+        >Inscription</a
+      >
+      {% endif %}
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->
