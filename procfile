@@ -1,1 +1,1 @@
-web: gunicorn findschoola.wsgi
+web: gunicorn findschoola.wsgi:application --log-file -
