@@ -5,7 +5,6 @@ urlpatterns = [
     path('', dashboard, name='dashboard'),
     path('enquiries', enquiries, name='enquiries'),
     path('sch_profile/<str:pk>/', schProlile, name='sch_profile'),
-    # path('add_school/<str:pk>/', createSchool, name='add_school'),
     path('notices', notices, name='notices'),
     path('bulletin', bulletin, name='bulletin'),
     path('plans', plans, name='plans'),

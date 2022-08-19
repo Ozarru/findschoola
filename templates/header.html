@@ -148,13 +148,8 @@
                 role="button"
                 aria-expanded="false"
                 ><img
-                  src="
-                {% if user.profile_img %}
-                {{ accounts.profile_img.url }} 
-                {% else %}
-                {% static 'img/anon.jpg' %}
-                {% endif %}
-                "
+                  class="rounded-circle"
+                  src="{{ user.image.url }}"
                   alt="user profile"
               /></a>
               <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
@@ -374,10 +369,7 @@
         <nav class="app-nav app-nav-footer">
           <ul class="app-menu footer-menu list-unstyled">
             <li class="nav-item">
-              <a
-                class="nav-link  {{profile_page}}"
-                href="{% url 'profile' user.id %}"
-              >
+              <a class="nav-link  {{profile_page}}" href="{% url 'profile' %}">
                 <span class="nav-icon">
                   <svg
                     width="1em"

@@ -110,7 +110,7 @@ class School(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('school-detail', kwargs={'slug': self.slug})
+        return reverse('school', kwargs={'pk': self.pk})
 
 
 class Photo(models.Model):

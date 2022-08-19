@@ -63,13 +63,6 @@ def notfound(req):
     return render(req, 'base/notfound.html', context)
 
 
-def contact(req):
-    context = {
-        "contact_page": "active",
-        "title": 'contact', }
-    return render(req, 'base/contact.html', context)
-
-
 def faq(req):
     context = {
         "faq_page": "active",

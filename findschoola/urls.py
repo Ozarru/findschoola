@@ -25,9 +25,12 @@ urlpatterns = [
     path('', include('base.urls')),
     path('accounts/', include('accounts.urls')),
     path('blog/', include('blog.urls')),
+    path('contact/', include('contact.urls')),
     path('schools/', include('schools.urls')),
     path('dashboard/', include('dashboard.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
-
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
 # handler404 = "base.views.notfound"

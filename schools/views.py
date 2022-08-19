@@ -1,17 +1,40 @@
 import json
 from .models import *
 from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .forms import SchoolCreationForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 
-# @login_required(login_url='login')
-# def dashView(req):
-#     context = {
-#         "dash_page": "active", "title": 'dashboard'}
-#     return render(req, 'schools/dashboard.html', context)
+class SchoolCreateView(LoginRequiredMixin, CreateView):
+    model = School
+    # form = SchoolCreationForm
+    fields = ('crest', 'thumbnail', 'banner', 'name', 'email', 'website', 'address',
+              'tel', 'cel', 'moto', 'year_founded', 'resumption')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class SchoolUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = School
+    # form = SchoolCreationForm
+    fields = ('crest', 'thumbnail', 'banner', 'name', 'email', 'website', 'address',
+              'tel', 'cel', 'moto', 'year_founded', 'resumption')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        school = self.get_object()
+        if self.request.user == school.user:
+            return True
+        return False
 
 
 @login_required(login_url='login')

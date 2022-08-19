@@ -18,18 +18,22 @@
         Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd
         rebum ipsum et diam justo clita et kasd rebum sea elitr.
       </p>
-      {% for scholl in schools %} {% if school.user == user%}
+      {% for school in schools %}
+      <!--  -->
+      {% if school.user == user %}
       <a
         href="{% url 'sch_profile' user.id %}"
-        class="btn btn-secondary py-3 px-5 me-3 animated fadeIn"
+        class="btn btn-primary py-3 px-5 me-3 animated fadeIn"
         >Voir mon Ecole</a
       >
-      {% endif %}
+      {% else %}
       <a
-        href="{% url 'sch_profile' user.id %}"
+        href="{% url 'create-school' %}"
         class="btn btn-secondary py-3 px-5 me-3 animated fadeIn"
         >Ajouter mon Ecole</a
       >
+      {% endif %}
+      <!--  -->
       {% endfor %}
     </div>
 

@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'base.apps.BaseConfig',
     'blog.apps.BlogConfig',
+    'contact.apps.ContactConfig',
     'schools.apps.SchoolsConfig',
     'accounts.apps.AccountsConfig',
     'dashboard.apps.DashboardConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -128,10 +130,11 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
 AUTH_USER_MODEL = "accounts.CustomUser"  # new
 
 # django_project/settings.py
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
