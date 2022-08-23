@@ -15,71 +15,34 @@ def dashboard(req):
 
 
 @login_required(login_url='login')
-def createSchool(req, pk):
-    user = CustomUser.objects.get(id=pk)
-    profile_form = ProfileForm(initial={'user': user})
+def schProlile(req):
+    school = School.objects.get(user=req.user)
+
+    if not school:
+        return redirect('schools')
+
+    profile_form = ProfileForm(instance=school)
     if req.method == 'POST':
         profile_form = ProfileForm(req.POST)
         if profile_form.is_valid():
             profile_form.save()
             return redirect('my_school')
 
-    detail_form = DetailForm(initial={'user': user})
+    detail_form = DetailForm(instance=school)
     if req.method == 'POST':
         detail_form = DetailForm(req.POST)
         if detail_form.is_valid():
             detail_form.save()
             return redirect('my_school')
 
-    academia_form = AcademiaForm(initial={'user': user})
+    academia_form = AcademiaForm(instance=school)
     if req.method == 'POST':
         academia_form = AcademiaForm(req.POST)
         if academia_form.is_valid():
             academia_form.save()
             return redirect('my_school')
 
-    structure_form = StuctureForm(initial={'user': user})
-    if req.method == 'POST':
-        structure_form = StuctureForm(req.POST)
-        if structure_form.is_valid():
-            structure_form.save()
-            return redirect('my_school')
-
-    context = {
-        "add_school_page": "active", "title": 'add_school',
-        "profile_form": profile_form,
-        "detail_form": detail_form,
-        "academia_form": academia_form,
-        "structure_form": structure_form,
-    }
-    return render(req, 'dashboard/sch_profile.html', context)
-
-
-@login_required(login_url='login')
-def schProlile(req, pk):
-    user = CustomUser.objects.get(id=pk)
-    profile_form = ProfileForm(initial={'user': user})
-    if req.method == 'POST':
-        profile_form = ProfileForm(req.POST)
-        if profile_form.is_valid():
-            profile_form.save()
-            return redirect('my_school')
-
-    detail_form = DetailForm(initial={'user': user})
-    if req.method == 'POST':
-        detail_form = DetailForm(req.POST)
-        if detail_form.is_valid():
-            detail_form.save()
-            return redirect('my_school')
-
-    academia_form = AcademiaForm(initial={'user': user})
-    if req.method == 'POST':
-        academia_form = AcademiaForm(req.POST)
-        if academia_form.is_valid():
-            academia_form.save()
-            return redirect('my_school')
-
-    structure_form = StuctureForm(initial={'user': user})
+    structure_form = StuctureForm(instance=school)
     if req.method == 'POST':
         structure_form = StuctureForm(req.POST)
         if structure_form.is_valid():

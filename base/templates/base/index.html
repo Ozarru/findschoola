@@ -18,23 +18,25 @@
         Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd
         rebum ipsum et diam justo clita et kasd rebum sea elitr.
       </p>
-      {% for school in schools %}
-      <!--  -->
-      {% if school.user == user %}
+      {% if has_school %}
       <a
-        href="{% url 'sch_profile' user.id %}"
+        href="{% url 'my_school' %}"
         class="btn btn-primary py-3 px-5 me-3 animated fadeIn"
         >Voir mon Ecole</a
       >
+      <a
+        href="{% url 'sch_profile' %}"
+        class="btn btn-secondary py-3 px-5 me-3 animated fadeIn"
+        >Modifier mon Ecole</a
+      >
       {% else %}
       <a
-        href="{% url 'create-school' %}"
+        href="{% url 'create_school' %}"
         class="btn btn-secondary py-3 px-5 me-3 animated fadeIn"
         >Ajouter mon Ecole</a
       >
       {% endif %}
       <!--  -->
-      {% endfor %}
     </div>
 
     {% else %}
@@ -243,7 +245,7 @@
           </p>
         </div>
       </div>
-      <div
+      <!-- <div
         class="col-lg-6 col-sm-12 text-start text-lg-end wow slideInRight"
         data-wow-delay="0.1s"
       >
@@ -259,7 +261,7 @@
           </li>
           {% endfor %}
         </ul>
-      </div>
+      </div> -->
     </div>
     <div class="tab-content">
       <div id="tab-1" class="tab-pane fade show p-0 active">
@@ -598,6 +600,7 @@
                         <textarea
                           class="form-control"
                           id="message-text"
+                          style="height: 200"
                         ></textarea>
                       </div>
                     </form>

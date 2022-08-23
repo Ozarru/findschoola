@@ -24,10 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-nu^xjch0nzsh16u3u*(spcwy0m8u+hcco0noe70&7enq25+k6)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["findschoola.herokuapp.com/", "127.0.0.1"]
-
+ALLOWED_HOSTS = ["findschoola.herokuapp.com", "127.0.0.1"]
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'dcbe30cf31ad64'
+EMAIL_HOST_PASSWORD = '199f5748cfff0b'
+EMAIL_PORT = '2525'
 
 # Application definition
 

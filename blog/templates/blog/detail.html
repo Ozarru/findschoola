@@ -23,6 +23,13 @@
           Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no.
           Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.
         </p>
+        {% if user.is_superuser %}
+        <a
+          href="{% url 'create-blogpost' %}"
+          class="btn btn-primary py-3 px-5 me-3 animated fadeIn"
+          >Ajouter un article</a
+        >
+        {% endif %}
       </div>
       <div class="col-md-6 animated fadeIn">
         <img

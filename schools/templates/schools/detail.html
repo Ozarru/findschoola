@@ -17,6 +17,13 @@
           </li>
         </ol>
       </nav>
+      {% if is_manager %}
+      <a
+        href="{% url 'sch_profile' %}"
+        class="btn btn-primary py-3 px-5 me-3 animated fadeIn"
+        >Modifier mon Ecole</a
+      >
+      {% endif %}
     </div>
     <div class="col-md-6 animated fadeIn">
       <img

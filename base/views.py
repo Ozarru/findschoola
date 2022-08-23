@@ -8,6 +8,13 @@ from schools.models import EduLevel, School
 
 def home(req):
     # schools = data['schools']
+    has_school = False
+    user = req.user
+    if user.is_authenticated:
+        school = School.objects.filter(user=user)
+        if school:
+            has_school = True
+
     query = req.GET.get('query') if req.GET.get('query') != None else ''
     edu_levels = EduLevel.objects.all()
     demands = Demand.objects.all()
@@ -21,6 +28,7 @@ def home(req):
         'edu_levels': edu_levels,
         'demands': demands,
         'offers': offers,
+        'has_school': has_school,
         'blogposts': blogposts,
         'title': 'schools'}
     return render(req, 'base/index.html', context)

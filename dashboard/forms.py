@@ -8,7 +8,6 @@ class ProfileForm(ModelForm):
         model = School
         fields = ('crest', 'thumbnail', 'banner', 'name', 'email', 'website', 'address',
                   'tel', 'cel', 'moto', 'year_founded', 'resumption')
-        exclude = ("user", "subscription", "is_featured")
 
 
 class DetailForm(ModelForm):
@@ -16,7 +15,7 @@ class DetailForm(ModelForm):
     class Meta:
         model = School
         fields = ('history', 'description',
-                  'ad_copy', 'faculties', 'mgt_quote')
+                  'ad_copy', 'mgt_quote')
 
 
 class AcademiaForm(ModelForm):
@@ -25,12 +24,30 @@ class AcademiaForm(ModelForm):
         model = School
         fields = (
             'availability', 'pedagogy', 'awards', 'diplomas',
-            'courses', 'time_range', 'price_range', 'edu_levels',
-            'staff', 'students', 'inscription', 'curriculums', 'success_rate')
+            'courses', 'time_range', 'price_range', 'edu_levels')
 
 
 class StuctureForm(ModelForm):
 
     class Meta:
         model = School
-        fields = ('classes', 'labs', 'libs', 'canteens', 'faculties')
+        fields = ('faculties', 'classes', 'labs', 'libs', 'canteens',
+                  'staff', 'students', 'curriculums', 'success_rate')
+
+# ---------------------------------------------------
+
+
+class TeacherForm(ModelForm):
+
+    class Meta:
+        model = School
+        fields = ('__all__')
+        exclude = ('school',)
+
+
+class ClassForm(ModelForm):
+
+    class Meta:
+        model = School
+        fields = ('__all__')
+        exclude = ('school',)

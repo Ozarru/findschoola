@@ -55,8 +55,8 @@ class School(models.Model):
     email = models.EmailField(blank=True, null=True)
     website = models.CharField(max_length=255, blank=True, null=True)
     address = models.CharField(max_length=255, blank=True, null=True)
-    tel = models.CharField(max_length=255, default='00-00-00-00')
-    cel = models.CharField(max_length=255, default='00-00-00-00')
+    tel = models.CharField(max_length=255, default='', blank=True, null=True)
+    cel = models.CharField(max_length=255, default='', blank=True, null=True)
     moto = models.CharField(max_length=255, blank=True, null=True)
     year_founded = models.CharField(max_length=4, blank=True, null=True)
     mgt_quote = models.TextField(blank=True, null=True)
@@ -138,6 +138,8 @@ class Teacher(models.Model):
     qualifications = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(
         upload_to='schools/teachers', blank=True, null=True)
+    tel = models.CharField(
+        max_length=255, blank=True, null=True)
     facebook = models.CharField(
         max_length=255, blank=True, null=True)
     twitter = models.CharField(
