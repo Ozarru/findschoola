@@ -39,6 +39,8 @@ def signupView(req):
             form.save()
             messages.success(req, "Votre compte vien d'être créé.")
             return redirect('login')
+    else:
+        form = CustomUserCreationForm()
     context = {
         "signup_page": "active", "title": "signup", "form": form}
     return render(req, 'accounts/signup.html', context)

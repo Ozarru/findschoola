@@ -70,10 +70,17 @@
             d'inscription {{school.inscription}}</span
           >
           {% if school.tel != '00-00-00-00' %}
-          <a href="https://wa.me/{{school.tel}}" blank="true">
+          <a href="https://wa.me/{{school.tel}}" target="_blank">
             <span class="text-truncate me-3"
               ><i class="fa fa-comment text-primary me-2"></i>Contactez
               nous</span
+            >
+          </a>
+          {% endif %} {% if school.website != None %}
+          <a href="https://www.{{school.website}}" target="_blank">
+            <span class="text-truncate me-3"
+              ><i class="fa fa-globe text-primary me-2"></i
+              >www.{{school.website}}</span
             >
           </a>
           {% endif %}

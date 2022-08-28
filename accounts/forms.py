@@ -5,6 +5,13 @@ from .models import *
 
 class CustomUserCreationForm(UserCreationForm):
 
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.fields["username"].help_text = ''
+        self.fields["email"].help_text = ''
+        self.fields["password1"].help_text = ''
+        self.fields["password2"].help_text = ''
+
     class Meta:
         model = CustomUser
         fields = (
@@ -14,15 +21,15 @@ class CustomUserCreationForm(UserCreationForm):
             "password1", "password2",
             "first_name",
             "last_name", "tel", "image",)
-        # help_texts = {
-        #     'username': None,
-        #     'email': None,
-        #     'password1': None,
-        #     'password2': None,
-        # }
+        help_texts = None
 
 
 class CustomUserChangeForm(UserChangeForm):
+
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.fields["image"].help_text = ''
+        self.fields["username"].help_text = ''
 
     class Meta:
         model = CustomUser

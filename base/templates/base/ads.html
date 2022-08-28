@@ -22,6 +22,19 @@
         Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd
         rebum ipsum et diam justo clita et kasd rebum sea elitr.
       </p>
+      {% if user.role == 'gestionaire' %}
+      <a
+        href="{% url 'post_ad' %}"
+        class="btn btn-secondary py-3 px-5 me-3 animated fadeIn"
+        >Postez une offre</a
+      >
+      {% else %}
+      <a
+        href="{% url 'post_ad' %}"
+        class="btn btn-primary py-3 px-5 me-3 animated fadeIn"
+        >Poster une demande</a
+      >
+      {% endif %}
     </div>
     <div class="col-md-6 animated fadeIn">
       <div class="owl-carousel header-carousel">
@@ -70,34 +83,9 @@
         Demandes récentes
       </h1>
       <div class="row g-4">
-        {% for demand in demands %}
-
-        <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-          <div class="service-item">
-            <div class="overflow-hidden">
-              <img class="img-fluid" src="{% static 'img/job.jpg' %}" alt="" />
-            </div>
-            <div
-              class="p-4 text-center border border-5 border-light border-top-0"
-            >
-              <h4 class="mb-3">{{demand.title}}</h4>
-              <p>{{demand.content}}</p>
-              <a class="fw-medium" href=""
-                >Read More<i class="fa fa-arrow-right ms-2"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    <!-- offers -->
-    <div id="tab-2" class="tab-pane fade show p-0">
-      <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
-        Offres récentes
-      </h1>
-      <div class="row g-4">
-        {% for offer in offers %}
+        {% for advert in adverts %}
+        <!--  -->
+        {% if advert.ad_type == 'demand' %}
 
         <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
           <div class="service-item">
@@ -111,14 +99,52 @@
             <div
               class="p-4 text-center border border-5 border-light border-top-0"
             >
-              <h4 class="mb-3">{{offer.title}}</h4>
-              <p>{{offer.content}}</p>
+              <h4 class="mb-3">{{advert.title}}</h4>
+              <p>{{advert.content}}</p>
               <a class="fw-medium" href=""
                 >Read More<i class="fa fa-arrow-right ms-2"></i
               ></a>
             </div>
           </div>
         </div>
+        {% endif %}
+        <!--  -->
+        {% endfor %}
+      </div>
+    </div>
+    <!-- offers -->
+    <div id="tab-2" class="tab-pane fade show p-0">
+      <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+        Offres récentes
+      </h1>
+      <div class="row g-4">
+        {% for advert in adverts %}
+        <!--  -->
+        {% if advert.ad_type == 'offer' %}
+
+        <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="service-item">
+            <div class="overflow-hidden">
+              <img
+                class="img-fluid"
+                src="{% static 'img/offer.jpg' %}"
+                alt=""
+              />
+            </div>
+            <div
+              class="p-4 text-center border border-5 border-light border-top-0"
+            >
+              <h4 class="mb-3">{{advert.title}}</h4>
+              <p>{{advert.content}}</p>
+              <p>{{advert.ad_type}}</p>
+              <a class="fw-medium" href=""
+                >Read More<i class="fa fa-arrow-right ms-2"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        <!--  -->
         {% endfor %}
       </div>
     </div>

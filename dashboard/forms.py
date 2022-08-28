@@ -24,7 +24,7 @@ class AcademiaForm(ModelForm):
         model = School
         fields = (
             'availability', 'pedagogy', 'awards', 'diplomas',
-            'courses', 'time_range', 'price_range', 'edu_levels')
+            'courses', 'time_range', 'price_range', 'levels')
 
 
 class StuctureForm(ModelForm):

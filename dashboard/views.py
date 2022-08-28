@@ -16,7 +16,7 @@ def dashboard(req):
 
 @login_required(login_url='login')
 def schProlile(req):
-    school = School.objects.get(user=req.user)
+    school = School.objects.get(manager=req.user)
 
     if not school:
         return redirect('schools')

@@ -26,31 +26,33 @@ durations = (
 )
 
 
-class Subscription(models.Model):
+class Plan(models.Model):
     name = models.CharField(max_length=128)
-    tier = models.CharField(max_length=50, null=True,
-                            default='free', choices=tiers)
+    price = models.IntegerField(default='0')
+    tier = models.CharField(
+        max_length=50, null=True, default='free', choices=tiers)
     duration = models.CharField(
         max_length=50, null=True, default='undefined', choices=durations)
-    price = models.IntegerField(default='0')
 
     def __str__(self):
         return self.name
 
 
-class SubscriptionPerk(models.Model):
-    subscription = models.ForeignKey(
-        Subscription, on_delete=models.CASCADE)
-    phrase = models.CharField(max_length=255, default='', null=False)
+class Subscription(models.Model):
+    subscriber = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    active = models.BooleanField(default=False)
+    plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.subscription.price
+        return self.name
 
 
 class School(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    manager = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     subscription = models.ForeignKey(
-        Subscription, on_delete=models.CASCADE, null=True)
+        Plan, on_delete=models.CASCADE, default=1, null=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     website = models.CharField(max_length=255, blank=True, null=True)
@@ -79,7 +81,7 @@ class School(models.Model):
         max_length=255, blank=True, null=True)
     price_range = models.CharField(
         max_length=255, blank=True, null=True)
-    edu_levels = models.ManyToManyField(EduLevel, blank=True)
+    levels = models.ManyToManyField(EduLevel, blank=True)
     staff = models.IntegerField(default='0', blank=True, null=True)
     students = models.IntegerField(default='0', blank=True, null=True)
     inscription = models.IntegerField(default='0', blank=True, null=True)

@@ -1,6 +1,8 @@
-{% extends 'main.html' %} {% load static %} {% block content %}
-<!-- Header Start -->
+{% extends 'main.html' %} {% load static %}
+<!--  -->
+{% load crispy_forms_tags %}{% block content %}
 
+<!-- Header Start -->
 <div class="container-fluid header bg-white p-0">
   <div
     class="row g-0 align-items-center flex-column-reverse flex-md-row"
@@ -98,7 +100,10 @@
     </div>
     <div class="row g-4">
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=creche"
+        >
           <div class="rounded p-4">
             <div class="icon mb-3">
               <img
@@ -114,7 +119,10 @@
       </div>
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=jardin"
+        >
           <div class="rounded p-4">
             <div class="icon mb-3">
               <img
@@ -130,7 +138,10 @@
       </div>
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=primaire"
+        >
           <div class="rounded p-4">
             <div class="icon mb-3">
               <img
@@ -146,7 +157,10 @@
       </div>
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=college"
+        >
           <div class="rounded p-4">
             <div class="icon mb-3">
               <img
@@ -162,7 +176,10 @@
       </div>
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=lycee"
+        >
           <div class="rounded p-4">
             <div class="icon mb-3">
               <img
@@ -178,7 +195,10 @@
       </div>
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=centre-professionnel"
+        >
           <div class="rounded p-4">
             <div class="icon mb-3">
               <img
@@ -194,7 +214,10 @@
       </div>
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=centre-academique"
+        >
           <div class="rounded p-4">
             <div class="icon mb-3">
               <img
@@ -210,7 +233,10 @@
       </div>
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=universite"
+        >
           <div class="rounded p-4">
             <div class="icon mb-3">
               <img
@@ -245,23 +271,6 @@
           </p>
         </div>
       </div>
-      <!-- <div
-        class="col-lg-6 col-sm-12 text-start text-lg-end wow slideInRight"
-        data-wow-delay="0.1s"
-      >
-        <ul class="nav nav-pills d-inline-flex justify-content-start mb-5">
-          {% for level in edu_levels %}
-          <li class="nav-item me-2">
-            <a
-              class="btn btn-outline-primary"
-              data-bs-toggle="pill"
-              href="#tab-{{ forloop.counter }}"
-              >{{level.name|title}}s</a
-            >
-          </li>
-          {% endfor %}
-        </ul>
-      </div> -->
     </div>
     <div class="tab-content">
       <div id="tab-1" class="tab-pane fade show p-0 active">
@@ -269,10 +278,10 @@
           {% for school in schools %}
           <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
             <!--  -->
-            {% if school.is_featured == True %}
+            {% if school.subscription.tier == 'pro' %}
             <div class="property-item rounded overflow-hidden">
               <div class="position-relative overflow-hidden">
-                <a href="{% url 'school-detail' school.slug %}"
+                <a href="{% url 'school' school.id %}"
                   ><img
                     class="img-fluid"
                     src="{% if school.thumbnail %} 
@@ -529,7 +538,7 @@
                 <div class="d-flex align-items-center col-6">
                   <img
                     class="img-fluid flex-shrink-0 rounded"
-                    src="{% static 'img/testimonial-1.jpg' %}"
+                    src="{{demand.author.image.url}}"
                     style="width: 45px; height: 45px"
                   />
                   <div class="ps-3">
@@ -550,74 +559,10 @@
                 Postez une demande et recevez les offres des écoles !
               </p>
             </div>
-            <a
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-              class="btn btn-primary py-3 px-4 me-2"
+
+            <a class="btn btn-primary py-3 px-5" href="{% url 'post_ad' %}"
+              >Poster une demande/offre</a
             >
-              <i class="fa fa-comment me-2"></i>Poster une demande
-            </a>
-            <!-- Modal -->
-            <div
-              class="modal fade"
-              id="staticBackdrop"
-              data-bs-backdrop="static"
-              data-bs-keyboard="false"
-              tabindex="-1"
-              aria-labelledby="staticBackdropLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">
-                      Demande
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <form>
-                      <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label"
-                          >Sujet:</label
-                        >
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="recipient-name"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label for="message-text" class="col-form-label"
-                          >Message:</label
-                        >
-                        <textarea
-                          class="form-control"
-                          id="message-text"
-                          style="height: 200"
-                        ></textarea>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Annuler
-                    </button>
-                    <button type="button" class="btn btn-dark">Envoyer</button>
-                  </div>
-                </div>
-              </div>
-            </div>
             <a class="btn btn-secondary py-3 px-5" href="{% url 'ads' %}"
               >Voir plus</a
             >
@@ -642,7 +587,9 @@
         <div class="service-item">
           <div class="overflow-hidden">
             <img
-              class="img-fluid"
+              class="img"
+              height="300"
+              width="420"
               src="{% if blogpost.image %} 
               {{ blogpost.image.url }} 
               {% else %} 
@@ -654,8 +601,10 @@
           <div
             class="p-4 text-center border border-5 border-light border-top-0"
           >
-            <h4 class="mb-3">{{blogpost.title}}</h4>
-            <p>{{blogpost.content}}</p>
+            <h4 class="mb-3 d-block text-truncate">{{blogpost.title}}</h4>
+            <p class="d-block text-truncate" style="max-height: 300px">
+              {{blogpost.content}}
+            </p>
             <a class="fw-medium" href="{% url 'blogpost' blogpost.id %}"
               >Read More<i class="fa fa-arrow-right ms-2"></i
             ></a>

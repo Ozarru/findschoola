@@ -30,7 +30,7 @@
       {% endif %}
     </div>
     <div class="col-md-6 animated fadeIn">
-      <img class="img-fluid" src="{% static 'img/blog.jpg' %}" alt="" />
+      <img class="img-fluid" src="{% static 'img/bloggeuse.webp' %}" alt="" />
     </div>
   </div>
 </div>
@@ -50,13 +50,15 @@
               src="{% if blogpost.image %} 
                 {{ blogpost.image.url }} 
                 {% else %} 
-                  {% static 'img/blogpost.jpg' %} 
+                  {% static 'img/bloggers.webp' %} 
                   {% endif %}"
               alt="Blogpost thumbnail"
             />
             <div class="service-text position-relative text-center h-100 p-4">
               <h5 class="mb-3">{{blogpost.title}}</h5>
-              <p>{{blogpost.content}}</p>
+              <p class="d-block text-truncate" style="max-height: 300px">
+                {{blogpost.content}}
+              </p>
               <a class="small" href="{% url 'blogpost' blogpost.id %}"
                 >LIRE LA SUITE<i class="fa fa-arrow-right ms-3"></i
               ></a>
@@ -105,7 +107,7 @@
             />
             <a
               href="{% url 'blogpost' blogpost.id %}"
-              class="d-flex align-items-center bg-white text-dark fs-5 fw-bold px-3 mb-0"
+              class="d-flex align-items-center bg-white text-dark fs-5 fw-bold px-3 mb-0 d-block text-truncate"
               >{{blogpost.title}}
             </a>
           </div>

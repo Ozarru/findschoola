@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .forms import SchoolCreationForm
+from .filters import SchoolFilter
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
@@ -39,7 +40,7 @@ class SchoolUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 @login_required(login_url='login')
 def add_school(req):
     user = req.user
-    has_school = School.objects.filter(user=user)
+    has_school = School.objects.filter(manager=user)
     if user.role != 'gestionaire':
         return redirect('home')
 
@@ -61,19 +62,23 @@ def schools(req):
     has_school = False
     user = req.user
     if user.is_authenticated:
-        school = School.objects.filter(user=user)
+        school = School.objects.filter(manager=user)
         if school:
             has_school = True
-
     query = req.GET.get('query') if req.GET.get('query') != None else ''
     schools = School.objects.filter(
-        Q(name__icontains=query) | Q(address__icontains=query) | Q(
-            moto__icontains=query) | Q(tel__icontains=query)
-    )
+        Q(name__icontains=query)
+        | Q(address__icontains=query)
+        | Q(moto__icontains=query)
+        | Q(tel__icontains=query)
+        | Q(levels__name__icontains=query)
+    ).distinct()
+
+    # # ------------------ dropdown filter
+    # all_schools = School.objects.all()
+    # school_filter = SchoolFilter(req.GET, queryset=all_schools)
 
     edu_levels = EduLevel.objects.all()
-    # for school in schools:
-    #     sch_levels = school.edu_levels_set.all()
     ordering = ['is_featured == True']
     context = {
         "schools_page": "active",
@@ -81,10 +86,10 @@ def schools(req):
         'schools': schools,
         'edu_levels': edu_levels,
         "has_school": has_school,
-        # 'sch_levels': [sch_levels],
+        # "school_filter": school_filter,
         'ordering': ordering,
     }
-
+    print(edu_levels)
     return render(req, 'schools/index.html', context)
 
 
@@ -92,7 +97,7 @@ def school(req, pk):
     is_manager = False
     user = req.user
     if user.is_authenticated:
-        school = School.objects.filter(user=user, id=pk)
+        school = School.objects.filter(manager=user, id=pk)
         if school:
             is_manager = True
 

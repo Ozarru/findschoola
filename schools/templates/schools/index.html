@@ -1,4 +1,6 @@
-{% extends 'main.html' %} {% load static %} {% block content %}
+{% extends 'main.html' %} {% load static %}
+<!--  -->
+{% load crispy_forms_tags %} {% block content %}
 <!-- Header Start -->
 <div class="container-fluid header bg-white p-0">
   <div
@@ -53,29 +55,16 @@
 >
   <form action="{% url 'schools' %}" method="get" class="container">
     <div class="row g-2">
-      <div class="col-md-10">
-        <div class="row g-2">
-          <div class="col-md-8">
-            <input
-              type="text"
-              name="query"
-              class="form-control border-0 py-2"
-              placeholder="Etablissement / Adresse / Quartier"
-            />
-          </div>
-
-          <div class="col-md-4">
-            <select class="form-select border-0 py-2">
-              <option selected>Catégories d'établissement</option>
-              {% for level in edu_levels %}
-              <option>{{level.name|title}}s</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
+      <div class="col-md-9">
+        <input
+          type="text"
+          name="query"
+          class="border-0 p-3 rounded col-md-12"
+          placeholder="Etablissement / Adresse / Quartier/ Niveau d'etude"
+        />
       </div>
-      <div class="col-md-2">
-        <button class="btn btn-dark border-0 w-100 py-2">Valider</button>
+      <div class="col-md-3">
+        <button class="btn btn-dark border-0 w-100 py-3">Valider</button>
       </div>
     </div>
   </form>
@@ -96,8 +85,7 @@
         <li class="nav-item me-2">
           <a
             class="btn btn-outline-secondary"
-            data-bs-toggle="pill"
-            href="{% url 'schools' %}?query={{edulevels.name}}"
+            href="{% url 'schools' %}?query={{level.name}}"
             >{{level.name|title}}s</a
           >
         </li>
@@ -112,7 +100,9 @@
             <div class="position-relative overflow-hidden">
               <a href="{% url 'school' school.id %}"
                 ><img
-                  class="img-fluid"
+                  class="img"
+                  height="300"
+                  width="420"
                   src="{% if school.thumbnail %} 
                         {{ school.thumbnail.url }} 
                         {% else %} 
@@ -121,9 +111,16 @@
                   alt="School Thumbnail"
               /></a>
               <div
-                class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
+                class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 px-4 pt-2"
               >
-                <!-- {% for level in sch_levels %} {{level.name|title}} {% endfor %} -->
+                <ul>
+                  {% for level in school.levels.all %}
+                  <!--  -->
+                  <li>{{level.name|title}}</li>
+
+                  <!--  -->
+                  {% endfor %}
+                </ul>
               </div>
             </div>
             <div class="p-4 pb-0">

@@ -1,0 +1,65 @@
+{% extends 'main.html' %} {% load static %}
+<!--  -->
+{% load crispy_forms_tags %}{% block content %}
+
+<!-- Header Start -->
+<div class="container-fluid header bg-white p-0">
+  <div
+    class="row g-0 align-items-center flex-column-reverse flex-md-row"
+    id="bg-color"
+  >
+    <div class="col-md-6 p-5 mt-lg-5">
+      <h1 class="display-5 animated fadeIn mb-4">Poster une Demande/Offre</h1>
+      <nav aria-label="breadcrumb animated fadeIn">
+        <ol class="breadcrumb text-uppercase">
+          <li class="breadcrumb-item">
+            <a href="{% url 'home' %}">Accueil</a>
+          </li>
+          <li class="breadcrumb-item text-body active" aria-current="page">
+            Poster une Demande/Offre
+          </li>
+        </ol>
+      </nav>
+    </div>
+    <div class="col-md-6 animated fadeIn">
+      <img class="img-fluid" src="{% static 'img/poster.jpg' %}" alt="" />
+    </div>
+  </div>
+</div>
+<!-- Header End -->
+
+<div class="container-fluid mb-0">
+  <div class="row">
+    <div class="col-sm-6 px-0 d-none d-sm-block">
+      <img
+        alt="login image"
+        src="{% static 'img/post.jpg' %}"
+        class="login-img"
+      />
+    </div>
+    <div class="col-sm-6 login-section-wrapper">
+      <div class="fade show p-0 active">
+        <h1 class="login-title">Postez une Demande/Offre</h1>
+        <form
+          class="app-card-body px-4 w-100"
+          method="POST"
+          action=""
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <!--  -->
+          {% if user.role == 'gestionaire' %} {{ofrForm|crispy}} {% else %}
+          {{demForm|crispy}} {% endif %}
+
+          <input
+            type="submit"
+            value="Poster"
+            class="btn btn-primary mt-4 py-3 px-5 me-3 animated fadeIn"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

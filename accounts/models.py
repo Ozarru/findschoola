@@ -3,7 +3,7 @@ from django.db import models
 from PIL import Image
 
 
-role_choices = (('utilisateur', 'Utilisateur générique'),
+role_choices = (('utilisateur', 'Utilisateur générique (Parent/Eleve)'),
                 ('gestionaire', "Gestionaire d'école"),)
 
 subrole_choices = (('admin', 'School Admin'),
@@ -19,7 +19,7 @@ class CustomUser(AbstractUser):
     subrole = models.CharField(
         max_length=50, blank=True, null=True, choices=subrole_choices)
     tel = models.CharField(max_length=20, blank=True, null=True)
-    image = models.ImageField(default='anon.jpg',
+    image = models.ImageField(default='anonuser.jpg',
                               upload_to='users', blank=True, null=True)
 
     USERNAME_FIELD = "email"

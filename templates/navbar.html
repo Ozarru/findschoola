@@ -53,7 +53,9 @@
           >
           <div class="dropdown-menu rounded-0 m-0">
             <a href="{% url 'blog' %}" class="dropdown-item">Blog</a>
+            {% if user.role == 'gestionaire' %}
             <a href="{% url 'tariff' %}" class="dropdown-item">Tarifs</a>
+            {% endif %}
             <a href="{% url 'about' %}" class="dropdown-item">A propos</a>
             <a href="{% url 'ads' %}" class="dropdown-item"
               >Demandes & Offres</a
