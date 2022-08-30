@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from blog.models import Blogpost
-from .models import Demand, Offer
 from .forms import *
+from django.urls import reverse_lazy
 from schools.models import EduLevel, School
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
@@ -20,8 +20,7 @@ def home(req):
 
     query = req.GET.get('query') if req.GET.get('query') != None else ''
     edu_levels = EduLevel.objects.all()
-    demands = Demand.objects.all()
-    offers = Offer.objects.all()
+    adverts = Advert.objects.all()
     blogposts = Blogpost.objects.all()
     schools = School.objects.filter(
         Q(name__icontains=query) | Q(address__icontains=query))
@@ -29,8 +28,7 @@ def home(req):
         "home_page": "active",
         'schools': schools,
         'edu_levels': edu_levels,
-        'demands': demands,
-        'offers': offers,
+        'adverts': adverts,
         'has_school': has_school,
         'blogposts': blogposts,
         'title': 'schools'}
@@ -61,36 +59,6 @@ def ads(req):
         "title": 'ads',
     }
     return render(req, 'base/ads.html', context)
-
-
-@login_required(login_url='login')
-def post_ad(req):
-
-    print(req.user.username)
-    form = AdvertForm(initial={'author': req.user})
-    if req.method == 'POST':
-        if form.is_valid():
-            print(req.user.username)
-            form.save()
-            return redirect('ads')
-
-    context = {
-        "post_ad_page": "active",
-        'form': form,
-        "title": 'post_ad',
-    }
-    return render(req, 'base/post_ad.html', context)
-
-
-@login_required(login_url='login')
-def update_ad(req):
-    demForm = DemandForm(initial={'author': req.user})
-    if req.method == 'POST':
-        print(req.POST)
-        form = DemandForm(req.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('ads')
 
 
 def ccm(req):
@@ -128,12 +96,18 @@ def tariff(req):
 
 class AdvertCreateView(LoginRequiredMixin, CreateView):
     model = Advert
-    fields = '__all__'
-    exclude = ('author', 'date_added')
+    fields = ('title', 'content')
+    success_url: reverse_lazy('ads')
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+        if self.request.user.role == 'gestionaire':
+            form.instance.author = self.request.user
+            form.instance.ad_type = 'offer'
+            return super().form_valid(form)
+        else:
+            form.instance.author = self.request.user
+            form.instance.ad_type = 'demand'
+            return super().form_valid(form)
 
 
 class AdvertUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

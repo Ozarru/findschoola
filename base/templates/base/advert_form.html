@@ -33,22 +33,26 @@
     <div class="col-sm-6 px-0 d-none d-sm-block">
       <img
         alt="login image"
-        src="{% static 'img/post.jpg' %}"
-        class="login-img"
+        src="{% static 'img/demand.webp' %}"
+        class="img-fluid"
       />
     </div>
     <div class="col-sm-6 login-section-wrapper">
       <div class="fade show p-0 active">
         <h1 class="login-title">Postez une Demande/Offre</h1>
-        <form
-          class="app-card-body px-4 w-100"
-          method="POST"
-          action=""
-          enctype="multipart/form-data"
-        >
+        <form class="app-card-body w-100" method="POST" action="">
           {% csrf_token %}
           <!--  -->
-          {{form|crispy}}
+          <div class="item py-3">
+            <div class="row justify-content-between align-items-center">
+              {{form}}
+            </div>
+          </div>
+          <!-- {% for field in form %}
+          <label for="message">{{field.label}}</label>
+
+          <div>{{field}}</div>
+          {% endfor %} -->
 
           <input
             type="submit"

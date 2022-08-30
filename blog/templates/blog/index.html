@@ -40,26 +40,43 @@
   <div class="row g-5">
     <!-- Blog list Start -->
     <div class="col-lg-8">
-      <div class="row g-5 justify-content-center mb-5">
+      <div class="row g-5 mb-5">
         {% for blogpost in blogposts %}
 
         <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-          <div class="service-item bg-light overflow-hidden h-100">
-            <img
-              class="img-fluid"
-              src="{% if blogpost.image %} 
-                {{ blogpost.image.url }} 
-                {% else %} 
-                  {% static 'img/bloggers.webp' %} 
-                  {% endif %}"
-              alt="Blogpost thumbnail"
-            />
-            <div class="service-text position-relative text-center h-100 p-4">
+          <div class="bg-light overflow-hidden h-100">
+            <a href="{% url 'blogpost' blogpost.id %}">
+              <img
+                class="img-fluid rounded-top"
+                src="{% if blogpost.image %} 
+                  {{ blogpost.image.url }} 
+                  {% else %} 
+                    {% static 'img/bloggers.webp' %} 
+                    {% endif %}"
+                alt="Blogpost thumbnail"
+              />
+            </a>
+            <div
+              class="p-4 text-left border border-5 border-light border-top-0"
+            >
               <h5 class="mb-3">{{blogpost.title}}</h5>
               <p class="d-block text-truncate" style="max-height: 300px">
                 {{blogpost.content}}
               </p>
-              <a class="small" href="{% url 'blogpost' blogpost.id %}"
+              {% if user == blogpost.author %}
+              <a href="" class="btn btn-danger rounded text-white py-2 px-3">
+                Delete
+              </a>
+              <a
+                href="{% url 'update-blogpost' blogpost.id %}"
+                class="btn btn-primary rounded text-white py-2 px-3 mx-2"
+              >
+                Edit
+              </a>
+              {% endif %}
+              <a
+                class="btn btn-dark mx-2"
+                href="{% url 'blogpost' blogpost.id %}"
                 >LIRE LA SUITE<i class="fa fa-arrow-right ms-3"></i
               ></a>
             </div>
@@ -100,7 +117,7 @@
               src="{% if blogpost.image %} 
                 {{ blogpost.image.url }} 
                 {% else %} 
-                  {% static 'img/blogpost.jpg' %} 
+                  {% static 'img/bloggers.webp' %} 
                   {% endif %}"
               style="width: 75px"
               alt=""

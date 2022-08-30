@@ -43,16 +43,14 @@ class Subscription(models.Model):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     active = models.BooleanField(default=False)
-    plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
+    plan = models.ForeignKey(Plan, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
-        return self.name
+        return self.subscriber.username
 
 
 class School(models.Model):
     manager = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    subscription = models.ForeignKey(
-        Plan, on_delete=models.CASCADE, default=1, null=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     website = models.CharField(max_length=255, blank=True, null=True)
@@ -105,8 +103,8 @@ class School(models.Model):
         upload_to='schools/crests', blank=True, null=True)
     date_added = models.DateTimeField(auto_now=True)
 
-    def save(self, *args, **kwargs):
-        super(School, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     super(School, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name

@@ -278,7 +278,7 @@
           {% for school in schools %}
           <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
             <!--  -->
-            {% if school.subscription.tier == 'pro' %}
+            {% if school.manager.subscription.plan.tier == 'pro' %}
             <div class="property-item rounded overflow-hidden">
               <div class="position-relative overflow-hidden">
                 <a href="{% url 'school' school.id %}"
@@ -523,27 +523,36 @@
               class="overflow-scroll"
               style="overflow: auto; max-height: 400px"
             >
-              {% for demand in demands %}
+              {% for ad in adverts %}
               <!-- boucle -->
               <div
                 class="bg-white border rounded p-4 mb-3 row"
                 style="overflow-y: auto"
               >
-                <h4>{{demand.title}}</h4>
-                <p id="demand" style="padding-left: 0px">{{demand.content}}</p>
-                <a href="" class="col-6 btn btn-dark py-2 px-1 pt-3"
+                <h4>{{ad.title|title}}</h4>
+                <h6>#{{ad.ad_type|title}}</h6>
+                <p id="ad" style="padding-left: 0px">{{ad.content}}</p>
+                <a
+                  href="https://wa.me/+228{{ad.telephone}}"
+                  target="_blank"
+                  class="col-6 btn btn-dark py-2 px-1 pt-3"
                   ><i class="fa fa-envelope me-2"></i>Répondre</a
                 >
 
                 <div class="d-flex align-items-center col-6">
-                  <img
+                  <!-- <img
                     class="img-fluid flex-shrink-0 rounded"
-                    src="{{demand.author.image.url}}"
+                    src="{{ad.author.image.url}}"
+                    style="width: 45px; height: 45px"
+                  /> -->
+                  <img
+                    class="img-fluid flex-shrink-0 rounded-circle"
+                    src="{% static 'img/anon.jpg' %}"
                     style="width: 45px; height: 45px"
                   />
                   <div class="ps-3">
-                    <h6 class="fw-bold mb-1">@{{demand.author.username}}</h6>
-                    <small>Profession</small>
+                    <h6 class="fw-bold mb-1">@{{ad.author.username}}</h6>
+                    <small>{{ad.author.role|title}}</small>
                   </div>
                 </div>
               </div>
@@ -551,9 +560,27 @@
               {% endfor %}
             </div>
           </div>
+          {% if user.role == 'gestionaire' %}
           <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
             <div class="mb-4">
-              <h2 class="mb-3">Demandes et Offres</h2>
+              <h2 class="mb-3">Nos Offres</h2>
+              <p>
+                Vous avez une offre d'emploie? Postez une offre et recevez les
+                demandes!
+              </p>
+            </div>
+
+            <a class="btn btn-primary py-3 px-5" href="{% url 'post_ad' %}"
+              >Poster une offre</a
+            >
+            <a class="btn btn-secondary py-3 px-5" href="{% url 'ads' %}"
+              >Voir plus</a
+            >
+          </div>
+          {% else %}
+          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+            <div class="mb-4">
+              <h2 class="mb-3">Nos Demandes</h2>
               <p>
                 Vous avez un besoin spécial en terme de formation ou de cursus ?
                 Postez une demande et recevez les offres des écoles !
@@ -561,12 +588,13 @@
             </div>
 
             <a class="btn btn-primary py-3 px-5" href="{% url 'post_ad' %}"
-              >Poster une demande/offre</a
+              >Poster une demande</a
             >
             <a class="btn btn-secondary py-3 px-5" href="{% url 'ads' %}"
               >Voir plus</a
             >
           </div>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -577,8 +605,19 @@
 <!-- blog Start -->
 <div class="container-xxl py-5">
   <div class="container">
-    <div class="section-title text-center">
-      <h3 class="display-6 mb-5">Articles récents</h3>
+    <div class="row g-0 gx-5 align-items-end">
+      <div class="col-lg-6">
+        <div
+          class="text-start mx-auto mb-5 wow slideInLeft"
+          data-wow-delay="0.1s"
+        >
+          <h1 class="mb-3">Articles Récents</h1>
+          <p>
+            Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore
+            lorem kasd vero ipsum sit eirmod sit diam justo sed rebum.
+          </p>
+        </div>
+      </div>
     </div>
     <div class="row g-4">
       {% for blogpost in blogposts %}
@@ -586,27 +625,27 @@
       <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
         <div class="service-item">
           <div class="overflow-hidden">
-            <img
-              class="img"
-              height="300"
-              width="420"
-              src="{% if blogpost.image %} 
-              {{ blogpost.image.url }} 
-              {% else %} 
-                {% static 'img/blogpost.jpg' %} 
-                {% endif %}"
-              alt=""
-            />
+            <a href="{% url 'blogpost' blogpost.id %}">
+              <img
+                class="img rounded-top"
+                height="300"
+                width="415"
+                src="{% if blogpost.image %} 
+                {{ blogpost.image.url }} 
+                {% else %} 
+                  {% static 'img/bloggers.webp' %} 
+                  {% endif %}"
+                alt=""
+              />
+            </a>
           </div>
-          <div
-            class="p-4 text-center border border-5 border-light border-top-0"
-          >
+          <div class="p-4 text-left border border-5 border-light border-top-0">
             <h4 class="mb-3 d-block text-truncate">{{blogpost.title}}</h4>
             <p class="d-block text-truncate" style="max-height: 300px">
               {{blogpost.content}}
             </p>
-            <a class="fw-medium" href="{% url 'blogpost' blogpost.id %}"
-              >Read More<i class="fa fa-arrow-right ms-2"></i
+            <a class="btn btn-dark" href="{% url 'blogpost' blogpost.id %}"
+              >Lire le suite<i class="fa fa-arrow-right ms-2"></i
             ></a>
           </div>
         </div>

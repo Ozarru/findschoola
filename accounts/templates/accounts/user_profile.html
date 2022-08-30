@@ -152,10 +152,11 @@
                     class="text-center mb-5 wow fadeInUp"
                     data-wow-delay="0.1s"
                   >
-                    Mes Demandes
+                    {% if user.role == 'gestionaire' %} Mes Offres {% else %}
+                    Mes Demandes {% endif %}
                   </h1>
                   <div class="row g-4">
-                    {% for demand in demands %}
+                    {% for ad in user_ads %}
 
                     <div
                       class="col-md-6 col-lg-4 wow fadeInUp"
@@ -165,15 +166,15 @@
                         <div class="overflow-hidden">
                           <img
                             class="img-fluid"
-                            src="{% static 'img/job.jpg' %}"
+                            src="{% static 'img/request.webp' %}"
                             alt=""
                           />
                         </div>
                         <div
                           class="p-4 text-center border border-5 border-light border-top-0"
                         >
-                          <h4 class="mb-3">{{demand.title}}</h4>
-                          <p>{{demand.content}}</p>
+                          <h4 class="mb-3">{{ad.title}}</h4>
+                          <p>{{ad.content}}</p>
                           <a class="fw-medium" href=""
                             >Read More<i class="fa fa-arrow-right ms-2"></i
                           ></a>

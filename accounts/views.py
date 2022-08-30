@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from base.models import Demand
+from base.models import Advert
 from .forms import *
 from accounts.models import CustomUser
 from django.contrib import messages
@@ -23,7 +23,7 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     def test_func(self):
-        school = self.get_object()
+        CustomUser = self.get_object()
         if self.request.user == CustomUser:
             return True
         return False
@@ -78,7 +78,7 @@ def userprofile(req):
     # user = CustomUser.objects.get(id=pk)
     # if user.id != pk:
     #     return redirect(f'/')
-    demands = Demand.objects.all()
+    user_ads = Advert.objects.filter(author=req.user)
     form = CustomUserChangeForm(instance=req.user)
     # p_form = ProfileForm(instance=req.user.profile)
     if req.method == 'POST':
@@ -93,7 +93,7 @@ def userprofile(req):
             return redirect(f'profile')
     context = {
         "profile_page": "active",
-        "demands": demands,
+        "user_ads": user_ads,
         "title": 'profile',
         "form": form,
         # "p_form": p_form

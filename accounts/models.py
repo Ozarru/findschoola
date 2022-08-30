@@ -19,8 +19,8 @@ class CustomUser(AbstractUser):
     subrole = models.CharField(
         max_length=50, blank=True, null=True, choices=subrole_choices)
     tel = models.CharField(max_length=20, blank=True, null=True)
-    image = models.ImageField(default='anonuser.jpg',
-                              upload_to='users', blank=True, null=True)
+    # image = models.ImageField(default='anonuser.jpg',
+    #                           upload_to='users', blank=True, null=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]

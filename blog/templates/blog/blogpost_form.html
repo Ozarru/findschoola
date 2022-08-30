@@ -29,7 +29,7 @@
       </p>
     </div>
     <div class="col-md-6 animated fadeIn">
-      <img class="img-fluid" src="{% static 'img/blog.jpg' %}" alt="" />
+      <img class="img-fluid" src="{% static 'img/bloggers.webp' %}" alt="" />
     </div>
   </div>
 </div>
@@ -41,16 +41,17 @@
     <h2>Ajoutez un nouveau article</h2>
     <div class="col-lg-8">
       <form
-        class="app-card-body px-4 w-100"
+        class="app-card-body w-100"
         method="POST"
         action=""
         enctype="multipart/form-data"
       >
         {% csrf_token %}
-        <div class="item border-top py-3">
-          <div class="row justify-content-between align-items-center">
-            {{form|crispy}}
-          </div>
+        <div class="item py-3">
+          {% for field in form %}
+          <p>{{field.label}}</p>
+          <div class="row mb-4">{{field}}</div>
+          {% endfor %}
         </div>
         <input
           class="btn app-btn-primary mx-2 my-4"
@@ -63,50 +64,6 @@
 
     <!-- Sidebar Start -->
     <div class="col-lg-4">
-      <!-- Search Form Start -->
-      <div class="mb-5">
-        <form action="{% url 'blog' %}" method="get" class="input-group">
-          <input
-            type="text"
-            name="query"
-            class="form-control p-3"
-            placeholder="Keyword"
-          />
-          <button class="btn btn-primary px-4">
-            <i class="bi bi-search"></i>
-          </button>
-        </form>
-      </div>
-      <!-- Search Form End -->
-
-      <!-- Recent Post Start -->
-      <div class="mb-5">
-        <h2 class="mb-4">Recent Post</h2>
-        <div class="bg-light p-4">
-          {% for blogpost in blogposts %}
-
-          <div class="d-flex overflow-hidden mb-3">
-            <img
-              class="img-fluid flex-shrink-0"
-              src="{% if blogpost.image %} 
-                {{ blogpost.image.url }} 
-                {% else %} 
-                  {% static 'img/blogpost.jpg' %} 
-                  {% endif %}"
-              style="width: 75px"
-              alt=""
-            />
-            <a
-              href="{% url 'blogpost' blogpost.id %}"
-              class="d-flex align-items-center bg-white text-dark fs-5 fw-bold px-3 mb-0"
-              >{{blogpost.title}}
-            </a>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-      <!-- Recent Post End -->
-
       <!-- Image Start -->
       <div class="mb-5">
         <img

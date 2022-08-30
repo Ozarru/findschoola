@@ -20,7 +20,9 @@ class CustomUserCreationForm(UserCreationForm):
             "username", "email",
             "password1", "password2",
             "first_name",
-            "last_name", "tel", "image",)
+            "last_name", "tel",
+            # "image",
+        )
         help_texts = None
 
 
@@ -28,13 +30,13 @@ class CustomUserChangeForm(UserChangeForm):
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        self.fields["image"].help_text = ''
+        # self.fields["image"].help_text = ''
         self.fields["username"].help_text = ''
 
     class Meta:
         model = CustomUser
         fields = (
-            "image",
+            # "image",
             "username",
             "email",
             "first_name",

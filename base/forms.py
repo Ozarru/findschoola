@@ -1,26 +1,13 @@
-from django.forms import ModelForm
+from django import forms
 from .models import *
 
 
-class DemandForm(ModelForm):
-
-    class Meta:
-        model = Demand
-        fields = '__all__'
-        exclude = ('author', 'date_added')
-
-
-class OfferForm(ModelForm):
-
-    class Meta:
-        model = Offer
-        fields = '__all__'
-        exclude = ('author', 'date_added')
-
-
-class AdvertForm(ModelForm):
+class AdvertForm(forms.ModelForm):
+    title = forms.CharField(widget=forms.TextInput(
+        attrs={"class": "form-control mb-4"}))
+    content = forms.CharField(widget=forms.Textarea(
+        attrs={"class": "form-control mb-4", "rows": 20}))
 
     class Meta:
         model = Advert
-        fields = '__all__'
-        exclude = ('author', 'date_added')
+        fields = ['title', 'content']

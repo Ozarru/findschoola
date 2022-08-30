@@ -13,7 +13,9 @@
             <li class="breadcrumb-item">
               <a href="{% url 'home' %}">Accueil</a>
             </li>
-            <li class="breadcrumb-item text-body" aria-current="page">Blog</li>
+            <li class="breadcrumb-item text-body">
+              <a href="{% url 'blog' %}">Blog</a>
+            </li>
             <li class="breadcrumb-item text-body active" aria-current="page">
               Blogpost
             </li>
@@ -39,7 +41,7 @@
           src="{% if mainpost.image %} 
               {{ mainpost.image.url }} 
               {% else %} 
-                {% static 'img/blogpost.jpg' %} 
+                {% static 'img/bloggers.webp' %} 
                 {% endif %}"
           alt=""
         />
@@ -55,6 +57,9 @@
         <div class="mb-5">
           <div class="row g-5 mb-5"></div>
           <h1 class="mb-4">{{mainpost.title}}</h1>
+          {% if mainpost.subtitle %}
+          <h4 class="mb-2">{{mainpost.subtitle}}</h4>
+          {% endif %}
 
           <p>{{mainpost.content}}</p>
         </div>
@@ -62,24 +67,28 @@
 
         <div class="row g-5 justify-content-center mb-5">
           {% for blogpost in otherposts %}
-          <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="service-item bg-light overflow-hidden h-100">
-              <img
-                class="img-fluid"
-                src="{% if blogpost.image %} 
-                {{ blogpost.image.url }} 
-                {% else %} 
-                  {% static 'img/blogpost.jpg' %} 
-                  {% endif %}"
-                alt=""
-              />
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="bg-light overflow-hidden h-100">
+              <a href="{% url 'blogpost' blogpost.id %}">
+                <img
+                  height="150"
+                  width="250"
+                  class="rounded-top"
+                  src="{% if blogpost.image %} 
+                  {{ blogpost.image.url }} 
+                  {% else %} 
+                    {% static 'img/bloggers.webp' %} 
+                    {% endif %}"
+                  alt=""
+                />
+              </a>
               <div class="service-text position-relative text-center h-100 p-4">
-                <h5 class="mb-3">{{blogpost.title}}</h5>
+                <h5 class="mb-3 d-block text-truncate">{{blogpost.title}}</h5>
                 <p class="d-block text-truncate" style="max-height: 300px">
                   {{blogpost.content}}
                 </p>
-                <a class="small" href="{% url 'blogpost' blogpost.id %}"
-                  >READ MORE<i class="fa fa-arrow-right ms-3"></i
+                <a class="btn btn-dark" href="{% url 'blogpost' blogpost.id %}"
+                  >Lire la suite<i class="fa fa-arrow-right ms-3"></i
                 ></a>
               </div>
             </div>
@@ -114,11 +123,11 @@
 
             <div class="d-flex overflow-hidden mb-3">
               <img
-                class="img-fluid flex-shrink-0"
+                class="img-fluid flex-shrink-0 rounded"
                 src="{% if blogpost.image %} 
                     {{ blogpost.image.url }} 
                     {% else %} 
-                      {% static 'img/blogpost.jpg' %} 
+                      {% static 'img/bloggers.webp' %} 
                       {% endif %}"
                 style="width: 75px"
                 alt=""

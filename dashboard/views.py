@@ -23,7 +23,7 @@ def schProlile(req):
 
     profile_form = ProfileForm(instance=school)
     if req.method == 'POST':
-        profile_form = ProfileForm(req.POST)
+        profile_form = ProfileForm(initial={'manager': req.user})
         if profile_form.is_valid():
             profile_form.save()
             return redirect('my_school')

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'django_filters',
     'crispy_forms',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

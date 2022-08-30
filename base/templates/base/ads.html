@@ -69,7 +69,10 @@
           </a>
         </li>
         <li class="nav-item me-2">
-          <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-2"
+          <a
+            class="btn btn-outline-secondary"
+            data-bs-toggle="pill"
+            href="#tab-2"
             >Offres</a
           >
         </li>
@@ -79,73 +82,113 @@
   <div class="tab-content container-xxl py-5">
     <!-- demands -->
     <div id="tab-1" class="tab-pane fade show p-0 active">
-      <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+      <h1 class="text-left mb-5 wow fadeInUp" data-wow-delay="0.1s">
         Demandes récentes
       </h1>
-      <div class="row g-4">
-        {% for advert in adverts %}
-        <!--  -->
-        {% if advert.ad_type == 'demand' %}
+      <div class="container">
+        <div class="row g-4">
+          {% for advert in adverts %}
+          <!--  -->
+          {% if advert.ad_type == 'demand' %}
+          <div
+            class="col-lg-3 col-md-3 d-flex align-items-center job-item p-2 py-4"
+          >
+            <img
+              class="flex-shrink-0 img-fluid border-none rounded"
+              src="{% static 'img/demand.webp' %}"
+              alt="class image"
+              style="width: 80px; height: 80px"
+            />
+            <div class="text-start ps-4">
+              <div class="mb-2">
+                <h5 class="mb-2">{{advert|title}}</h5>
+                <p>{{advert.content}}</p>
+                <a class="fw-medium" href=""
+                  >Read More<i class="fa fa-arrow-right ms-2"></i
+                ></a>
+              </div>
 
-        <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-          <div class="service-item">
-            <div class="overflow-hidden">
-              <img
-                class="img-fluid"
-                src="{% static 'img/offer.jpg' %}"
-                alt=""
-              />
-            </div>
-            <div
-              class="p-4 text-center border border-5 border-light border-top-0"
-            >
-              <h4 class="mb-3">{{advert.title}}</h4>
-              <p>{{advert.content}}</p>
-              <a class="fw-medium" href=""
-                >Read More<i class="fa fa-arrow-right ms-2"></i
-              ></a>
+              {% if user == advert.author %}
+              <a
+                href=""
+                class="btn btn-danger rounded text-white py-2 px-3 mx-2"
+              >
+                Delete
+              </a>
+              <a href="" class="btn btn-primary rounded text-white py-2 px-3">
+                Edit
+              </a>
+              {% else %}
+              <a
+                href="https://wa.me/+228{{advert.telephone}}"
+                target="_blank"
+                class="col-12 btn btn-dark py-2 px-1 pt-3"
+                ><i class="fa fa-envelope me-2"></i>Répondre</a
+              >
+              {% endif %}
             </div>
           </div>
+          {% endif %}
+          <!--  -->
+          {% endfor %}
         </div>
-        {% endif %}
-        <!--  -->
-        {% endfor %}
       </div>
     </div>
     <!-- offers -->
     <div id="tab-2" class="tab-pane fade show p-0">
-      <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+      <h1 class="text-left mb-5 wow fadeInUp" data-wow-delay="0.1s">
         Offres récentes
       </h1>
-      <div class="row g-4">
-        {% for advert in adverts %}
-        <!--  -->
-        {% if advert.ad_type == 'offer' %}
+      <div class="container">
+        <div class="row g-4">
+          {% for advert in adverts %}
+          <!--  -->
+          {% if advert.ad_type == 'offer' %}
+          <div
+            class="col-lg-3 col-md-3 d-flex align-items-center job-item p-2 py-4"
+          >
+            <img
+              class="flex-shrink-0 img-fluid border-none rounded"
+              src="{% static 'img/request.webp' %}"
+              alt="class image"
+              style="width: 100px; height: 100px"
+            />
+            <div class="text-start ps-4">
+              <div class="mb-2">
+                <h5 class="mb-2">{{advert|title}}</h5>
+                <p>{{advert.content}}</p>
+                <a class="fw-medium" href=""
+                  >Read More<i class="fa fa-arrow-right ms-2"></i
+                ></a>
+              </div>
 
-        <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-          <div class="service-item">
-            <div class="overflow-hidden">
-              <img
-                class="img-fluid"
-                src="{% static 'img/offer.jpg' %}"
-                alt=""
-              />
-            </div>
-            <div
-              class="p-4 text-center border border-5 border-light border-top-0"
-            >
-              <h4 class="mb-3">{{advert.title}}</h4>
-              <p>{{advert.content}}</p>
-              <p>{{advert.ad_type}}</p>
-              <a class="fw-medium" href=""
-                >Read More<i class="fa fa-arrow-right ms-2"></i
-              ></a>
+              {% if user == advert.author %}
+              <a
+                href=""
+                class="bg-primary rounded text-white py-1 px-3 col-md-5"
+              >
+                Edit
+              </a>
+              <a
+                href=""
+                class="bg-secondary rounded text-white py-1 px-3 mx-2 col-md-7"
+              >
+                Delete
+              </a>
+              {% else %}
+              <a
+                href="https://wa.me/+228{{advert.telephone}}"
+                target="_blank"
+                class="col-12 btn btn-dark py-2 px-1 pt-3"
+                ><i class="fa fa-envelope me-2"></i>Répondre</a
+              >
+              {% endif %}
             </div>
           </div>
+          {% endif %}
+          <!--  -->
+          {% endfor %}
         </div>
-        {% endif %}
-        <!--  -->
-        {% endfor %}
       </div>
     </div>
   </div>

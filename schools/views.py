@@ -11,28 +11,26 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 class SchoolCreateView(LoginRequiredMixin, CreateView):
     model = School
-    # form = SchoolCreationForm
     fields = ('crest', 'thumbnail', 'banner', 'name', 'email', 'website', 'address',
               'tel', 'cel', 'moto', 'year_founded',)
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.manager = self.request.user
         return super().form_valid(form)
 
 
 class SchoolUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = School
-    # form = SchoolCreationForm
     fields = ('crest', 'thumbnail', 'banner', 'name', 'email', 'website', 'address',
               'tel', 'cel', 'moto', 'year_founded', 'resumption')
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.manager = self.request.user
         return super().form_valid(form)
 
     def test_func(self):
         school = self.get_object()
-        if self.request.user == school.user:
+        if self.request.user == school.manager:
             return True
         return False
 
@@ -131,7 +129,7 @@ def school(req, pk):
 
 @login_required(login_url='login')
 def mySchool(req):
-    school = School.objects.get(user=req.user)
+    school = School.objects.get(manager=req.user)
     # people
     teachers = school.teacher_set.all()
     # structures

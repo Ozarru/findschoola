@@ -69,7 +69,7 @@
             ><i class="fa fa-money-bill-alt text-primary me-2"></i>Frais
             d'inscription {{school.inscription}}</span
           >
-          {% if school.tel != '00-00-00-00' %}
+          {% if school.tel != None %}
           <a href="https://wa.me/{{school.tel}}" target="_blank">
             <span class="text-truncate me-3"
               ><i class="fa fa-comment text-primary me-2"></i>Contactez
@@ -285,10 +285,10 @@
                   <img
                     class="flex-shrink-0 img-fluid border-none rounded"
                     src="{% if class.image %} 
-            {{ class.image.url }} 
-        {% else %} 
-            {% static 'img/classroom.jpg' %} 
-        {% endif %} "
+                         {{ class.image.url }} 
+                         {% else %} 
+                         {% static 'img/classroom.jpg' %} 
+                         {% endif %} "
                     alt="class image"
                     style="width: 80px; height: 80px"
                   />
