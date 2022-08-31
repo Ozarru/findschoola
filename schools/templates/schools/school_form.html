@@ -1,124 +1,71 @@
-{% extends 'main.html' %} {% load static %}
-<!--  -->
-{% load crispy_forms_tags %} {% block content %}
+{% load static %}{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  {% include 'dashhead.html' %}
+  <body class="app">
+    {% include 'header.html' %}
 
-<!-- Header Start -->
-<div class="container-fluid header bg-white p-0">
-  <div
-    class="row g-0 align-items-center flex-column-reverse flex-md-row"
-    id="bg-color"
-  >
-    <div class="col-md-6 p-5 mt-lg-5">
-      <h1 class="display-5 animated fadeIn mb-4">Nouveau etablissement</h1>
-      <nav aria-label="breadcrumb animated fadeIn">
-        <ol class="breadcrumb text-uppercase">
-          <li class="breadcrumb-item">
-            <a href="{% url 'home' %}">Accueil</a>
-          </li>
-          <li class="breadcrumb-item text-body">
-            <a href="{% url 'schools' %}">Schools</a>
-          </li>
-          <li class="breadcrumb-item text-body active" aria-current="page">
-            New
-          </li>
-        </ol>
-      </nav>
-      <p class="animated fadeIn mb-4 pb-2">
-        Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd
-        rebum ipsum et diam justo clita et kasd rebum sea elitr.
-      </p>
-    </div>
-    <div class="col-md-6 animated fadeIn">
-      <img class="img-fluid" src="{% static 'img/add-school.avif' %}" alt="" />
-    </div>
-  </div>
-</div>
-<!-- Header End -->
-<!-- School Start -->
-<div class="container py-5">
-  <div class="row g-5">
-    <!-- School list Start -->
-    <h2>Ajoutez votre etablissement</h2>
-    <div class="col-lg-8">
-      <form
-        class="app-card-body px-4 w-100"
-        method="POST"
-        action=""
-        enctype="multipart/form-data"
-      >
-        {% csrf_token %}
-        <div class="item border-top py-3">
-          <div class="row justify-content-between align-items-center">
-            {{form|crispy}}
+    <div class="app-wrapper">
+      <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+          <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+              <h1 class="app-page-title mb-0">Mon Etablissement</h1>
+            </div>
+          </div>
+
+          <div
+            class="tab-pane fade show active"
+            id="general"
+            role="tabpanel"
+            aria-labelledby="general-tab"
+          >
+            <div class="row gx-3">
+              <div class="mb-4 col-12 col-lg-9">
+                <div
+                  class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                >
+                  <!--//app-card-header-->
+                  <div class="item p-4">
+                    <div class="row justify-content-between align-items-center">
+                      <div class="col-auto">
+                        <div class="item-data">
+                          <img
+                            class="profile-image"
+                            src="
+                              {% if school.crest %} 
+                              {{ school.crest.url }} 
+                              {% else %} 
+                              {% static 'img/logo.png' %} 
+                              {% endif %}
+                              "
+                            alt="School Crest"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <form
+                    class="app-card-body px-4 w-100"
+                    method="POST"
+                    action=""
+                  >
+                    {% csrf_token %}
+                    <!--  -->
+                    <div class="item py-3">{{form|crispy}}</div>
+                    <input
+                      class="btn app-btn-primary mx-2 my-4"
+                      type="submit"
+                      value="Enregistrer"
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <input
-          class="btn app-btn-primary mx-2 my-4"
-          type="submit"
-          value="Enregistrer"
-        />
-      </form>
+      </div>
+      <!--//app-content-->
     </div>
-    <!-- School list End -->
-
-    <!-- Sidebar Start -->
-    <div class="col-lg-4">
-      <!-- Search Form Start -->
-      <div class="mb-5">
-        <form action="{% url 'schools' %}" method="get" class="input-group">
-          <input
-            type="text"
-            name="query"
-            class="form-control p-3"
-            placeholder="Keyword"
-          />
-          <button class="btn btn-primary px-4">
-            <i class="bi bi-search"></i>
-          </button>
-        </form>
-      </div>
-      <!-- Search Form End -->
-
-      <!-- Recent Post Start -->
-      <div class="mb-5">
-        <h2 class="mb-4">Etablissement recents</h2>
-        <div class="bg-light p-4">
-          {% for school in schools %}
-
-          <div class="d-flex overflow-hidden mb-3">
-            <img
-              class="img-fluid flex-shrink-0"
-              src="{% if school.image %} 
-                {{ school.image.url }} 
-                {% else %} 
-                  {% static 'img/school.jpg' %} 
-                  {% endif %}"
-              style="width: 75px"
-              alt=""
-            />
-            <a
-              href="{% url 'school' school.id %}"
-              class="d-flex align-items-center bg-white text-dark fs-5 fw-bold px-3 mb-0"
-              >{{school.name}}
-            </a>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-      <!-- Recent Post End -->
-
-      <!-- Image Start -->
-      <div class="mb-5">
-        <img
-          src="{% static 'img/writer.jpg' %}"
-          alt=""
-          class="img-fluid rounded"
-        />
-      </div>
-      <!-- Image End -->
-    </div>
-    <!-- Sidebar End -->
-  </div>
-</div>
-<!-- School End -->
-{% endblock %}
+  </body>
+</html>

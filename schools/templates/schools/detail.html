@@ -19,7 +19,7 @@
       </nav>
       {% if is_manager %}
       <a
-        href="{% url 'sch_profile' %}"
+        href="{% url 'update_school' user.id %}"
         class="btn btn-primary py-3 px-5 me-3 animated fadeIn"
         >Modifier mon Ecole</a
       >

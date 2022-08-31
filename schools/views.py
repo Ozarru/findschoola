@@ -21,8 +21,8 @@ class SchoolCreateView(LoginRequiredMixin, CreateView):
 
 class SchoolUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = School
-    fields = ('crest', 'thumbnail', 'banner', 'name', 'email', 'website', 'address',
-              'tel', 'cel', 'moto', 'year_founded', 'resumption')
+    fields = ('__all__')
+    exclude = ('manager',)
 
     def form_valid(self, form):
         form.instance.manager = self.request.user

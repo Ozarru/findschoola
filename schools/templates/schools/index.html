@@ -28,7 +28,7 @@
         >Voir mon Ecole</a
       >
       <a
-        href="{% url 'sch_profile' %}"
+        href="{% url 'update_school' user.id %}"
         class="btn btn-secondary py-3 px-5 me-3 animated fadeIn"
         >Modifier mon Ecole</a
       >
@@ -76,15 +76,13 @@
   <div class="container">
     <div class="row g-0 gx-5 align-items-center">
       <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
-        <li class="nav-item me-2">
-          <a class="btn btn-outline-primary active" href="{% url 'schools' %}"
-            >Tous</a
-          >
+        <li class="nav-item me-2 active">
+          <a class="btn btn-outline-primary" href="{% url 'schools' %}">Tous</a>
         </li>
         {% for level in edu_levels %}
         <li class="nav-item me-2">
           <a
-            class="btn btn-outline-secondary"
+            class="btn btn-outline-primary {% if request.resolver_match.url_name == 'schools' %} {% endif %}"
             href="{% url 'schools' %}?query={{level.name}}"
             >{{level.name|title}}s</a
           >

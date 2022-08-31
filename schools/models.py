@@ -94,7 +94,6 @@ class School(models.Model):
     faculties = models.IntegerField(default='0', blank=True, null=True)
 
     # profile
-    is_featured = models.BooleanField(default=False)
     thumbnail = models.ImageField(
         upload_to='schools/thumbnails', blank=True, null=True)
     banner = models.ImageField(
@@ -103,11 +102,11 @@ class School(models.Model):
         upload_to='schools/crests', blank=True, null=True)
     date_added = models.DateTimeField(auto_now=True)
 
-    # def save(self, *args, **kwargs):
-    #     super(School, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        super(School, self).save(*args, **kwargs)
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
 
     def get_absolute_url(self):
         return reverse('school', kwargs={'pk': self.pk})

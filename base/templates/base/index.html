@@ -27,7 +27,7 @@
         >Voir mon Ecole</a
       >
       <a
-        href="{% url 'sch_profile' %}"
+        href="{% url 'update_school' user.id %}"
         class="btn btn-secondary py-3 px-5 me-3 animated fadeIn"
         >Modifier mon Ecole</a
       >
@@ -84,7 +84,7 @@
 <!-- Header End -->
 
 <!-- Category Start -->
-<div class="container-xxl py-5">
+<div class="container-xxl py-5 bg-primary">
   <div class="container">
     <div
       class="text-center mx-auto mb-5 wow fadeInUp"
@@ -92,13 +92,13 @@
       style="max-width: 600px"
     >
       <h1 class="mb-3">Catégories d'établissement</h1>
-      <p>
+      <p class="text-white">
         Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore
         lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero
         dolor duo.
       </p>
     </div>
-    <div class="row g-4">
+    <div class="row g-4 my-5">
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
         <a
           class="cat-item d-block bg-light text-center rounded p-3"
@@ -256,7 +256,7 @@
 <!-- Category End -->
 
 <!-- Schools List Start -->
-<div class="container-xxl py-5" id="featured-schools">
+<div class="container-xxl py-5 bg-grey" id="featured-schools">
   <div class="container">
     <div class="row g-0 gx-5 align-items-end">
       <div class="col-lg-6">
@@ -513,24 +513,15 @@
 <div class="container-xxl py-5">
   <div class="container">
     <div class="bg-light rounded p-3">
-      <div
-        class="bg-white rounded p-4"
-        style="border: 1px dashed rgba(0, 185, 142, 0.3)"
-      >
+      <div class="bg-dark rounded p-4">
         <div class="row g-5 align-items-center">
           <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-            <div
-              class="overflow-scroll"
-              style="overflow: auto; max-height: 400px"
-            >
+            <div class="scroll" style="overflow: auto; max-height: 400px">
               {% for ad in adverts %}
               <!-- boucle -->
-              <div
-                class="bg-white border rounded p-4 mb-3 row"
-                style="overflow-y: auto"
-              >
+              <div class="container bg-white rounded p-4 mb-3 row">
                 <h4>{{ad.title|title}}</h4>
-                <h6>#{{ad.ad_type|title}}</h6>
+                <!-- <h6>#{{ad.ad_type|title}}</h6> -->
                 <p id="ad" style="padding-left: 0px">{{ad.content}}</p>
                 <a
                   href="https://wa.me/+228{{ad.telephone}}"
@@ -562,8 +553,13 @@
           </div>
           {% if user.role == 'gestionaire' %}
           <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+            <img
+              class="img-fluid rounded"
+              src="{% static 'img/request.webp' %}"
+              alt=""
+            />
             <div class="mb-4">
-              <h2 class="mb-3">Nos Offres</h2>
+              <h2 class="mb-3">Offres</h2>
               <p>
                 Vous avez une offre d'emploie? Postez une offre et recevez les
                 demandes!
@@ -579,9 +575,14 @@
           </div>
           {% else %}
           <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+            <img
+              class="img-fluid rounded"
+              src="{% static 'img/request.webp' %}"
+              alt=""
+            />
             <div class="mb-4">
-              <h2 class="mb-3">Nos Demandes</h2>
-              <p>
+              <h2 class="my-3 text-white">Demandes</h2>
+              <p class="text-light">
                 Vous avez un besoin spécial en terme de formation ou de cursus ?
                 Postez une demande et recevez les offres des écoles !
               </p>
@@ -590,7 +591,7 @@
             <a class="btn btn-primary py-3 px-5" href="{% url 'post_ad' %}"
               >Poster une demande</a
             >
-            <a class="btn btn-secondary py-3 px-5" href="{% url 'ads' %}"
+            <a class="btn btn-secondary py-3 px-5 mx-2" href="{% url 'ads' %}"
               >Voir plus</a
             >
           </div>

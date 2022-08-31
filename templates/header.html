@@ -247,7 +247,7 @@
           <li class="nav-item">
             <a
               class="nav-link {{sch_profile_page}}"
-              href="{% url 'sch_profile' %}"
+              href="{% url 'update_school' user.id %}"
             >
               <span class="nav-icon">
                 <svg
@@ -293,7 +293,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link {{bulletin_page}}" href="{% url 'bulletin' %}">
+            <a class="nav-link {{sch_blog_page}}" href="{% url 'sch_blog' %}">
               <span class="nav-icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
