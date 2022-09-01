@@ -26,7 +26,8 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = ["username"]
 
     def __str__(self):
-        return f'{self.username}(role: {self.role})(subrole: {self.subrole})'
+        return self.username
+        # '(role: {self.role})(subrole: {self.subrole})'
 
 
 # class Profile(models.Model):

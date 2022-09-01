@@ -51,11 +51,11 @@ class Subscription(models.Model):
 
 class School(models.Model):
     manager = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=255, blank=False, default='',)
     email = models.EmailField(blank=True, null=True)
     website = models.CharField(max_length=255, blank=True, null=True)
-    address = models.CharField(max_length=255, blank=True, null=True)
-    tel = models.CharField(max_length=255, default='', blank=True, null=True)
+    address = models.CharField(max_length=255, default='',)
+    tel = models.CharField(max_length=255, default='',)
     cel = models.CharField(max_length=255, default='', blank=True, null=True)
     moto = models.CharField(max_length=255, blank=True, null=True)
     year_founded = models.CharField(max_length=4, blank=True, null=True)
@@ -102,11 +102,8 @@ class School(models.Model):
         upload_to='schools/crests', blank=True, null=True)
     date_added = models.DateTimeField(auto_now=True)
 
-    def save(self, *args, **kwargs):
-        super(School, self).save(*args, **kwargs)
-
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.name
 
     def get_absolute_url(self):
         return reverse('school', kwargs={'pk': self.pk})
