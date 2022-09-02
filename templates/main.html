@@ -65,7 +65,9 @@
       <!--  -->
       {% endif %}
       <!--  -->
-      {% block content %} {% endblock %} {% include 'footer.html' %}
+      {% block content %} {% endblock %}
+      <!--  -->
+      {% include 'footer.html' %}
       <script>
         var current_date = new Date().getFullYear();
         document.getElementById("date").innerHTML = current_date;

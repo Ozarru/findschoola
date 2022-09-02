@@ -82,6 +82,34 @@ def faq(req):
     return render(req, 'base/faq.html', context)
 
 
+def copyrights(req):
+    context = {
+        "copy_page": "active",
+        "title": 'copyrights', }
+    return render(req, 'base/copyrights.html', context)
+
+
+def privacy_policy(req):
+    context = {
+        "privacy_policy_page": "active",
+        "title": 'privacy_policy', }
+    return render(req, 'base/privacy_policy.html', context)
+
+
+def terms_of_use(req):
+    context = {
+        "terms_of_use_page": "active",
+        "title": 'terms_of_use', }
+    return render(req, 'base/terms_of_use.html', context)
+
+
+def limitation_of_liability(req):
+    context = {
+        "limitation_of_liability_page": "active",
+        "title": 'limitation_of_liability', }
+    return render(req, 'base/limitation_of_liability.html', context)
+
+
 def tariff(req):
     if req.user.is_authenticated is False or req.user.role != 'gestionaire':
         return redirect('home')

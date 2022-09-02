@@ -23,7 +23,7 @@
       {% if has_school %}
       <a
         href="{% url 'my_school' %}"
-        class="btn btn-primary py-3 px-5 me-3 animated fadeIn"
+        class="btn btn-dark py-3 px-5 me-3 animated fadeIn"
         >Voir mon Ecole</a
       >
       <a
@@ -84,15 +84,15 @@
 <!-- Header End -->
 
 <!-- Category Start -->
-<div class="container-xxl py-5 bg-primary">
+<div class="container-xxl py-5 bg-dark">
   <div class="container">
     <div
-      class="text-center mx-auto mb-5 wow fadeInUp"
+      class="text-center mx-auto my-5 wow fadeInUp"
       data-wow-delay="0.1s"
       style="max-width: 600px"
     >
-      <h1 class="mb-3">Catégories d'établissement</h1>
-      <p class="text-white">
+      <h1 class="mb-3 text-white">Catégories d'établissement</h1>
+      <p class="text-white-50">
         Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore
         lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero
         dolor duo.
@@ -256,252 +256,79 @@
 <!-- Category End -->
 
 <!-- Schools List Start -->
-<div class="container-xxl py-5 bg-grey" id="featured-schools">
-  <div class="container">
-    <div class="row g-0 gx-5 align-items-end">
-      <div class="col-lg-6">
-        <div
-          class="text-start mx-auto mb-5 wow slideInLeft"
-          data-wow-delay="0.1s"
-        >
-          <h1 class="mb-3">Etablissements Vedettes</h1>
-          <p>
-            Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore
-            lorem kasd vero ipsum sit eirmod sit diam justo sed rebum.
-          </p>
-        </div>
-      </div>
+<div class="container-xxl py-5 bg-light" id="featured-schools">
+  <div class="container my-5">
+    <div class="col-lg-6 text-start mb-5 wow slideInLeft" data-wow-delay="0.1s">
+      <h1 class="mb-3">Etablissements Vedettes</h1>
+      <p>
+        Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore
+        lorem kasd vero ipsum sit eirmod sit diam justo sed rebum.
+      </p>
     </div>
-    <div class="tab-content">
-      <div id="tab-1" class="tab-pane fade show p-0 active">
-        <div class="row g-4">
-          {% for school in schools %}
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <!--  -->
-            {% if school.manager.subscription.plan.tier == 'pro' %}
-            <div class="property-item rounded overflow-hidden">
-              <div class="position-relative overflow-hidden">
-                <a href="{% url 'school' school.id %}"
-                  ><img
-                    class="img-fluid"
-                    src="{% if school.thumbnail %} 
+    <div class="tab-pane fade show p-0 active">
+      <div class="row g-4">
+        {% for school in schools %}
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <!--  -->
+          {% if school.manager.subscription.plan.tier == 'pro' %}
+          <div class="bg-white property-item rounded overflow-hidden">
+            <div class="position-relative overflow-hidden">
+              <a href="{% url 'school' school.id %}"
+                ><img
+                  class="img-fluid"
+                  src="{% if school.thumbnail %} 
                         {{ school.thumbnail.url }} 
                         {% else %} 
                           {% static 'img/etb-jardin.jpg' %} 
                           {% endif %}"
-                    alt="School Thumbnail"
-                /></a>
-                <div
-                  class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
-                >
-                  En vedette
-                </div>
-                <div
-                  class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
-                >
-                  {% for level in sch_levels %}
-                  <!--  -->
-                  {{level.name|title}}
-                  <!--  -->
-                  {% endfor %}
-                </div>
+                  alt="School Thumbnail"
+              /></a>
+              <div
+                class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
+              >
+                En vedette
               </div>
-              <div class="p-4 pb-0">
-                <!-- <h5 class="text-primary mb-3">$12,345</h5> -->
-                <a class="d-block h5 mb-2" href="">{{school.name|title}}</a>
-                <p>
-                  <i class="fa fa-map-marker-alt text-primary me-2"></i
-                  >{{school.address|title}}
-                </p>
-              </div>
-              <div class="d-flex border-top">
-                <small class="flex-fill text-center border-end py-2"
-                  ><i class="fa fa-user text-primary me-2"></i
-                  >{{school.staff|title}} Proffesseurs</small
-                >
-                <small class="flex-fill text-center border-end py-2"
-                  ><i class="fa fa-school text-primary me-2"></i
-                  >{{school.faculties|title}} Filières</small
-                >
-                <small class="flex-fill text-center py-2"
-                  ><i class="fa fa-bookmark text-primary me-2"></i
-                  >{{school.curriculums|title}} Cursus</small
-                >
+              <div
+                class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
+              >
+                {% for level in sch_levels %}
+                <!--  -->
+                {{level.name|title}}
+                <!--  -->
+                {% endfor %}
               </div>
             </div>
-            {% endif %}
-            <!--  -->
+            <div class="p-4 pb-0">
+              <!-- <h5 class="text-primary mb-3">$12,345</h5> -->
+              <a class="d-block h5 mb-2" href="">{{school.name|title}}</a>
+              <p>
+                <i class="fa fa-map-marker-alt text-primary me-2"></i
+                >{{school.address|title}}
+              </p>
+            </div>
+            <div class="d-flex border-top">
+              <small class="flex-fill text-center border-end py-2"
+                ><i class="fa fa-user text-primary me-2"></i
+                >{{school.staff|title}} Proffesseurs</small
+              >
+              <small class="flex-fill text-center border-end py-2"
+                ><i class="fa fa-school text-primary me-2"></i
+                >{{school.faculties|title}} Filières</small
+              >
+              <small class="flex-fill text-center py-2"
+                ><i class="fa fa-bookmark text-primary me-2"></i
+                >{{school.curriculums|title}} Cursus</small
+              >
+            </div>
           </div>
-          {% endfor %}
-          <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-            <a class="btn btn-primary py-3 px-5" href="{% url 'schools' %}"
-              >Voir plus d'établissements</a
-            >
-          </div>
+          {% endif %}
+          <!--  -->
         </div>
-      </div>
-      <div id="tab-2" class="tab-pane fade show p-0">
-        <div class="row g-4">
-          <div class="col-lg-4 col-md-6">
-            <div class="property-item rounded overflow-hidden">
-              <div class="position-relative overflow-hidden">
-                <a href=""
-                  ><img
-                    class="img-fluid"
-                    src="{% static 'img/etb-primaire.jpg' %}"
-                    alt=""
-                /></a>
-                <div
-                  class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
-                >
-                  En vedette
-                </div>
-                <div
-                  class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
-                >
-                  Primaire
-                </div>
-              </div>
-              <div class="p-4 pb-0">
-                <!-- <h5 class="text-primary mb-3">$12,345</h5> -->
-                <a class="d-block h5 mb-2" href="">EPP AGOE</a>
-                <p>
-                  <i class="fa fa-map-marker-alt text-primary me-2"></i>Agoè,
-                  Lomé-Togo
-                </p>
-              </div>
-              <div class="d-flex border-top">
-                <small class="flex-fill text-center border-end py-2"
-                  ><i class="fa fa-user text-primary me-2"></i>10
-                  Enseignants</small
-                >
-                <small class="flex-fill text-center border-end py-2"
-                  ><i class="fa fa-school text-primary me-2"></i>6
-                  Classes</small
-                >
-                <small class="flex-fill text-center py-2"
-                  ><i class="fa fa-bookmark text-primary me-2"></i>1
-                  Cursus</small
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 text-center">
-            <a class="btn btn-primary py-3 px-5" href=""
-              >voir plus d'établissements</a
-            >
-          </div>
-        </div>
-      </div>
-      <div id="tab-3" class="tab-pane fade show p-0">
-        <div class="row g-4">
-          <div class="col-lg-4 col-md-6">
-            <div class="property-item rounded overflow-hidden">
-              <div class="position-relative overflow-hidden">
-                <a href=""
-                  ><img
-                    class="img-fluid"
-                    src="{% static 'img/etb-college-lycee.jpg' %}"
-                    alt=""
-                /></a>
-                <div
-                  class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
-                >
-                  En vedette
-                </div>
-                <div
-                  class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
-                >
-                  Collège-Lycée
-                </div>
-              </div>
-              <div class="p-4 pb-0">
-                <!-- <h5 class="text-primary mb-3">$12,345</h5> -->
-                <a class="d-block h5 mb-2" href=""
-                  >Collège NDE ou Lycée ZOMAYI</a
-                >
-                <p>
-                  <i class="fa fa-map-marker-alt text-primary me-2"></i
-                  >Vakpossito, Lomé-Togo
-                </p>
-              </div>
-              <div class="d-flex border-top">
-                <small class="flex-fill text-center border-end py-2"
-                  ><i class="fa fa-user text-primary me-2"></i>15
-                  Enseignants</small
-                >
-                <small class="flex-fill text-center border-end py-2"
-                  ><i class="fa fa-school text-primary me-2"></i>3
-                  Classes</small
-                >
-                <small class="flex-fill text-center py-2"
-                  ><i class="fa fa-bookmark text-primary me-2"></i>3
-                  Cursus</small
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 text-center">
-            <a class="btn btn-primary py-3 px-5" href=""
-              >voir plus d'établissements</a
-            >
-          </div>
-        </div>
-      </div>
-      <div id="tab-4" class="tab-pane fade show p-0">
-        <div class="row g-4">
-          <div class="col-lg-4 col-md-6">
-            <div class="property-item rounded overflow-hidden">
-              <div class="position-relative overflow-hidden">
-                <a href=""
-                  ><img
-                    class="img-fluid"
-                    src="{% static 'img/etb-universite.jpg' %}"
-                    alt=""
-                /></a>
-                <div
-                  class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
-                >
-                  En vedette
-                </div>
-                <div
-                  class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
-                >
-                  Université
-                </div>
-              </div>
-              <div class="p-4 pb-0">
-                <!-- <h5 class="text-primary mb-3">$12,345</h5> -->
-                <a class="d-block h5 mb-2" href="">ESGIS</a>
-                <p>
-                  <i class="fa fa-map-marker-alt text-primary me-2"></i>Avédji,
-                  Lomé-Togo
-                </p>
-              </div>
-              <div class="d-flex border-top">
-                <small class="flex-fill text-center border-end py-2"
-                  ><i class="fa fa-user text-primary me-2"></i>15
-                  Proffesseurs</small
-                >
-                <small class="flex-fill text-center border-end py-2"
-                  ><i class="fa fa-school text-primary me-2"></i>5
-                  Filières</small
-                >
-                <small class="flex-fill text-center py-2"
-                  ><i class="fa fa-bookmark text-primary me-2"></i>4
-                  Cursus</small
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 text-center">
-            <a class="btn btn-primary py-3 px-5" href=""
-              >voir plus d'établissements</a
-            >
-          </div>
+        {% endfor %}
+        <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+          <a class="btn btn-primary py-3 px-5 mt-5" href="{% url 'schools' %}"
+            >Voir plus d'établissements</a
+          >
         </div>
       </div>
     </div>
@@ -512,8 +339,8 @@
 <!-- Call to Action Start -->
 <div class="container-xxl py-5">
   <div class="container">
-    <div class="bg-light rounded p-3">
-      <div class="bg-dark rounded p-4">
+    <div class="rounded py-5 my-5">
+      <div class="bg-dark rounded p-5 my-5">
         <div class="row g-5 align-items-center">
           <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
             <div class="scroll" style="overflow: auto; max-height: 400px">
@@ -559,8 +386,8 @@
               alt=""
             />
             <div class="mb-4">
-              <h2 class="mb-3">Offres</h2>
-              <p>
+              <h2 class="mt-4 mb-2 text-white">Offres</h2>
+              <p class="text-white-50">
                 Vous avez une offre d'emploie? Postez une offre et recevez les
                 demandes!
               </p>
@@ -569,7 +396,7 @@
             <a class="btn btn-primary py-3 px-5" href="{% url 'post_ad' %}"
               >Poster une offre</a
             >
-            <a class="btn btn-secondary py-3 px-5" href="{% url 'ads' %}"
+            <a class="btn btn-secondary mx-2 py-3 px-5" href="{% url 'ads' %}"
               >Voir plus</a
             >
           </div>
@@ -640,7 +467,7 @@
               />
             </a>
           </div>
-          <div class="p-4 text-left border border-5 border-light border-top-0">
+          <div class="p-4 text-left rounded-bottom bg-light border-top-0">
             <h4 class="mb-3 d-block text-truncate">{{blogpost.title}}</h4>
             <p class="d-block text-truncate" style="max-height: 300px">
               {{blogpost.content}}
@@ -654,7 +481,7 @@
       {% endfor %}
 
       <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-        <a class="btn btn-primary py-3 px-5" href="{% url 'blog' %}"
+        <a class="btn btn-primary py-3 px-5 my-5" href="{% url 'blog' %}"
           >Voir plus d'articles</a
         >
       </div>
