@@ -7,7 +7,7 @@
     id="bg-color"
   >
     <div class="col-md-6 p-5 mt-lg-5">
-      <h1 class="display-5 animated fadeIn mb-4">Connexion</h1>
+      <h1 class="display-5 animated fadeIn my-5">Connexion</h1>
       <nav aria-label="breadcrumb animated fadeIn">
         <ol class="breadcrumb text-uppercase">
           <li class="breadcrumb-item">
@@ -20,63 +20,56 @@
       </nav>
     </div>
     <div class="col-md-6 animated fadeIn">
-      <img class="img-fluid" src="{% static 'img/schule.jpg' %}" alt="" />
+      <!-- <img class="img-fluid" src="{% static 'img/schule.jpg' %}" alt="" /> -->
     </div>
   </div>
 </div>
 <!-- Header End -->
-<div class="container-xxl py-5">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6 px-0 d-none d-sm-block">
-        <img
-          alt="login image"
-          src="{% static 'img/log-in.jpg' %}"
-          class="img-fluid"
+
+<div
+  class="container my-5 py-5 row mx-auto justify-content-center d-flex align-items-center"
+>
+  <div class="col-4 d-none d-sm-block">
+    <img alt="login image" src="{% static 'img/signin.jpg' %}" class="" />
+  </div>
+  <div class="col-4">
+    <h1 class="login-title">Connexion</h1>
+    <form method="POST" action="">
+      {% csrf_token %}
+      <div class="form-group mb-2">
+        <label for="username">Email</label>
+        <input
+          type="username"
+          name="username"
+          class="form-control"
+          placeholder=""
         />
       </div>
-      <div class="col-sm-6 login-section-wrapper">
-        <div class="login-wrapper my-auto">
-          <h1 class="login-title">Connexion</h1>
-          <form method="POST" action="">
-            {% csrf_token %}
-            <div class="form-group mb-2">
-              <label for="username">Email</label>
-              <input
-                type="username"
-                name="username"
-                class="form-control"
-                placeholder=""
-              />
-            </div>
-            <div class="form-group mb-4">
-              <label for="password">Mot de passe</label>
-              <input
-                type="password"
-                name="password"
-                class="form-control"
-                placeholder=""
-              />
-            </div>
-
-            <input
-              type="submit"
-              value="Login"
-              class="btn btn-primary py-3 px-5 me-3 animated fadeIn"
-            />
-          </form>
-
-          <!-- <a href="#!" class="forgot-password-link mt-4">Mot de passe oublié?</a> -->
-
-          <p class="login-wrapper-footer-text mt-4">
-            Vous n'avez pas de compte?
-            <a href="{% url 'signup' %}" class="text-reset green-link"
-              >Inscrivez-vous ici</a
-            >
-          </p>
-        </div>
+      <div class="form-group mb-4">
+        <label for="password">Mot de passe</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          placeholder=""
+        />
       </div>
-    </div>
+
+      <input
+        type="submit"
+        value="Connexion"
+        class="btn btn-secondary py-3 px-5 me-3 animated fadeIn"
+      />
+    </form>
+
+    <!-- <a href="#!" class="forgot-password-link mt-4">Mot de passe oublié?</a> -->
+
+    <p class="login-wrapper-footer-text mt-4">
+      Vous n'avez pas de compte?
+      <a href="{% url 'signup' %}" class="text-reset green-link"
+        >Inscrivez-vous ici</a
+      >
+    </p>
   </div>
 </div>
 

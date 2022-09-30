@@ -1,0 +1,43 @@
+{% load static %}
+<div
+  class="text-center mx-auto mb-2 data-wow-delay=0.1s"
+  style="max-width: 600px"
+>
+  <h2 class="mb-5">
+    Articles {% if is_manager %}
+    <button
+      type="button"
+      class="btn btn-dark"
+      data-toggle="modal"
+      data-target="#edulevels_modal"
+    >
+      <i class="fa fa-pen"></i>
+    </button>
+    {% endif %}
+  </h2>
+</div>
+
+<div class="container-xxl py-5">
+  <div class="row g-4">
+    {% for article in articles %}
+
+    <div class="col-md-6 col-lg-4" data-wow-delay="0.1s">
+      <div class="service-item">
+        <div class="overflow-hidden">
+          <img class="img-fluid" src="img/blog.jpg" alt="" />
+        </div>
+        <div class="p-4 text-center border border-5 border-light border-top-0">
+          <h4 class="mb-3">{{article.title}}</h4>
+          {% if article.subtitle %}
+          <h6 class="mb-2 text-gray">{{article.subtitle}}</h6>
+          {% endif %}
+          <p>{{article.content}}</p>
+          <a class="fw-medium" href=""
+            >Read More<i class="fa fa-arrow-right ms-2"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

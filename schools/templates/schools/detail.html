@@ -1,12 +1,12 @@
 {% extends 'main.html' %} {% load static %} {% block content %}
 <!-- Header Start -->
-<div class="container-fluid header bg-white p-0">
+<div class="container-fluid header bg-white p-0.5">
   <div
     class="row g-0 align-items-center flex-column-reverse flex-md-row"
     id="bg-color"
   >
     <div class="col-md-6 p-5 mt-lg-5">
-      <h1 class="display-5 animated fadeIn mb-4">{{school.name|title}}</h1>
+      <h1 class="display-5 animated fadeIn my-5">{{school.name|title}}</h1>
       <nav aria-label="breadcrumb animated fadeIn">
         <ol class="breadcrumb text-uppercase">
           <li class="breadcrumb-item">
@@ -19,10 +19,11 @@
       </nav>
       {% if is_manager %}
       <a
-        href="{% url 'update_school' user.id %}"
+        href="{% url 'edit_school' %}"
         class="btn btn-primary py-3 px-5 me-3 animated fadeIn"
-        >Modifier mon Ecole</a
-      >
+        >Modifier mon Ecole <i class="fa fa-pen mx-2"></i
+      ></a>
+
       {% endif %}
     </div>
     <div class="col-md-6 animated fadeIn">
@@ -40,6 +41,10 @@
 </div>
 <!-- Header End -->
 
+<!-- Modal Start-->
+{% include 'components/modals.html' %}
+<!-- Modal End-->
+
 <!-- School Details Start -->
 <div class="container-xxl py-5">
   <div class="container">
@@ -56,7 +61,19 @@
           style="width: 80px; height: 80px"
         />
         <div class="text-start ps-4">
-          <h3 class="mb-3">{{school.name|title}}</h3>
+          <h3 class="mb-3">
+            {{school.name|title}} {% if is_manager %}
+            <button
+              type="button"
+              class="btn btn-dark"
+              data-toggle="modal"
+              data-target="#info_modal"
+            >
+              <i class="fa fa-pen"></i>
+            </button>
+            {% endif %}
+          </h3>
+
           <span class="text-truncate me-3"
             ><i class="fa fa-bullhorn text-primary me-2"></i>
             <em> "{{school.moto|title}}" </em>
@@ -72,20 +89,36 @@
           {% if school.tel != None %}
           <a href="https://wa.me/{{school.tel}}" target="_blank">
             <span class="text-truncate me-3"
-              ><i class="fa fa-comment text-primary me-2"></i>Contactez
+              ><i class="fab fa-whatsapp text-primary me-2"></i>Contactez
               nous</span
             >
           </a>
-          {% endif %} {% if school.website != None %}
-          <a href="https://www.{{school.website}}" target="_blank">
-            <span class="text-truncate me-3"
-              ><i class="fa fa-globe text-primary me-2"></i
-              >www.{{school.website}}</span
+          <span class="text-truncate me-3">
+            <a href="tel:{{school.tel}}"
+              ><i class="fa fa-phone-alt text-primary me-2"></i
+              >{{school.tel}}</a
             >
-          </a>
+          </span>
+          {% endif %} {% if school.website != None %}
+          <span class="text-truncate me-3">
+            <a href="https://www.{{school.website}}" target="_blank">
+              <i class="fa fa-globe text-primary me-2"></i
+              >www.{{school.website}}
+            </a>
+          </span>
           {% endif %}
         </div>
       </div>
+      <h3 class="my-3">Niveaux d'Education</h3>
+      <ul
+        class="mleft-4 nav nav-pills d-inline-flex justify-content-start mb-5"
+      >
+        {% for level in school.levels.all %}
+        <li class="bg-primary text-white rounded py-2 px-3 nav-item me-2">
+          {{level.name|title}}
+        </li>
+        {% endfor %}
+      </ul>
     </div>
     <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
       <!-- tab navigation -->
@@ -150,376 +183,23 @@
       <!-- tabs -->
       <div class="tab-content">
         <div id="tab-1" class="tab-pane fade show p-0 active">
-          <div class="row">
-            <div class="col-lg-8" id="ajuster">
-              <div class="mb-5">
-                <h4 class="mb-3">Historique</h4>
-                <p>{{school.history}}</p>
-                <h4 class="mb-3">Avantages & Garanties</h4>
-                <p>{{school.ad_copy}}</p>
-                <ul class="list-unstyled">
-                  {% for vantage in advantages %}
-
-                  <li>
-                    <i class="fa fa-angle-right text-primary me-2"></i
-                    >{{vantage.phrase|title}}
-                  </li>
-                  {% endfor %}
-                </ul>
-                <h4 class="mb-3">Message de la direction</h4>
-                <div class="bg-white border rounded p-4">
-                  <p>{{school.mgt_quote}}</p>
-                  <div class="d-flex align-items-center">
-                    <img
-                      class="img-fluid flex-shrink-0 rounded"
-                      src="{% static 'img/testimonial-1.jpg' %}"
-                      style="width: 45px; height: 45px"
-                    />
-                    <div class="ps-3">
-                      <h6 class="fw-bold mb-1">Client Name</h6>
-                      <small>Profession</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4" id="ajuster">
-              <div class="bg-light rounded p-5 mb-4" data-wow-delay="0.1s">
-                <h4 class="mb-4">Informations</h4>
-
-                <p>
-                  <i class="fa fa-phone-alt text-primary me-2"></i>
-                  {{school.tel}}
-                </p>
-                <p>
-                  <i class="fa fa-phone-alt text-primary me-2"></i>
-                  {{school.cel}}
-                </p>
-                <p>
-                  <i class="fa fa-paper-plane text-primary me-2"></i>
-                  {{school.email}}
-                </p>
-                <p>
-                  <i class="fa fa-user text-primary me-2"></i>
-                  {{school.staff}} Proffesseurs
-                </p>
-                <p>
-                  <i class="fa fa-clock text-primary me-2"></i>
-                  {{school.curriculums}} Parcours
-                </p>
-                <p>
-                  <i class="fa fa-users text-primary me-2"></i>
-                  {{school.faculties}} Filières
-                </p>
-                <p>
-                  <i class="fa fa-map-marker-alt text-primary me-2"></i
-                  >{{school.address}}
-                </p>
-              </div>
-              <div class="bg-light rounded p-5" data-wow-delay="0.1s">
-                <h4 class="mb-4">Description</h4>
-                <p class="m-0">{{school.description}}</p>
-              </div>
-            </div>
-          </div>
+          {% include 'components/sch_gen_info.html' %}
         </div>
         <div id="tab-2" class="tab-pane fade show p-0">
-          <div
-            class="text-center mx-auto mb-2 data-wow-delay=0.1s"
-            style="max-width: 600px"
-          >
-            <h3 class="mb-3">Nos Parcours et domaines de formation</h3>
-            <!-- <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p> -->
-          </div>
-
-          <div class="job-item p-4 mb-4">
-            <div class="row g-4">
-              <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                <img
-                  class="flex-shrink-0 img-fluid border rounded"
-                  src="{% static 'img/bts.jpg' %}"
-                  alt=""
-                  style="width: 80px; height: 80px"
-                />
-                <div class="text-start ps-4">
-                  <h5 class="mb-3">{{school.diplomas|title}}</h5>
-                  <span class="text-truncate me-3"
-                    ><i class="far fa-clock text-primary me-2"></i
-                    >{{school.time_range}} ans</span
-                  >
-                  <span class="text-truncate me-0"
-                    ><i class="far fa-money-bill-alt text-primary me-2"></i
-                    >{{school.price_range}} Cfa</span
-                  >
-                </div>
-              </div>
-              <div
-                class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center"
-              >
-                <small class="text-truncate"
-                  ><i class="far fa-calendar-alt text-primary me-2"></i>Rentrée
-                  prochaine 2022 : {{school.resumption}}</small
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="job-item p-4 mb-4">
-            <div class="row g-4">
-              <div class="col-sm-12 col-md-12 d-flex align-items-center">
-                <div class="text-start ps-4">
-                  <h5 class="mb-3">{{school.courses|upper}}</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="container-xxl py-3">
-            <div class="container">
-              <div class="row g-4">
-                {% for class in classrooms %}
-                <div
-                  class="col-lg-3 col-md-3 d-flex align-items-center job-item p-2"
-                >
-                  <img
-                    class="flex-shrink-0 img-fluid border-none rounded"
-                    src="{% if class.image %} 
-                         {{ class.image.url }} 
-                         {% else %} 
-                         {% static 'img/classroom.jpg' %} 
-                         {% endif %} "
-                    alt="class image"
-                    style="width: 80px; height: 80px"
-                  />
-                  <div class="text-start ps-4">
-                    <h5 class="mb-3">{{class.name|title}}</h5>
-                    <span class="text-truncate me-3">
-                      <i class="fa fa-users text-primary me-2"></i>Effectif
-                      {{class.size}}</span
-                    >
-                    <span class="text-truncate me-0"
-                      ><i class="far fa-money-bill-alt text-primary me-2"></i
-                      >Frais {{class.fee}} Cfa</span
-                    >
-                  </div>
-                </div>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-6" id="ajuster">
-              <div class="bg-light rounded p-5 mb-4" data-wow-delay="0.1s">
-                <h4 class="mb-4">Effectifs & Taux de réussite</h4>
-                <p>
-                  <i class="fa fa-users text-primary me-2"></i>
-                  {{school.students}} Etudiants
-                </p>
-                <p>
-                  <i class="fa fa-star text-primary me-2"></i> {{school.awards}}
-                  Certifications
-                </p>
-                <p>
-                  <i class="fa fa-graduation-cap text-primary me-2"></i>
-                  {{school.success_rate}} % de Réussite
-                </p>
-              </div>
-            </div>
-
-            <div class="col-lg-6" id="ajuster">
-              <div class="bg-light rounded p-5" data-wow-delay="0.1s">
-                <h4 class="mb-4">Disponibilité</h4>
-                <p class="m-1">
-                  <strong>Lundi - Mardi - Mercredi</strong> : 7h30 - 18h00
-                </p>
-                <p class="m-1"><strong>Jeudi</strong> : 8h00 - 18h00</p>
-                <p class="m-1"><strong>Vendredi</strong> : 8h00 - 15h00</p>
-                <p class="m-2"><strong>Samedi</strong> : 8h00 - 13h00</p>
-              </div>
-            </div>
-
-            <div class="col-lg-12 bg-light rounded mt-2 p-5">
-              <h4 class="mb-4">Statistiques</h4>
-              <div class="position-relative">
-                <img
-                  class="img-fluid"
-                  src="{% static 'img/stats.png' %}"
-                  alt=""
-                />
-              </div>
-            </div>
-          </div>
+          {% include 'components/sch_academia.html' %}
         </div>
         <div id="tab-3" class="tab-pane fade show p-0">
-          <div
-            class="text-center mx-auto mb-5 wow fadeInUp"
-            data-wow-delay="0.1s"
-            style="max-width: 600px"
-          >
-            <h1 class="mb-3">Nos Enseignants</h1>
-            <p>
-              Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut
-              dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed
-              rebum vero dolor duo.
-            </p>
-          </div>
-          <div class="row g-4">
-            {% for teacher in teachers %}
-            <div class="col-lg-3 col-md-6" data-wow-delay="0.1s">
-              <div class="team-item rounded overflow-hidden">
-                <div class="position-relative">
-                  <img
-                    class="img-fluid"
-                    src="{% if teacher.image %} 
-                            {{ teacher.image.url }} 
-                         {% else %} 
-                            {% static 'img/team-1.jpg' %} 
-                         {% endif %} "
-                    alt="Teacher Image"
-                  />
-                  <div
-                    class="position-absolute start-50 top-100 translate-middle d-flex align-items-center"
-                  >
-                    <a class="btn btn-square mx-1" href=""
-                      ><i class="fab fa-facebook-f"></i
-                    ></a>
-                    <a class="btn btn-square mx-1" href=""
-                      ><i class="fab fa-twitter"></i
-                    ></a>
-                    <a class="btn btn-square mx-1" href=""
-                      ><i class="fab fa-instagram"></i
-                    ></a>
-                  </div>
-                </div>
-                <div class="text-center p-4 mt-3">
-                  <h5 class="fw-bold mb-0">
-                    {{teacher.designation}} {{teacher.fullname}}
-                  </h5>
-                  <small>{{teacher.subjects|title}}</small>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
+          {% include 'components/sch_teachers.html' %}
         </div>
+
         <div id="tab-4" class="tab-pane fade show p-0">
-          <!-- structures Start -->
-          <div class="container-xxl project py-5">
-            <div class="container">
-              <div class="row g-4" data-wow-delay="0.3s">
-                <div class="col-lg-4">
-                  <div
-                    class="nav nav-pills d-flex justify-content-between w-100 h-100 me-4"
-                  >
-                    <button
-                      class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4 active"
-                      data-bs-toggle="pill"
-                      data-bs-target="#tab-pane-1"
-                      type="button"
-                    >
-                      <h3 class="m-0">{{school.classes}}. Classes</h3>
-                    </button>
-                    <button
-                      class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4"
-                      data-bs-toggle="pill"
-                      data-bs-target="#tab-pane-2"
-                      type="button"
-                    >
-                      <h3 class="m-0">{{school.labs}}. Laboratoires</h3>
-                    </button>
-                    <button
-                      class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4"
-                      data-bs-toggle="pill"
-                      data-bs-target="#tab-pane-3"
-                      type="button"
-                    >
-                      <h3 class="m-0">{{school.libs}}. Bibliothèques</h3>
-                    </button>
-                    <button
-                      class="nav-link w-100 d-flex align-items-center text-start p-4 mb-0"
-                      data-bs-toggle="pill"
-                      data-bs-target="#tab-pane-4"
-                      type="button"
-                    >
-                      <h3 class="m-0">{{school.canteens}}. Cantines</h3>
-                    </button>
-                  </div>
-                </div>
-                <div class="col-lg-8">
-                  <div class="tab-content w-100">
-                    <div class="tab-pane fade show active" id="tab-pane-1">
-                      <div class="row g-4">
-                        <div class="col-md-12">
-                          <h1 class="mb-3">Structures & Pedagogie</h1>
-                          <p class="mb-4">{{school.pedagogy}}</p>
-                          <a href="" class="btn btn-primary py-3 px-5 mt-3"
-                            >Read More</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="tab-pane-2"></div>
-                    <div class="tab-pane fade" id="tab-pane-3"></div>
-                    <div class="tab-pane fade" id="tab-pane-4"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- structures End -->
+          {% include 'components/sch_structures.html' %}
         </div>
         <div id="tab-5" class="tab-pane fade show p-0">
-          <!-- blog Start -->
-          <div class="container-xxl py-5">
-            <div class="row g-4">
-              {% for report in reports %}
-
-              <div class="col-md-6 col-lg-4" data-wow-delay="0.1s">
-                <div class="service-item">
-                  <div class="overflow-hidden">
-                    <img class="img-fluid" src="img/blog.jpg" alt="" />
-                  </div>
-                  <div
-                    class="p-4 text-center border border-5 border-light border-top-0"
-                  >
-                    <h4 class="mb-3">{{report.title}}</h4>
-                    {% if report.subtitle %}
-                    <h6 class="mb-2 text-gray">{{report.subtitle}}</h6>
-                    {% endif %}
-                    <p>{{report.content}}</p>
-                    <a class="fw-medium" href=""
-                      >Read More<i class="fa fa-arrow-right ms-2"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-          <!-- blog End -->
+          {% include 'components/sch_articles.html' %}
         </div>
         <div id="tab-6" class="tab-pane fade show p-0">
-          <!-- img Start -->
-          <p>
-            <span class="text-primary me-2 mt-0">#</span>Remise de diplome Mars
-            2022
-          </p>
-          <div class="row g-4">
-            <div class="col-lg-12 col-md-12" data-wow-delay="0.1s">
-              <div class="row g-4">
-                <div class="col-lg-4 col-md-4 col-12">
-                  <a class="animal-item">
-                    <div class="position-relative">
-                      <img class="img-fluid" src="img/img-3.jpg" alt="" />
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- img End -->
+          {% include 'components/sch_images.html' %}
         </div>
       </div>
     </div>

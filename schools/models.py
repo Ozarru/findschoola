@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from accounts.models import CustomUser
+# from multiselectfield import MultiSelectField
 
 
 class EduLevel(models.Model):
@@ -11,6 +12,21 @@ class EduLevel(models.Model):
         return self.name
 
 
+infrastructure = (
+    ('lab', 'Laboratoire'),
+    ('lib', 'Bibliotheque'),
+    ('can', 'Cantine'),
+    ('gym', 'Espace de sport'),
+    ('pool', 'Piscine'),
+)
+
+designations = (
+    ('prof', 'Prof.'),
+    ('doc', 'Doc.'),
+    ('mr', 'M.'),
+    ('mrs', "Mme"),
+    ('ms', "Mlle"),
+)
 tiers = (
     ('free', 'Gratuit'),
     ('basic', "Basique"),
@@ -23,6 +39,17 @@ durations = (
     ('trimester', "Trimestre"),
     ('semester', "Semestre"),
     ('year', "Année"),
+)
+
+LEVEL_CHOICES = (
+    ('creche', 'Creche'),
+    ('jardin', 'Jardin'),
+    ('primaire', 'Primaire'),
+    ('college', 'College'),
+    ('lycee', 'Lycee'),
+    ('universite', 'Universite'),
+    ('centre-Academique', 'Centre-Academique'),
+    ('centre-Professionnel', 'Centre-Professionnel'),
 )
 
 
@@ -68,30 +95,15 @@ class School(models.Model):
 
     # academia
     availability = models.TextField(blank=True, null=True)
-    pedagogy = models.TextField(blank=True, null=True)
-    awards = models.CharField(
-        max_length=255, blank=True, null=True)
-    diplomas = models.CharField(
-        max_length=255, blank=True, null=True)
-    courses = models.CharField(
-        max_length=255, blank=True, null=True)
     time_range = models.CharField(
         max_length=255, blank=True, null=True)
     price_range = models.CharField(
         max_length=255, blank=True, null=True)
     levels = models.ManyToManyField(EduLevel, blank=True)
-    staff = models.IntegerField(default='0', blank=True, null=True)
-    students = models.IntegerField(default='0', blank=True, null=True)
-    inscription = models.IntegerField(default='0', blank=True, null=True)
-    curriculums = models.IntegerField(default='0', blank=True, null=True)
     success_rate = models.IntegerField(default='0', blank=True, null=True)
-
-    # structures
-    classes = models.IntegerField(default='0', blank=True, null=True)
-    labs = models.IntegerField(default='0', blank=True, null=True)
-    libs = models.IntegerField(default='0', blank=True, null=True)
-    canteens = models.IntegerField(default='0', blank=True, null=True)
-    faculties = models.IntegerField(default='0', blank=True, null=True)
+    professors = models.IntegerField(default='0', blank=True, null=True)
+    divisions = models.IntegerField(default='0', blank=True, null=True)
+    systems = models.IntegerField(default='0', blank=True, null=True)
 
     # profile
     thumbnail = models.ImageField(
@@ -127,13 +139,14 @@ class Stat(models.Model):
 class Teacher(models.Model):
     school = models.ForeignKey(
         School, on_delete=models.CASCADE, default=None)
-    xp = models.IntegerField(default='0')
-    fullname = models.CharField(max_length=255)
-    designation = models.CharField(max_length=255)
-    subjects = models.CharField(max_length=255)
-    qualifications = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(
         upload_to='schools/teachers', blank=True, null=True)
+    fullname = models.CharField(max_length=255)
+    designation = models.CharField(
+        max_length=50, default='', choices=designations)
+    subjects = models.CharField(max_length=255)
+    years_of_experience = models.IntegerField(default='0')
+    qualifications = models.CharField(max_length=255, blank=True, null=True)
     tel = models.CharField(
         max_length=255, blank=True, null=True)
     facebook = models.CharField(
@@ -163,42 +176,24 @@ class Classroom(models.Model):
     name = models.CharField(max_length=255, default='')
     fee = models.IntegerField(default='0', blank=True, null=True)
     size = models.IntegerField(default='0', blank=True, null=True)
-    # vacant_seats = models.IntegerField(default='0', blank=True, null=True)
     maxseats = models.IntegerField(default='0', blank=True, null=True)
     info = models.TextField(blank=True, null=True)
 
 
-class Laboratory(models.Model):
+class Structure(models.Model):
     school = models.ForeignKey(
         School, on_delete=models.CASCADE, default=None)
     image = models.ImageField(
         upload_to='schools/laboratories', blank=True, null=True)
+    genre = models.CharField(
+        max_length=50, default='', choices=infrastructure)
     label = models.CharField(max_length=255, default='image label')
     info = models.TextField(blank=True, null=True)
     maxseats = models.IntegerField(default='0')
-
-
-class Library(models.Model):
-    school = models.ForeignKey(
-        School, on_delete=models.CASCADE, default=None)
-    image = models.ImageField(
-        upload_to='schools/libraries', blank=True, null=True)
-    label = models.CharField(max_length=255, default='image label')
     info = models.TextField(blank=True, null=True)
-    maxseats = models.IntegerField(default='0')
 
 
-class Canteen(models.Model):
-    school = models.ForeignKey(
-        School, on_delete=models.CASCADE, default=None)
-    image = models.ImageField(
-        upload_to='schools/canteens', blank=True, null=True)
-    label = models.CharField(max_length=255, default='image label')
-    info = models.TextField(blank=True, null=True)
-    maxseats = models.IntegerField(default='0')
-
-
-class Report(models.Model):
+class Article(models.Model):
     school = models.ForeignKey(
         School, on_delete=models.CASCADE, default=None)
     image = models.ImageField(

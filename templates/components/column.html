@@ -1,0 +1,59 @@
+{% load static %}
+<div class="container-xxl py-5 bg-light">
+  <div class="container">
+    <div class="row g-0 gx-5 align-items-end">
+      <div class="col-lg-6">
+        <div
+          class="text-start mx-auto mb-5 wow slideInLeft"
+          data-wow-delay="0.1s"
+        >
+          <h1 class="mb-3">Articles Récents</h1>
+          <p>
+            Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore
+            lorem kasd vero ipsum sit eirmod sit diam justo sed rebum.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 justify-content-center mb-5">
+      {% for blogpost in blogposts %}
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="service-item bg-light overflow-hidden h-100">
+          <a href="{% url 'blogpost' blogpost.id %}">
+            <img
+              class="img rounded-top"
+              height="300"
+              width="415"
+              src="{% if blogpost.image %} 
+                    {{ blogpost.image.url }} 
+                    {% else %} 
+                      {% static 'img/bloggers.webp' %} 
+                    {% endif %}"
+              alt=""
+            />
+          </a>
+
+          <div
+            class="service-text position-relative text-center h-100 p-4 bg-white"
+          >
+            <h4 class="mb-3 d-block text-truncate">{{blogpost.title}}</h4>
+            <p class="d-block text-truncate" style="max-height: 300px">
+              {{blogpost.content}}
+            </p>
+            <a class="btn btn-dark" href="{% url 'blogpost' blogpost.id %}">
+              Lire la suite<i class="fa fa-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+        <a class="btn btn-primary py-3 px-5 mt-5" href="{% url 'blog' %}"
+          >Voir plus d'articles</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

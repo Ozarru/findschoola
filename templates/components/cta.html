@@ -1,0 +1,94 @@
+{% load static %}
+<div class="container-xxl py-5 bg-dark">
+  <div class="container">
+    <div class="rounded py-5 my-5">
+      <div class="rounded p-5 my-5">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+            <div class="scroll" style="overflow: auto; max-height: 400px">
+              {% for ad in adverts %}
+              <!-- boucle -->
+              <div
+                class="container bg-white rounded my-3 mx-auto p-4 row col-12"
+              >
+                <h4>{{ad.title|title}}</h4>
+                <!-- <h6>#{{ad.ad_type|title}}</h6> -->
+                <p id="ad" style="padding-left: 0px">{{ad.content}}</p>
+                <a
+                  href="https://wa.me/+228{{ad.telephone}}"
+                  target="_blank"
+                  class="col-6 btn btn-dark py-2 px-1 pt-3"
+                  ><i class="fa fa-envelope me-2"></i>Répondre</a
+                >
+
+                <div class="d-flex align-items-center col-6">
+                  <!-- <img
+                    class="img-fluid flex-shrink-0 rounded"
+                    src="{{ad.author.image.url}}"
+                    style="width: 45px; height: 45px"
+                  /> -->
+                  <img
+                    class="img-fluid flex-shrink-0 rounded-circle"
+                    src="{% static 'img/anon.jpg' %}"
+                    style="width: 45px; height: 45px"
+                  />
+                  <div class="ps-3">
+                    <h6 class="fw-bold mb-1">@{{ad.author.username}}</h6>
+                    <small>{{ad.author.role|title}}</small>
+                  </div>
+                </div>
+              </div>
+              <!-- finboucle -->
+              {% endfor %}
+            </div>
+          </div>
+          {% if user.role == 'gestionaire' %}
+          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+            <img
+              class="img-fluid rounded"
+              src="{% static 'img/request.webp' %}"
+              alt=""
+            />
+            <div class="mb-4">
+              <h2 class="mt-4 mb-2 text-white">Offres</h2>
+              <p class="text-white-50">
+                Vous avez une offre d'emploie? Postez une offre et recevez les
+                demandes!
+              </p>
+            </div>
+
+            <a class="btn btn-primary py-3 px-5" href="{% url 'post_ad' %}"
+              >Poster une offre</a
+            >
+            <a class="btn btn-secondary mx-2 py-3 px-5" href="{% url 'ads' %}"
+              >Voir plus</a
+            >
+          </div>
+          {% else %}
+          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+            <img
+              class="img-fluid rounded"
+              src="{% static 'img/request.webp' %}"
+              alt=""
+            />
+            <div class="mb-4">
+              <h2 class="my-3 text-white">Demandes</h2>
+              <p class="text-light">
+                Vous avez un besoin spécial en terme de formation ou de cursus ?
+                Postez une demande et recevez les offres des écoles !
+              </p>
+            </div>
+
+            <a class="btn btn-primary py-3 px-5" href="{% url 'post_ad' %}"
+              >Poster une demande</a
+            >
+            <a class="btn btn-secondary py-3 px-5 mx-2" href="{% url 'ads' %}"
+              >Voir plus</a
+            >
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

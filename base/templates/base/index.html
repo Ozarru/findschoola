@@ -4,14 +4,11 @@
 
 <!-- Header Start -->
 <div class="container-fluid header bg-white p-0">
-  <div
-    class="row g-0 align-items-center flex-column-reverse flex-md-row"
-    id="bg-color"
-  >
+  <div class="row g-0 align-items-center mx-auto flex-md-row" id="bg-color">
     {% if user.role == 'gestionaire' %}
 
     <div class="col-md-6 p-5 mt-lg-5">
-      <h1 class="display-5 animated fadeIn mb-4">
+      <h1 class="display-5 animated fadeIn my-5">
         Rendez votre
         <span class="text-secondary"> Institut plus visible</span> au parents et
         elèves.
@@ -27,7 +24,7 @@
         >Voir mon Ecole</a
       >
       <a
-        href="{% url 'update_school' user.id %}"
+        href="{% url 'edit_school' %}"
         class="btn btn-secondary py-3 px-5 me-3 animated fadeIn"
         >Modifier mon Ecole</a
       >
@@ -43,7 +40,7 @@
 
     {% else %}
     <div class="col-md-6 p-5 mt-lg-5">
-      <h1 class="display-5 animated fadeIn mb-4">
+      <h1 class="display-5 animated fadeIn my-5">
         Trouvez <span class="text-primary">l'institut idéal</span> Pour vos
         études ou celles de vos enfants
       </h1>
@@ -52,7 +49,7 @@
         rebum ipsum et diam justo clita et kasd rebum sea elitr.
       </p>
       <a
-        href="#featured-schools"
+        href="{% url 'schools' %}"
         class="btn btn-primary py-3 px-5 me-3 animated fadeIn"
         >Commencez vos recherches</a
       >
@@ -84,409 +81,27 @@
 <!-- Header End -->
 
 <!-- Category Start -->
-<div class="container-xxl py-5 bg-dark">
-  <div class="container">
-    <div
-      class="text-center mx-auto my-5 wow fadeInUp"
-      data-wow-delay="0.1s"
-      style="max-width: 600px"
-    >
-      <h1 class="mb-3 text-white">Catégories d'établissement</h1>
-      <p class="text-white-50">
-        Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore
-        lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero
-        dolor duo.
-      </p>
-    </div>
-    <div class="row g-4 my-5">
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-        <a
-          class="cat-item d-block bg-light text-center rounded p-3"
-          href="{% url 'schools' %}?query=creche"
-        >
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img
-                class="img-fluid"
-                src="{% static 'icons/creche.png' %}"
-                alt="Icon"
-              />
-            </div>
-            <h6>Crèches</h6>
-            <span>123</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-        <a
-          class="cat-item d-block bg-light text-center rounded p-3"
-          href="{% url 'schools' %}?query=jardin"
-        >
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img
-                class="img-fluid"
-                src=" {% static 'icons/kindergarten.png' %}"
-                alt="Icon"
-              />
-            </div>
-            <h6>Jardins</h6>
-            <span>123</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-        <a
-          class="cat-item d-block bg-light text-center rounded p-3"
-          href="{% url 'schools' %}?query=primaire"
-        >
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img
-                class="img-fluid"
-                src=" {% static 'icons/primary.png' %}"
-                alt="Icon"
-              />
-            </div>
-            <h6>Primaires</h6>
-            <span>203</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-        <a
-          class="cat-item d-block bg-light text-center rounded p-3"
-          href="{% url 'schools' %}?query=college"
-        >
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img
-                class="img-fluid"
-                src="{% static 'icons/mid-sch.png' %}"
-                alt="Icon"
-              />
-            </div>
-            <h6>Collèges</h6>
-            <span>123</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-        <a
-          class="cat-item d-block bg-light text-center rounded p-3"
-          href="{% url 'schools' %}?query=lycee"
-        >
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img
-                class="img-fluid"
-                src="{% static 'icons/hig-sch.png' %}"
-                alt="Icon"
-              />
-            </div>
-            <h6 class="mb-4">Lycées</h6>
-            <span>123</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-        <a
-          class="cat-item d-block bg-light text-center rounded p-3"
-          href="{% url 'schools' %}?query=centre-professionnel"
-        >
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img
-                class="img-fluid"
-                src="{% static 'icons/pros.png' %}"
-                alt="Icon"
-              />
-            </div>
-            <h6>Centres de formation Professionnel</h6>
-            <span>23</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-        <a
-          class="cat-item d-block bg-light text-center rounded p-3"
-          href="{% url 'schools' %}?query=centre-academique"
-        >
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img
-                class="img-fluid"
-                src="{% static 'icons/uni.png' %}"
-                alt="Icon"
-              />
-            </div>
-            <h6>Centres de formation Académique</h6>
-            <span>23</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-        <a
-          class="cat-item d-block bg-light text-center rounded p-3"
-          href="{% url 'schools' %}?query=universite"
-        >
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img
-                class="img-fluid"
-                src="{% static 'icons/university.png' %}"
-                alt="Icon"
-              />
-            </div>
-            <h6 class="mb-4">Universités</h6>
-            <span>23</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+{% include 'components/sch_categories.html' %}
 <!-- Category End -->
 
 <!-- Schools List Start -->
-<div class="container-xxl py-5 bg-light" id="featured-schools">
-  <div class="container my-5">
-    <div class="col-lg-6 text-start mb-5 wow slideInLeft" data-wow-delay="0.1s">
-      <h1 class="mb-3">Etablissements Vedettes</h1>
-      <p>
-        Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore
-        lorem kasd vero ipsum sit eirmod sit diam justo sed rebum.
-      </p>
-    </div>
-    <div class="tab-pane fade show p-0 active">
-      <div class="row g-4">
-        {% for school in schools %}
-        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-          <!--  -->
-          {% if school.manager.subscription.plan.tier == 'pro' %}
-          <div class="bg-white property-item rounded overflow-hidden">
-            <div class="position-relative overflow-hidden">
-              <a href="{% url 'school' school.id %}"
-                ><img
-                  class="img-fluid"
-                  src="{% if school.thumbnail %} 
-                        {{ school.thumbnail.url }} 
-                        {% else %} 
-                          {% static 'img/etb-jardin.jpg' %} 
-                          {% endif %}"
-                  alt="School Thumbnail"
-              /></a>
-              <div
-                class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
-              >
-                En vedette
-              </div>
-              <div
-                class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
-              >
-                {% for level in sch_levels %}
-                <!--  -->
-                {{level.name|title}}
-                <!--  -->
-                {% endfor %}
-              </div>
-            </div>
-            <div class="p-4 pb-0">
-              <!-- <h5 class="text-primary mb-3">$12,345</h5> -->
-              <a class="d-block h5 mb-2" href="">{{school.name|title}}</a>
-              <p>
-                <i class="fa fa-map-marker-alt text-primary me-2"></i
-                >{{school.address|title}}
-              </p>
-            </div>
-            <div class="d-flex border-top">
-              <small class="flex-fill text-center border-end py-2"
-                ><i class="fa fa-user text-primary me-2"></i
-                >{{school.staff|title}} Proffesseurs</small
-              >
-              <small class="flex-fill text-center border-end py-2"
-                ><i class="fa fa-school text-primary me-2"></i
-                >{{school.faculties|title}} Filières</small
-              >
-              <small class="flex-fill text-center py-2"
-                ><i class="fa fa-bookmark text-primary me-2"></i
-                >{{school.curriculums|title}} Cursus</small
-              >
-            </div>
-          </div>
-          {% endif %}
-          <!--  -->
-        </div>
-        {% endfor %}
-        <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-          <a class="btn btn-primary py-3 px-5 mt-5" href="{% url 'schools' %}"
-            >Voir plus d'établissements</a
-          >
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{% include 'components/sch_list.html' %}
 <!-- Schools List End -->
 
 <!-- Call to Action Start -->
-<div class="container-xxl py-5">
-  <div class="container">
-    <div class="rounded py-5 my-5">
-      <div class="bg-dark rounded p-5 my-5">
-        <div class="row g-5 align-items-center">
-          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-            <div class="scroll" style="overflow: auto; max-height: 400px">
-              {% for ad in adverts %}
-              <!-- boucle -->
-              <div class="container bg-white rounded p-4 mb-3 row">
-                <h4>{{ad.title|title}}</h4>
-                <!-- <h6>#{{ad.ad_type|title}}</h6> -->
-                <p id="ad" style="padding-left: 0px">{{ad.content}}</p>
-                <a
-                  href="https://wa.me/+228{{ad.telephone}}"
-                  target="_blank"
-                  class="col-6 btn btn-dark py-2 px-1 pt-3"
-                  ><i class="fa fa-envelope me-2"></i>Répondre</a
-                >
-
-                <div class="d-flex align-items-center col-6">
-                  <!-- <img
-                    class="img-fluid flex-shrink-0 rounded"
-                    src="{{ad.author.image.url}}"
-                    style="width: 45px; height: 45px"
-                  /> -->
-                  <img
-                    class="img-fluid flex-shrink-0 rounded-circle"
-                    src="{% static 'img/anon.jpg' %}"
-                    style="width: 45px; height: 45px"
-                  />
-                  <div class="ps-3">
-                    <h6 class="fw-bold mb-1">@{{ad.author.username}}</h6>
-                    <small>{{ad.author.role|title}}</small>
-                  </div>
-                </div>
-              </div>
-              <!-- finboucle -->
-              {% endfor %}
-            </div>
-          </div>
-          {% if user.role == 'gestionaire' %}
-          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-            <img
-              class="img-fluid rounded"
-              src="{% static 'img/request.webp' %}"
-              alt=""
-            />
-            <div class="mb-4">
-              <h2 class="mt-4 mb-2 text-white">Offres</h2>
-              <p class="text-white-50">
-                Vous avez une offre d'emploie? Postez une offre et recevez les
-                demandes!
-              </p>
-            </div>
-
-            <a class="btn btn-primary py-3 px-5" href="{% url 'post_ad' %}"
-              >Poster une offre</a
-            >
-            <a class="btn btn-secondary mx-2 py-3 px-5" href="{% url 'ads' %}"
-              >Voir plus</a
-            >
-          </div>
-          {% else %}
-          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-            <img
-              class="img-fluid rounded"
-              src="{% static 'img/request.webp' %}"
-              alt=""
-            />
-            <div class="mb-4">
-              <h2 class="my-3 text-white">Demandes</h2>
-              <p class="text-light">
-                Vous avez un besoin spécial en terme de formation ou de cursus ?
-                Postez une demande et recevez les offres des écoles !
-              </p>
-            </div>
-
-            <a class="btn btn-primary py-3 px-5" href="{% url 'post_ad' %}"
-              >Poster une demande</a
-            >
-            <a class="btn btn-secondary py-3 px-5 mx-2" href="{% url 'ads' %}"
-              >Voir plus</a
-            >
-          </div>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{% include 'components/cta.html' %}
 <!-- Call to Action End -->
 
-<!-- blog Start -->
-<div class="container-xxl py-5">
-  <div class="container">
-    <div class="row g-0 gx-5 align-items-end">
-      <div class="col-lg-6">
-        <div
-          class="text-start mx-auto mb-5 wow slideInLeft"
-          data-wow-delay="0.1s"
-        >
-          <h1 class="mb-3">Articles Récents</h1>
-          <p>
-            Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore
-            lorem kasd vero ipsum sit eirmod sit diam justo sed rebum.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="row g-4">
-      {% for blogpost in blogposts %}
+<!-- advert start -->
+{% include 'components/advert.html' %}
+<!-- advert end -->
 
-      <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="service-item">
-          <div class="overflow-hidden">
-            <a href="{% url 'blogpost' blogpost.id %}">
-              <img
-                class="img rounded-top"
-                height="300"
-                width="415"
-                src="{% if blogpost.image %} 
-                {{ blogpost.image.url }} 
-                {% else %} 
-                  {% static 'img/bloggers.webp' %} 
-                  {% endif %}"
-                alt=""
-              />
-            </a>
-          </div>
-          <div class="p-4 text-left rounded-bottom bg-light border-top-0">
-            <h4 class="mb-3 d-block text-truncate">{{blogpost.title}}</h4>
-            <p class="d-block text-truncate" style="max-height: 300px">
-              {{blogpost.content}}
-            </p>
-            <a class="btn btn-dark" href="{% url 'blogpost' blogpost.id %}"
-              >Lire le suite<i class="fa fa-arrow-right ms-2"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
+<!-- Testimonial Start -->
+{% include 'components/testimonial.html' %}
+<!-- Testimonial End -->
 
-      <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-        <a class="btn btn-primary py-3 px-5 my-5" href="{% url 'blog' %}"
-          >Voir plus d'articles</a
-        >
-      </div>
-    </div>
-  </div>
-</div>
-<!-- blog End -->
+<!-- Column Start -->
+{% include 'components/column.html' %}
+<!-- Column End -->
+
 {% endblock %}

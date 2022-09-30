@@ -1,0 +1,107 @@
+{% load static %}
+<div id="app-sidepanel" class="bg-secondary app-sidepanel">
+  <div class="sidepanel-inner d-flex flex-column">
+    <a class="app-logo" href="{% url 'home' %}">
+      <img
+        class="img-fluid"
+        src=" {% static 'img/logo-new.png' %}"
+        alt="Icon"
+        style="width: 200px"
+      />
+    </a>
+    <!--//app-branding-->
+
+    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+      <ul class="app-menu list-unstyled accordion" id="menu-accordion">
+        {% if user.role == 'gestionaire' %}
+        <li class="nav-item">
+          <a class="nav-link {{dash_page}}" href="{% url 'dashboard' %}">
+            <span class="nav-icon">
+              <i class="fa-solid fa-house"></i>
+            </span>
+            <span class="nav-link-text">Acceuil</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link {{sch_profile_page}}"
+            href="{% url 'edit_school' %}"
+          >
+            <span class="nav-icon">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </span>
+            <span class="nav-link-text">Profil d'Ecole </span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {{notices_page}}" href="{% url 'notices' %}">
+            <span class="nav-icon">
+              <i class="fa-solid fa-bell"></i>
+            </span>
+            <span class="nav-link-text">Notifications</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {{sch_blog_page}}" href="{% url 'sch_blog' %}">
+            <span class="nav-icon">
+              <i class="fa-solid fa-newspaper"></i>
+            </span>
+            <span class="nav-link-text">Articles</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {{plans_page}}" href="{% url 'plans' %}">
+            <span class="nav-icon">
+              <i class="fa-solid fa-ticket"></i>
+            </span>
+            <span class="nav-link-text">Abonnements</span>
+          </a>
+          <!--//nav-link-->
+        </li>
+        {% endif %}
+
+        <li class="nav-item">
+          <a class="nav-link {{enquiries_page}}" href="{% url 'enquiries' %}">
+            <span class="nav-icon">
+              <i class="fa-solid fa-clipboard-question"></i>
+            </span>
+            <span class="nav-link-text">Demandes</span>
+          </a>
+        </li>
+      </ul>
+      <!--//app-menu-->
+    </nav>
+    <!--//app-nav-->
+    <div class="app-sidepanel-footer">
+      <nav class="app-nav app-nav-footer">
+        <ul class="app-menu footer-menu list-unstyled">
+          <li class="nav-item">
+            <a class="nav-link  {{profile_page}}" href="{% url 'profile' %}">
+              <span class="nav-icon">
+                <i class="fa-solid fa-user"></i>
+              </span>
+              <span class="nav-link-text">Mon Compte</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">
+              <span class="nav-icon">
+                <i class="fa-solid fa-right-from-bracket"></i>
+              </span>
+              <span class="nav-link-text">Deconnexion</span>
+            </a>
+            <!--//nav-link-->
+          </li>
+          <!--//nav-item-->
+        </ul>
+        <!--//footer-menu-->
+      </nav>
+    </div>
+    <!--//app-sidepanel-footer-->
+  </div>
+  <!--//sidepanel-inner-->
+</div>

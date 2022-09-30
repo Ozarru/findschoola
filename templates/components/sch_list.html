@@ -1,0 +1,74 @@
+{% load static %}
+
+<div class="container-xxl py-5 bg-light" id="featured-schools">
+  <div class="container my-5 py-5">
+    <div
+      class="col-lg-6 text-start mb-5 pt-5 wow slideInLeft"
+      data-wow-delay="0.1s"
+    >
+      <h1 class="mb-3">Etablissements Vedettes</h1>
+      <p>
+        Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore
+        lorem kasd vero ipsum sit eirmod sit diam justo sed rebum.
+      </p>
+    </div>
+    <div class="tab-pane fade show p-0 active">
+      <div class="row g-4">
+        {% for school in schools %}
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <!--  -->
+          {% if school.manager.subscription.plan.tier == 'pro' %}
+          <div class="bg-white property-item rounded overflow-hidden">
+            <div class="position-relative overflow-hidden">
+              <a href="{% url 'school' school.id %}"
+                ><img
+                  class="img-fluid"
+                  src="{% if school.thumbnail %} 
+                        {{ school.thumbnail.url }} 
+                        {% else %} 
+                          {% static 'img/etb-jardin.jpg' %} 
+                          {% endif %}"
+                  alt="School Thumbnail"
+              /></a>
+              <div
+                class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
+              >
+                En vedette
+              </div>
+            </div>
+            <div class="p-4 pb-0">
+              <!-- <h5 class="text-primary mb-3">$12,345</h5> -->
+              <a class="d-block h5 mb-2" href="">{{school.name|title}}</a>
+              <p>
+                <i class="fa fa-map-marker-alt text-secondary me-2"></i
+                >{{school.address|title}}
+              </p>
+            </div>
+            <div class="d-flex border-top">
+              <small class="flex-fill text-center border-end py-2"
+                ><i class="fa fa-user text-secondary me-2"></i
+                >{{school.staff|title}} Proffesseurs</small
+              >
+              <small class="flex-fill text-center border-end py-2"
+                ><i class="fa fa-school text-secondary me-2"></i
+                >{{school.faculties|title}} Filières</small
+              >
+              <small class="flex-fill text-center py-2"
+                ><i class="fa fa-bookmark text-secondary me-2"></i
+                >{{school.curriculums|title}} Cursus</small
+              >
+            </div>
+          </div>
+          {% endif %}
+          <!--  -->
+        </div>
+        {% endfor %}
+        <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+          <a class="btn btn-primary py-3 px-5 mt-5" href="{% url 'schools' %}"
+            >Voir plus d'établissements</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

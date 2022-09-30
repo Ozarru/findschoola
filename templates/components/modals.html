@@ -1,0 +1,39 @@
+{% load static %}{% load crispy_forms_tags %}
+
+<div class="modal fade" id="info_modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          Modifier les info de contact
+        </h5>
+        <button
+          class="btn btn-dark px-2 rounded"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="">
+          {% csrf_token %}
+
+          <div class="py-2">{{form|crispy}}</div>
+
+          <!-- <input
+            type="submit"
+            value="Connexion"
+            class="btn btn-secondary py-3 px-5 me-3 animated fadeIn"
+          /> -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+          Fermer
+        </button>
+        <button type="submit" class="btn app-btn-primary">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</div>

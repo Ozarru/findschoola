@@ -1,0 +1,63 @@
+{% load static %}
+<div
+  class="text-center mx-auto mb-2 data-wow-delay=0.1s"
+  style="max-width: 600px"
+>
+  <h2 class="mb-5">
+    Structures {% if is_manager %}
+    <button
+      type="button"
+      class="btn btn-dark"
+      data-toggle="modal"
+      data-target="#edulevels_modal"
+    >
+      <i class="fa fa-pen"></i>
+    </button>
+    {% endif %}
+  </h2>
+</div>
+
+<div class="container-xxl project py-5">
+  <div class="container">
+    <div class="row g-4" data-wow-delay="0.3s">
+      <div class="col-lg-4">
+        <div
+          class="nav nav-pills d-flex justify-content-between w-100 h-100 me-4"
+        >
+          <button
+            class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4 active"
+            data-bs-toggle="pill"
+            data-bs-target="#tab-pane-1"
+            type="button"
+          >
+            <h3 class="m-0">Classes</h3>
+          </button>
+          <button
+            class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4"
+            data-bs-toggle="pill"
+            data-bs-target="#tab-pane-2"
+            type="button"
+          >
+            <h3 class="m-0">Laboratoires</h3>
+          </button>
+          <button
+            class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4"
+            data-bs-toggle="pill"
+            data-bs-target="#tab-pane-3"
+            type="button"
+          >
+            <h3 class="m-0">Bibliothèques</h3>
+          </button>
+          <button
+            class="nav-link w-100 d-flex align-items-center text-start p-4 mb-0"
+            data-bs-toggle="pill"
+            data-bs-target="#tab-pane-4"
+            type="button"
+          >
+            <h3 class="m-0">Cantines</h3>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

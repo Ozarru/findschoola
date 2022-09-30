@@ -1,0 +1,57 @@
+{% load static %}
+<div
+  class="text-center mx-auto mb-2 data-wow-delay=0.1s"
+  style="max-width: 600px"
+>
+  <h2 class="mb-5">
+    Enseignants {% if is_manager %}
+    <button
+      type="button"
+      class="btn btn-dark"
+      data-toggle="modal"
+      data-target="#edulevels_modal"
+    >
+      <i class="fa fa-pen"></i>
+    </button>
+    {% endif %}
+  </h2>
+</div>
+
+<div class="row g-4">
+  {% for teacher in teachers %}
+  <div class="col-lg-3 col-md-6" data-wow-delay="0.1s">
+    <div class="team-item rounded overflow-hidden">
+      <div class="position-relative">
+        <img
+          class="img-fluid"
+          src="{% if teacher.image %} 
+                {{ teacher.image.url }} 
+             {% else %} 
+                {% static 'img/team-1.jpg' %} 
+             {% endif %} "
+          alt="Teacher Image"
+        />
+        <div
+          class="position-absolute start-50 top-100 translate-middle d-flex align-items-center"
+        >
+          <a class="btn btn-square mx-1" href=""
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a class="btn btn-square mx-1" href=""
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a class="btn btn-square mx-1" href=""
+            ><i class="fab fa-instagram"></i
+          ></a>
+        </div>
+      </div>
+      <div class="text-center p-4 mt-3">
+        <h5 class="fw-bold mb-0">
+          {{teacher.designation}} {{teacher.fullname}}
+        </h5>
+        <small>{{teacher.subjects|title}}</small>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

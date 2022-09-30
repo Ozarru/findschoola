@@ -1,0 +1,131 @@
+{% load static %}
+<div
+  class="text-center mx-auto mb-2 data-wow-delay=0.1s"
+  style="max-width: 600px"
+>
+  <h2 class="mb-5">
+    Apercu de l'Ecole {% if is_manager %}
+    <button
+      type="button"
+      class="btn btn-dark"
+      data-toggle="modal"
+      data-target="#edulevels_modal"
+    >
+      <i class="fa fa-pen"></i>
+    </button>
+    {% endif %}
+  </h2>
+</div>
+
+<div class="row">
+  <div class="col-lg-8" id="ajuster">
+    <div class="mb-5">
+      <h4 class="mb-3">Historique</h4>
+      <p>{{school.history}}</p>
+      <h4 class="mb-3">Avantages & Garanties</h4>
+      <p>{{school.ad_copy}}</p>
+      <ul class="list-unstyled">
+        {% for vantage in advantages %}
+
+        <li>
+          <i class="fa fa-angle-right text-primary me-2"></i
+          >{{vantage.phrase|title}}
+        </li>
+        {% endfor %}
+      </ul>
+      <h4 class="mb-3">Message de la direction</h4>
+      <p>{{school.mgt_quote}}</p>
+    </div>
+  </div>
+
+  <div class="col-lg-4" id="ajuster">
+    <div class="bg-light rounded p-5 mb-4" data-wow-delay="0.1s">
+      <h4 class="mb-4">Informations</h4>
+
+      <p>
+        <i class="fa fa-phone-alt text-primary me-2"></i>
+        {{school.tel}}
+      </p>
+      <p>
+        <i class="fa fa-phone-alt text-primary me-2"></i>
+        {{school.cel}}
+      </p>
+      <p>
+        <i class="fa fa-paper-plane text-primary me-2"></i>
+        {{school.email}}
+      </p>
+      <p>
+        <i class="fa fa-user text-primary me-2"></i>
+        {{school.staff}} Proffesseurs
+      </p>
+      <p>
+        <i class="fa fa-clock text-primary me-2"></i>
+        {{school.curriculums}} Parcours
+      </p>
+      <p>
+        <i class="fa fa-users text-primary me-2"></i>
+        {{school.faculties}} Filières
+      </p>
+      <p>
+        <i class="fa fa-map-marker-alt text-primary me-2"></i>{{school.address}}
+      </p>
+    </div>
+    <div class="bg-light rounded p-5" data-wow-delay="0.1s">
+      <h4 class="mb-4">Description</h4>
+      <p class="m-0">{{school.description}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-lg-6" id="ajuster">
+    <div
+      id="bg-color"
+      class="rounded p-5 mb-4 text-white"
+      data-wow-delay="0.1s"
+    >
+      <h4 class="mb-4">
+        Effectifs & Taux de réussite
+        <a href="" class="btn btn-primary">
+          <i class="fa fa-pen"></i>
+        </a>
+      </h4>
+      <p>
+        <i class="fa fa-users text-primary me-2"></i>
+        {{school.students}} Etudiants
+      </p>
+      <p>
+        <i class="fa fa-star text-primary me-2"></i> {{school.awards}}
+        Certifications
+      </p>
+      <p>
+        <i class="fa fa-graduation-cap text-primary me-2"></i>
+        {{school.success_rate}} % de Réussite
+      </p>
+    </div>
+  </div>
+
+  <div class="col-lg-6" id="ajuster">
+    <div id="bg-color" class="rounded p-5 mb-4" data-wow-delay="0.1s">
+      <h4 class="mb-4">
+        Disponibilité
+        <a href="" class="btn btn-primary">
+          <i class="fa fa-pen"></i>
+        </a>
+      </h4>
+      <p class="m-1">
+        <strong>Lundi - Mardi - Mercredi</strong> : 7h30 - 18h00
+      </p>
+      <p class="m-1"><strong>Jeudi</strong> : 8h00 - 18h00</p>
+      <p class="m-1"><strong>Vendredi</strong> : 8h00 - 15h00</p>
+      <p class="m-2"><strong>Samedi</strong> : 8h00 - 13h00</p>
+    </div>
+  </div>
+
+  <!-- <div class="col-lg-12 bg-light rounded mt-2 p-5">
+    <h4 class="mb-4">Statistiques</h4>
+    <div class="position-relative">
+      <img class="img-fluid" src="{% static 'img/stats.png' %}" alt="" />
+    </div>
+  </div> -->
+</div>

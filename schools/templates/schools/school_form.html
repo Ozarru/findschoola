@@ -3,7 +3,7 @@
 <html lang="en">
   {% include 'dashhead.html' %}
   <body class="app">
-    {% include 'header.html' %}
+    {% include 'dashboard_base.html' %}
 
     <div class="app-wrapper">
       <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -26,7 +26,7 @@
                   class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
                 >
                   <!--//app-card-header-->
-                  <div class="item p-4">
+                  <div class="item px-4 py-2">
                     <div class="row justify-content-between align-items-center">
                       <div class="col-auto">
                         <div class="item-data">
@@ -45,14 +45,11 @@
                       </div>
                     </div>
                   </div>
-                  <form
-                    class="app-card-body px-4 w-100"
-                    method="POST"
-                    action=""
-                  >
+                  <form class="px-4 w-100" method="POST" action="">
                     {% csrf_token %}
                     <!--  -->
-                    <div class="item py-3">{{form|crispy}}</div>
+                    <div class="py-2">{{form|crispy}}</div>
+
                     <input
                       class="btn app-btn-primary mx-2 my-4"
                       type="submit"

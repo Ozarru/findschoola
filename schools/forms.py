@@ -1,34 +1,49 @@
 from django.forms import ModelForm
+from django import forms
 from schools.models import *
 
 
-class SchoolCreationForm(ModelForm):
-
+class CreateSchForm(forms.ModelForm):
     class Meta:
         model = School
-        fields = ('crest', 'thumbnail', 'banner', 'name', 'email', 'website', 'address',
-                  'tel', 'cel', 'moto', 'year_founded',)
+        fields = ('__all__')
+        exclude = ('manager',)
+
+    levels = forms.ModelMultipleChoiceField(
+        queryset=EduLevel.objects.all(), widget=forms.CheckboxSelectMultiple
+    )
 
 
-class AcademiaForm(ModelForm):
-
+class AdvantageForm(ModelForm):
     class Meta:
-        model = School
-        fields = (
-            'availability', 'pedagogy', 'awards', 'diplomas',
-            'courses', 'time_range', 'price_range', 'levels', 'inscription', 'curriculums', 'success_rate')
+        model = Advantage
+        fields = ('__all__')
+        exclude = ('school',)
 
 
-class StucturesForm(ModelForm):
-
+class TeacherForm(ModelForm):
     class Meta:
-        model = School
-        fields = ('classes', 'labs', 'libs', 'canteens', 'faculties')
+        model = Teacher
+        fields = ('__all__')
+        exclude = ('school',)
 
 
-class DetailForm(ModelForm):
-
+class ClassroomForm(ModelForm):
     class Meta:
-        model = School
-        fields = ('history', 'description',
-                  'ad_copy', 'faculties', 'mgt_quote')
+        model = Classroom
+        fields = ('__all__')
+        exclude = ('school',)
+
+
+class StructureForm(ModelForm):
+    class Meta:
+        model = Structure
+        fields = ('__all__')
+        exclude = ('school',)
+
+
+class ArticleForm(ModelForm):
+    class Meta:
+        model = Classroom
+        fields = ('__all__')
+        exclude = ('school', 'date_posted')

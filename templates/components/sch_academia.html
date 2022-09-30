@@ -1,0 +1,92 @@
+{% load static %}
+<div
+  class="text-center mx-auto mb-2 data-wow-delay=0.1s"
+  style="max-width: 600px"
+>
+  <h2 class="mb-5">
+    Domaines de formation {% if is_manager %}
+    <button
+      type="button"
+      class="btn btn-dark"
+      data-toggle="modal"
+      data-target="#edulevels_modal"
+    >
+      <i class="fa fa-pen"></i>
+    </button>
+    {% endif %}
+  </h2>
+</div>
+
+<div class="job-item p-4 mb-4">
+  <div class="row g-4">
+    <div class="col-sm-12 col-md-8 d-flex align-items-center">
+      <img
+        class="flex-shrink-0 img-fluid border rounded"
+        src="{% static 'img/bts.jpg' %}"
+        alt=""
+        style="width: 80px; height: 80px"
+      />
+      <div class="text-start ps-4">
+        <h5 class="mb-3">{{school.diplomas|title}}</h5>
+        <span class="text-truncate me-3"
+          ><i class="far fa-clock text-primary me-2"></i>{{school.time_range}}
+          ans</span
+        >
+        <span class="text-truncate me-0"
+          ><i class="far fa-money-bill-alt text-primary me-2"></i
+          >{{school.price_range}} Cfa</span
+        >
+      </div>
+    </div>
+    <div
+      class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center"
+    >
+      <small class="text-truncate"
+        ><i class="far fa-calendar-alt text-primary me-2"></i>Rentrée prochaine
+        2022 : {{school.resumption}}</small
+      >
+    </div>
+  </div>
+</div>
+
+<div class="job-item p-4 mb-4">
+  <div class="row g-4">
+    <div class="col-sm-12 col-md-12 d-flex align-items-center">
+      <div class="text-start ps-4">
+        <h5 class="mb-3">{{school.courses|upper}}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-xxl py-3">
+  <div class="container">
+    <div class="row g-4">
+      {% for class in classrooms %}
+      <div class="col-lg-3 col-md-3 d-flex align-items-center job-item p-2">
+        <img
+          class="flex-shrink-0 img-fluid border-none rounded"
+          src="{% if class.image %} 
+                         {{ class.image.url }} 
+                         {% else %} 
+                         {% static 'img/classroom.jpg' %} 
+                         {% endif %} "
+          alt="class image"
+          style="width: 80px; height: 80px"
+        />
+        <div class="text-start ps-4">
+          <h5 class="mb-3">{{class.name|title}}</h5>
+          <span class="text-truncate me-3">
+            <i class="fa fa-users text-primary me-2"></i>Effectif
+            {{class.size}}</span
+          >
+          <span class="text-truncate me-0"
+            ><i class="far fa-money-bill-alt text-primary me-2"></i>Frais
+            {{class.fee}} Cfa</span
+          >
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

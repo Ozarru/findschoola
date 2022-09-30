@@ -23,16 +23,14 @@ class AcademiaForm(ModelForm):
     class Meta:
         model = School
         fields = (
-            'availability', 'pedagogy', 'awards', 'diplomas',
-            'courses', 'time_range', 'price_range', 'levels')
+            'availability', 'time_range', 'price_range', 'levels')
 
 
 class StuctureForm(ModelForm):
 
     class Meta:
         model = School
-        fields = ('faculties', 'classes', 'labs', 'libs', 'canteens',
-                  'staff', 'students', 'curriculums', 'success_rate')
+        fields = ('success_rate',)
 
 # ---------------------------------------------------
 

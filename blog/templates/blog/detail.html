@@ -65,21 +65,19 @@
         </div>
         <!-- Blog Detail End -->
 
-        <div class="row g-5 justify-content-center mb-5">
+        <div class="row g-5 justify-content-start mb-5">
           {% for blogpost in otherposts %}
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="col-md-6 wow fadeInUp" data-wow-delay="0.1s">
             <div class="bg-light overflow-hidden h-100">
               <a href="{% url 'blogpost' blogpost.id %}">
                 <img
-                  height="150"
-                  width="210"
-                  class="img rounded-top"
+                  class="img-fluid rounded-top"
                   src="{% if blogpost.image %} 
                   {{ blogpost.image.url }} 
                   {% else %} 
                     {% static 'img/bloggers.webp' %} 
                     {% endif %}"
-                  alt=""
+                  alt="blogpost image"
                 />
               </a>
               <div class="service-text position-relative text-center h-100 p-4">

@@ -41,7 +41,7 @@ def notices(req):
 def sch_blog(req):
     context = {
         "sch_blog_page": "active", "title": 'bulletin'}
-    return render(req, 'dashboard/bulletin.html', context)
+    return render(req, 'dashboard/sch_blog.html', context)
 
 
 @login_required(login_url='login')

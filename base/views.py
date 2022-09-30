@@ -24,6 +24,14 @@ def home(req):
     blogposts = Blogpost.objects.all()
     schools = School.objects.filter(
         Q(name__icontains=query) | Q(address__icontains=query))
+    count_creches = School.objects.filter(levels=1).count()
+    count_jardins = School.objects.filter(levels=2).count()
+    count_primaires = School.objects.filter(levels=3).count()
+    count_colleges = School.objects.filter(levels=4).count()
+    count_lycees = School.objects.filter(levels=5).count()
+    count_universites = School.objects.filter(levels=6).count()
+    count_academiques = School.objects.filter(levels=7).count()
+    count_professionels = School.objects.filter(levels=8).count()
     context = {
         "home_page": "active",
         'schools': schools,
@@ -31,6 +39,14 @@ def home(req):
         'adverts': adverts,
         'has_school': has_school,
         'blogposts': blogposts,
+        'count_creches': count_creches,
+        'count_jardins': count_jardins,
+        'count_primaires': count_primaires,
+        'count_colleges': count_colleges,
+        'count_lycees': count_lycees,
+        'count_professionels': count_professionels,
+        'count_academiques': count_academiques,
+        'count_universites': count_universites,
         'title': 'schools'}
     return render(req, 'base/index.html', context)
 

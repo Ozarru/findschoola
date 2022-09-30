@@ -1,16 +1,5 @@
 {% load static %}
 <!--  -->
-<head>
-  <!-- FontAwesome JS-->
-  <!-- <script defer src="{% static 'plugins/fontawesome/js/all.min.js' %}"></script> -->
-
-  <!-- App CSS -->
-  <!-- <link
-    id="theme-style"
-    rel="stylesheet"
-    href="{% static 'css/dashboard.css' %}"
-  /> -->
-</head>
 
 <!-- Navbar Start -->
 <div class="container-fluid nav-bar bg-transparent">
@@ -19,15 +8,13 @@
       href="{% url 'home' %}"
       class="navbar-brand d-flex align-items-center text-center"
     >
-      <div class="icon p-2 me-2">
-        <img
-          class="img-fluid"
-          src=" {% static 'img/logo.png' %}"
-          alt="Icon"
-          style="width: 30px; height: 30px"
-        />
-      </div>
-      <h1 class="m-0 text-primary">FindSchola</h1>
+      <img
+        class="img-fluid"
+        src=" {% static 'img/logo-new.png' %}"
+        alt="Icon"
+        style="width: 200px"
+      />
+      <!-- <h1 class="m-0 text-primary">Findschola</h1> -->
     </a>
     <button
       type="button"
@@ -39,7 +26,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <div class="navbar-nav ms-auto">
-        <a href="{% url 'home' %}" class="nav-item nav-link {{ home_page }}"
+        <a
+          href="{% url 'home' %}"
+          class="nav-item nav-link   {{ home_page }}"
+          id="id-menu"
           >Accueil</a
         >
         <a
@@ -133,13 +123,19 @@
         </div>
         <!--//app-user-dropdown-->
         {% else %}
-        <a href="{% url 'login' %}" class="nav-item nav-link {{login_page}}"
-          >Connexion</a
-        >
       </div>
       <a
+        href="{% url 'login' %}"
+        class="btn btn-outline-secondary px-3 mr-5  d-lg-flex {{login_page}}"
+        style="border: 1px solid"
+        id="login-btn"
+        >Connexion</a
+      >
+      <a
         href="{% url 'signup' %}"
-        class="btn btn-primary px-3 d-none d-lg-flex {{signup_page}}"
+        class="btn btn-dark px-3 d-lg-flex {{signup_page}}"
+        style="margin-left: 20px"
+        :hover=" "
         >Inscription</a
       >
       {% endif %}

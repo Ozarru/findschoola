@@ -1,0 +1,164 @@
+{% load static %}
+<!-- pub Start -->
+<div class="container-xxl py-5 bg-dark d-none d-lg-block">
+  <div class="container my-5 py-5">
+    <div
+      class="col-lg-6 text-start mb-5 wow slideInLeft"
+      data-wow-delay="0.1s"
+      style="max-width: 600px"
+    >
+      <h1 class="mb-3 text-white">Catégories d'établissement</h1>
+      <p class="text-white-50">
+        Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore
+        lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero
+        dolor duo.
+      </p>
+    </div>
+    <div class="row g-4 my-5">
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=creche"
+        >
+          <div class="rounded p-5">
+            <img
+              class="img-fluid mb-4"
+              src="{% static 'icons/creche.png' %}"
+              alt="Icon"
+            />
+
+            <h6>Crèches</h6>
+            <span>{{count_creches}}</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=jardin"
+        >
+          <div class="rounded p-5">
+            <img
+              class="img-fluid mb-4"
+              src=" {% static 'icons/kindergarten.png' %}"
+              alt="Icon"
+            />
+
+            <h6>Jardins</h6>
+            <span>{{count_jardins}}</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=primaire"
+        >
+          <div class="rounded p-5">
+            <img
+              class="img-fluid mb-4"
+              src=" {% static 'icons/primary.png' %}"
+              alt="Icon"
+            />
+
+            <h6>Primaires</h6>
+            <span>{{count_primaires}}</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=college"
+        >
+          <div class="rounded p-5">
+            <img
+              class="img-fluid mb-4"
+              src="{% static 'icons/mid-sch.png' %}"
+              alt="Icon"
+            />
+
+            <h6>Collèges</h6>
+            <span>{{count_colleges}}</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=lycee"
+        >
+          <div class="rounded p-5">
+            <img
+              class="img-fluid mb-4"
+              src="{% static 'icons/hig-sch.png' %}"
+              alt="Icon"
+            />
+
+            <h6 class="mb-4">Lycées</h6>
+            <span>{{count_lycees}}</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=universite"
+        >
+          <div class="rounded p-5">
+            <img
+              class="img-fluid mb-4"
+              src="{% static 'icons/university.png' %}"
+              alt="Icon"
+            />
+
+            <h6 class="mb-4">Universités</h6>
+            <span>{{count_universites}}</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=centre-academique"
+        >
+          <div class="rounded p-5">
+            <img
+              class="img-fluid mb-4"
+              src="{% static 'icons/uni.png' %}"
+              alt="Icon"
+            />
+
+            <h6 class="mb-4">Centres Académiques</h6>
+            <span>{{count_academiques}}</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+        <a
+          class="cat-item d-block bg-light text-center rounded p-3"
+          href="{% url 'schools' %}?query=centre-professionnel"
+        >
+          <div class="rounded p-5">
+            <img
+              class="img-fluid mb-4"
+              src="{% static 'icons/pros.png' %}"
+              alt="Icon"
+            />
+
+            <h6>Centres de Professions</h6>
+            <span>{{count_professionels}}</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- pub End -->

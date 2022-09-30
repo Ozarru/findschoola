@@ -3,8 +3,9 @@ from django.db import models
 from PIL import Image
 
 
-role_choices = (('utilisateur', 'Utilisateur générique (Parent/Eleve)'),
-                ('gestionaire', "Gestionaire d'école"),)
+role_choices = (('generic', 'Parent/Eleve'),
+                ('teacher', 'Enseignant'),
+                ('manager', "Gestionaire d'école"),)
 
 subrole_choices = (('admin', 'School Admin'),
                    ('editor', "School Editor"),)
