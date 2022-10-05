@@ -149,7 +149,6 @@ def mySchool(req):
     return render(req, 'schools/detail.html', context)
 
 
-@login_required(login_url='login')
 def articles(req, pk):
     is_manager = False
     school = School.objects.get(id=pk)
