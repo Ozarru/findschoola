@@ -64,19 +64,17 @@
                 {{blogpost.content}}
               </p>
               {% if user == blogpost.author %}
-              <a href="" class="btn btn-danger rounded text-white py-2 px-3">
-                Delete
+              <a href="" class="btn btn-secondary rounded text-white py-2 px-3">
+                <i class="fa fa-trash"></i>
               </a>
               <a
                 href="{% url 'update-blogpost' blogpost.id %}"
                 class="btn btn-primary rounded text-white py-2 px-3 mx-2"
               >
-                Edit
+                <i class="fa fa-edit"></i>
               </a>
               {% endif %}
-              <a
-                class="btn btn-dark mx-2"
-                href="{% url 'blogpost' blogpost.id %}"
+              <a class="btn btn-dark" href="{% url 'blogpost' blogpost.id %}"
                 >LIRE LA SUITE<i class="fa fa-arrow-right ms-3"></i
               ></a>
             </div>

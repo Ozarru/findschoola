@@ -4,9 +4,7 @@ from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from .forms import *
+from schools.forms import *
 
 
 @login_required(login_url='login')
@@ -38,10 +36,83 @@ def notices(req):
 
 
 @login_required(login_url='login')
-def sch_blog(req):
+def articles(req):
+    user = req.user
+    school = School.objects.get(manager=user)
+    articles = Article.objects.filter(school=school)
+    if not school and user.role != 'manager':
+        return redirect('home')
+
+    form = ArticleForm()
+    if req.method == 'POST':
+        form = ArticleForm(req.POST)
+        form.instance.school = school
+        if form.is_valid():
+            form.save()
+            return redirect('my_school')
     context = {
-        "sch_blog_page": "active", "title": 'bulletin'}
-    return render(req, 'dashboard/sch_blog.html', context)
+        "sch_articles_page": "active", "title": 'articles', "articles": articles, "form": form}
+    return render(req, 'dashboard/articles.html', context)
+
+
+@login_required(login_url='login')
+def classes(req):
+    user = req.user
+    school = School.objects.get(manager=user)
+    classes = Classroom.objects.filter(school=school)
+    if not school and user.role != 'manager':
+        return redirect('home')
+
+    form = ClassroomForm()
+    if req.method == 'POST':
+        form = ClassroomForm(req.POST)
+        form.instance.school = school
+        if form.is_valid():
+            form.save()
+            return redirect('my_school')
+    context = {
+        "sch_classes_page": "active", "title": 'classes', "classes": classes, "form": form}
+    return render(req, 'dashboard/classes.html', context)
+
+
+@login_required(login_url='login')
+def structures(req):
+    user = req.user
+    school = School.objects.get(manager=user)
+    structures = Structure.objects.filter(school=school)
+    if not school and user.role != 'manager':
+        return redirect('home')
+
+    form = StructureForm()
+    if req.method == 'POST':
+        form = StructureForm(req.POST)
+        form.instance.school = school
+        if form.is_valid():
+            form.save()
+            return redirect('my_school')
+    context = {
+        "sch_structures_page": "active", "title": 'structures', "structures": structures, "form": form}
+    return render(req, 'dashboard/structures.html', context)
+
+
+@login_required(login_url='login')
+def teachers(req):
+    user = req.user
+    school = School.objects.get(manager=user)
+    teachers = Teacher.objects.filter(school=school)
+    if not school and user.role != 'manager':
+        return redirect('home')
+
+    form = TeacherForm()
+    if req.method == 'POST':
+        form = TeacherForm(req.POST)
+        form.instance.school = school
+        if form.is_valid():
+            form.save()
+            return redirect('my_school')
+    context = {
+        "sch_teachers_page": "active", "title": 'teachers', "teachers": teachers, "form": form}
+    return render(req, 'dashboard/teachers.html', context)
 
 
 @login_required(login_url='login')

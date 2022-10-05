@@ -3,9 +3,8 @@
 <html lang="en">
   {% include 'dashhead.html' %}
   <body class="app">
-    {% include 'dashboard_base.html' %}
-
     <div class="app-wrapper">
+      {% include 'dashboard_base.html' %}
       <div class="app-content pt-3 p-md-3 p-lg-4">
         <div class="container-xl">
           <div class="row g-3 mb-4 align-items-center justify-content-between">
@@ -21,7 +20,7 @@
             aria-labelledby="general-tab"
           >
             <div class="row gx-3">
-              <div class="mb-4 col-12 col-lg-9">
+              <div class="mb-4 col-12 col-lg-6">
                 <div
                   class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
                 >
@@ -45,7 +44,12 @@
                       </div>
                     </div>
                   </div>
-                  <form class="px-4 w-100" method="POST" action="">
+                  <form
+                    class="px-4 w-100"
+                    method="POST"
+                    action=""
+                    enctype="multipart/form-data"
+                  >
                     {% csrf_token %}
                     <!--  -->
                     <div class="py-2">{{form|crispy}}</div>
@@ -62,7 +66,6 @@
           </div>
         </div>
       </div>
-      <!--//app-content-->
     </div>
   </body>
 </html>

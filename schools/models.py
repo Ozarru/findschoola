@@ -12,7 +12,7 @@ class EduLevel(models.Model):
         return self.name
 
 
-infrastructure = (
+infrastructures = (
     ('lab', 'Laboratoire'),
     ('lib', 'Bibliotheque'),
     ('can', 'Cantine'),
@@ -21,11 +21,11 @@ infrastructure = (
 )
 
 designations = (
-    ('prof', 'Prof.'),
-    ('doc', 'Doc.'),
-    ('mr', 'M.'),
-    ('mrs', "Mme"),
-    ('ms', "Mlle"),
+    ('Prof.', 'Prof.'),
+    ('Doc.', 'Doc.'),
+    ('Mr.', 'M.'),
+    ('Mrs.', "Mme"),
+    ('Ms.', "Mlle"),
 )
 tiers = (
     ('free', 'Gratuit'),
@@ -39,17 +39,6 @@ durations = (
     ('trimester', "Trimestre"),
     ('semester', "Semestre"),
     ('year', "Année"),
-)
-
-LEVEL_CHOICES = (
-    ('creche', 'Creche'),
-    ('jardin', 'Jardin'),
-    ('primaire', 'Primaire'),
-    ('college', 'College'),
-    ('lycee', 'Lycee'),
-    ('universite', 'Universite'),
-    ('centre-Academique', 'Centre-Academique'),
-    ('centre-Professionnel', 'Centre-Professionnel'),
 )
 
 
@@ -149,13 +138,13 @@ class Teacher(models.Model):
     qualifications = models.CharField(max_length=255, blank=True, null=True)
     tel = models.CharField(
         max_length=255, blank=True, null=True)
-    facebook = models.CharField(
+    facebook_link = models.CharField(
         max_length=255, blank=True, null=True)
-    twitter = models.CharField(
+    twitter_link = models.CharField(
         max_length=255, blank=True, null=True)
-    instagram = models.CharField(
+    instagram_link = models.CharField(
         max_length=255, blank=True, null=True)
-    linkedin = models.CharField(
+    linkedin_link = models.CharField(
         max_length=255, blank=True, null=True)
 
     def __str__(self):
@@ -186,7 +175,7 @@ class Structure(models.Model):
     image = models.ImageField(
         upload_to='schools/laboratories', blank=True, null=True)
     genre = models.CharField(
-        max_length=50, default='', choices=infrastructure)
+        max_length=50, default='', choices=infrastructures)
     label = models.CharField(max_length=255, default='image label')
     info = models.TextField(blank=True, null=True)
     maxseats = models.IntegerField(default='0')
@@ -198,7 +187,7 @@ class Article(models.Model):
         School, on_delete=models.CASCADE, default=None)
     image = models.ImageField(
         upload_to='schools/reports', blank=True, null=True)
-    title = models.CharField(max_length=255, default='News Title')
+    title = models.CharField(max_length=255, default='')
     subtitle = models.CharField(max_length=255, blank=True, null=True)
-    content = models.TextField(blank=True, default='News')
+    content = models.TextField(blank=True, default='')
     date_posted = models.DateTimeField(auto_now=True)

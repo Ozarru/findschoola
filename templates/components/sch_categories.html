@@ -17,15 +17,17 @@
     <div class="row g-4 my-5">
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
         <a
-          class="cat-item d-block bg-light text-center rounded p-3"
+          class="cat-item d-block text-center p-3"
           href="{% url 'schools' %}?query=creche"
         >
           <div class="rounded p-5">
-            <img
-              class="img-fluid mb-4"
-              src="{% static 'icons/creche.png' %}"
-              alt="Icon"
-            />
+            <div class="icon mb-3">
+              <img
+                class="img-fluid"
+                src="{% static 'icons/creche.png' %}"
+                alt="Icon"
+              />
+            </div>
 
             <h6>Crèches</h6>
             <span>{{count_creches}}</span>
@@ -35,15 +37,17 @@
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
         <a
-          class="cat-item d-block bg-light text-center rounded p-3"
+          class="cat-item d-block text-center p-3"
           href="{% url 'schools' %}?query=jardin"
         >
           <div class="rounded p-5">
-            <img
-              class="img-fluid mb-4"
-              src=" {% static 'icons/kindergarten.png' %}"
-              alt="Icon"
-            />
+            <div class="icon mb-3">
+              <img
+                class="img-fluid"
+                src=" {% static 'icons/kindergarten.png' %}"
+                alt="Icon"
+              />
+            </div>
 
             <h6>Jardins</h6>
             <span>{{count_jardins}}</span>
@@ -53,15 +57,17 @@
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
         <a
-          class="cat-item d-block bg-light text-center rounded p-3"
+          class="cat-item d-block text-center p-3"
           href="{% url 'schools' %}?query=primaire"
         >
           <div class="rounded p-5">
-            <img
-              class="img-fluid mb-4"
-              src=" {% static 'icons/primary.png' %}"
-              alt="Icon"
-            />
+            <div class="icon mb-3">
+              <img
+                class="img-fluid"
+                src=" {% static 'icons/primary.png' %}"
+                alt="Icon"
+              />
+            </div>
 
             <h6>Primaires</h6>
             <span>{{count_primaires}}</span>
@@ -71,15 +77,17 @@
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
         <a
-          class="cat-item d-block bg-light text-center rounded p-3"
+          class="cat-item d-block text-center p-3"
           href="{% url 'schools' %}?query=college"
         >
           <div class="rounded p-5">
-            <img
-              class="img-fluid mb-4"
-              src="{% static 'icons/mid-sch.png' %}"
-              alt="Icon"
-            />
+            <div class="icon mb-3">
+              <img
+                class="img-fluid"
+                src="{% static 'icons/mid-sch.png' %}"
+                alt="Icon"
+              />
+            </div>
 
             <h6>Collèges</h6>
             <span>{{count_colleges}}</span>
@@ -89,15 +97,17 @@
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
         <a
-          class="cat-item d-block bg-light text-center rounded p-3"
+          class="cat-item d-block text-center p-3"
           href="{% url 'schools' %}?query=lycee"
         >
           <div class="rounded p-5">
-            <img
-              class="img-fluid mb-4"
-              src="{% static 'icons/hig-sch.png' %}"
-              alt="Icon"
-            />
+            <div class="icon mb-3">
+              <img
+                class="img-fluid"
+                src="{% static 'icons/hig-sch.png' %}"
+                alt="Icon"
+              />
+            </div>
 
             <h6 class="mb-4">Lycées</h6>
             <span>{{count_lycees}}</span>
@@ -107,15 +117,17 @@
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
         <a
-          class="cat-item d-block bg-light text-center rounded p-3"
+          class="cat-item d-block text-center p-3"
           href="{% url 'schools' %}?query=universite"
         >
           <div class="rounded p-5">
-            <img
-              class="img-fluid mb-4"
-              src="{% static 'icons/university.png' %}"
-              alt="Icon"
-            />
+            <div class="icon mb-3">
+              <img
+                class="img-fluid"
+                src="{% static 'icons/university.png' %}"
+                alt="Icon"
+              />
+            </div>
 
             <h6 class="mb-4">Universités</h6>
             <span>{{count_universites}}</span>
@@ -125,17 +137,22 @@
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
         <a
-          class="cat-item d-block bg-light text-center rounded p-3"
+          class="cat-item d-block text-center p-3"
           href="{% url 'schools' %}?query=centre-academique"
         >
           <div class="rounded p-5">
-            <img
-              class="img-fluid mb-4"
-              src="{% static 'icons/uni.png' %}"
-              alt="Icon"
-            />
+            <div class="icon mb-3">
+              <img
+                class="img-fluid"
+                src="{% static 'icons/uni.png' %}"
+                alt="Icon"
+              />
+            </div>
 
-            <h6 class="mb-4">Centres Académiques</h6>
+            <h6>
+              Centres <br />
+              Académiques
+            </h6>
             <span>{{count_academiques}}</span>
           </div>
         </a>
@@ -143,17 +160,19 @@
 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
         <a
-          class="cat-item d-block bg-light text-center rounded p-3"
+          class="cat-item d-block text-center p-3"
           href="{% url 'schools' %}?query=centre-professionnel"
         >
           <div class="rounded p-5">
-            <img
-              class="img-fluid mb-4"
-              src="{% static 'icons/pros.png' %}"
-              alt="Icon"
-            />
+            <div class="icon mb-3">
+              <img
+                class="img-fluid"
+                src="{% static 'icons/pros.png' %}"
+                alt="Icon"
+              />
+            </div>
 
-            <h6>Centres de Professions</h6>
+            <h6>Centres Professionnels</h6>
             <span>{{count_professionels}}</span>
           </div>
         </a>

@@ -3,7 +3,7 @@ from django import forms
 from schools.models import *
 
 
-class CreateSchForm(forms.ModelForm):
+class SchoolForm(forms.ModelForm):
     class Meta:
         model = School
         fields = ('__all__')
@@ -44,6 +44,6 @@ class StructureForm(ModelForm):
 
 class ArticleForm(ModelForm):
     class Meta:
-        model = Classroom
+        model = Article
         fields = ('__all__')
-        exclude = ('school', 'date_posted')
+        exclude = ('school', 'date_posted',)

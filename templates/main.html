@@ -47,12 +47,21 @@
     <link href="{% static 'css/form.css' %}" rel="stylesheet" />
 
     <style>
-      ::-webkit-scrollbar {
-        display: none;
+      @media (min-width: 604px) {
+        .service-item {
+          max-width: 413px;
+        }
       }
-
       #login-btn:hover {
         color: white;
+      }
+
+      #navbarCollapse
+        > div
+        > div.app-utility-item.app-user-dropdown.dropdown.mt-3
+        > ul {
+        left: -109px !important;
+        top: 49px !important;
       }
 
       .nav-link {
@@ -164,6 +173,26 @@
       .faqs a.btn:hover {
         color: #ffffff;
         background: #00539c;
+      }
+
+      .newsletter {
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer {
+        position: relative;
+        margin-top: -110px;
+        padding-top: 180px !important;
+      }
+
+      .form-control {
+        height: 3.2rem !important;
+      }
+
+      .icon {
+        width: 65px !important;
+        height: 65px !important;
       }
     </style>
     <!-- <link

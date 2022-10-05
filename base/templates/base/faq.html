@@ -2,110 +2,178 @@
         <!-- Header Start -->
         <div class="container-fluid header bg-white p-0">
           <div class="row g-0 align-items-center flex-column-reverse flex-md-row" id="bg-color">
-              <div class="col-md-6 p-5 mt-lg-5">
-                  <h1 class="display-5 animated fadeIn mb-4">Foire au questions</h1> 
-                      <nav aria-label="breadcrumb animated fadeIn">
-                      <ol class="breadcrumb text-uppercase">
-                          <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
-                          <li class="breadcrumb-item">INFOS</a></li>
-                          <li class="breadcrumb-item text-body active" aria-current="page">Foire au questions</li>
-                      </ol>
-                  </nav>
-              </div>
-              <div class="col-md-6 animated fadeIn">
-                  <img class="img-fluid" src="{% static 'img/faq.webp' %}" alt="">
-              </div>
-          </div>
-      </div>
-      <!-- Header End -->
-
-      <!-- FAQs Start -->
-      <div class="faqs">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-5">
-              <div class="section-header left">
-                <p>You Might Ask</p>
-                <h2>Frequently Asked Questions</h2>
-              </div>
-              <img src="{% static 'img/faq.webp' %}" alt="Image">
+            <div class="col-md-6 p-5 mt-lg-5">
+              <h1 class="display-5 animated fadeIn mb-4">Foire au questions</h1>
+              <nav aria-label="breadcrumb animated fadeIn">
+                <ol class="breadcrumb text-uppercase">
+                  <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
+                  <li class="breadcrumb-item">INFOS</a></li>
+                  <li class="breadcrumb-item text-body active" aria-current="page">Foire au questions</li>
+                </ol>
+              </nav>
             </div>
-            <div class="col-md-7">
-              <div id="accordion">
-                <div class="card">
-                  <div class="card-header">
-                    <a class="card-link collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="true">
-                      <span>1</span> Lorem ipsum dolor sit amet?
-                    </a>
-                  </div>
-                  <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                    <div class="card-body">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
-                      ornare velit non.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header">
-                    <a class="card-link" data-toggle="collapse" href="#collapseTwo">
-                      <span>2</span> Lorem ipsum dolor sit amet?
-                    </a>
-                  </div>
-                  <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                    <div class="card-body">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
-                      ornare velit non.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header">
-                    <a class="card-link" data-toggle="collapse" href="#collapseThree">
-                      <span>3</span> Lorem ipsum dolor sit amet?
-                    </a>
-                  </div>
-                  <div id="collapseThree" class="collapse" data-parent="#accordion">
-                    <div class="card-body">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
-                      ornare velit non.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header">
-                    <a class="card-link" data-toggle="collapse" href="#collapseFour">
-                      <span>4</span> Lorem ipsum dolor sit amet?
-                    </a>
-                  </div>
-                  <div id="collapseFour" class="collapse" data-parent="#accordion">
-                    <div class="card-body">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
-                      ornare velit non.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header">
-                    <a class="card-link" data-toggle="collapse" href="#collapseFour">
-                      <span>5</span> Lorem ipsum dolor sit amet?
-                    </a>
-                  </div>
-                  <div id="collapseFour" class="collapse" data-parent="#accordion">
-                    <div class="card-body">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
-                      ornare velit non.
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <a class="btn" href="">Ask more</a>
+            <div class="col-md-6 animated fadeIn">
+              <img class="img-fluid" src="{% static 'img/faq.webp' %}" alt="">
             </div>
           </div>
         </div>
-      </div>
-      <!-- FAQs End -->
-
-
-
-
+        <!-- Header End -->
+        
+        <!-- FAQs Start -->
+        <div class="faqs">
+          <div class="container">
+            <div class="row">
+              <p>You Might Ask</p>
+              <h2 class="mb-5">Questions Fréquenment Posées</h2>
+        
+              <div class="col-md-6">
+                <div id="accordion">
+                  <div class="card">
+                    <div class="card-header">
+                      <a class="card-link collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="true">
+                        <span>1</span> Lorem ipsum dolor sit amet?
+                      </a>
+                    </div>
+                    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                      <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
+                        ornare velit non.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <a class="card-link" data-toggle="collapse" href="#collapseTwo">
+                        <span>2</span> Lorem ipsum dolor sit amet?
+                      </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
+                        ornare velit non.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <a class="card-link" data-toggle="collapse" href="#collapseThree">
+                        <span>3</span> Lorem ipsum dolor sit amet?
+                      </a>
+                    </div>
+                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
+                        ornare velit non.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <a class="card-link" data-toggle="collapse" href="#collapseFour">
+                        <span>4</span> Lorem ipsum dolor sit amet?
+                      </a>
+                    </div>
+                    <div id="collapseFour" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
+                        ornare velit non.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <a class="card-link" data-toggle="collapse" href="#collapseFour">
+                        <span>5</span> Lorem ipsum dolor sit amet?
+                      </a>
+                    </div>
+                    <div id="collapseFour" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
+                        ornare velit non.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="col-md-6">
+                <div id="accordion">
+                  <div class="card">
+                    <div class="card-header">
+                      <a class="card-link collapsed" data-toggle="collapse" href="#collapseSix" aria-expanded="true">
+                        <span>6</span> Lorem ipsum dolor sit amet?
+                      </a>
+                    </div>
+                    <div id="collapseSix" class="collapse show" data-parent="#accordion">
+                      <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
+                        ornare velit non.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <a class="card-link" data-toggle="collapse" href="#collapseSeven">
+                        <span>7</span> Lorem ipsum dolor sit amet?
+                      </a>
+                    </div>
+                    <div id="collapseSeven" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
+                        ornare velit non.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <a class="card-link" data-toggle="collapse" href="#collapseEight">
+                        <span>8</span> Lorem ipsum dolor sit amet?
+                      </a>
+                    </div>
+                    <div id="collapseEight" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
+                        ornare velit non.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <a class="card-link" data-toggle="collapse" href="#collapseNine">
+                        <span>9</span> Lorem ipsum dolor sit amet?
+                      </a>
+                    </div>
+                    <div id="collapseNine" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
+                        ornare velit non.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <a class="card-link" data-toggle="collapse" href="#collapseTen">
+                        <span>10</span> Lorem ipsum dolor sit amet?
+                      </a>
+                    </div>
+                    <div id="collapseTen" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis
+                        ornare velit non.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <div class="col-12 mt-5 text-center">
+                <p>Si vous avez toujours des inquiétudes ?
+                  <a href="{% url 'contact' %}">Contactez nous</a>
+                </p>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+        <!-- FAQs End -->
 {% endblock %}

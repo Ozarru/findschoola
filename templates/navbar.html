@@ -10,7 +10,7 @@
     >
       <img
         class="img-fluid"
-        src=" {% static 'img/logo-new.png' %}"
+        src=" {% static 'img/logo-lg.png' %}"
         alt="Icon"
         style="width: 200px"
       />
@@ -43,7 +43,7 @@
           >
           <div class="dropdown-menu rounded-0 m-0">
             <a href="{% url 'blog' %}" class="dropdown-item">Blog</a>
-            {% if user.role == 'gestionaire' %}
+            {% if user.role == 'manager' %}
             <a href="{% url 'tariff' %}" class="dropdown-item">Tarifs</a>
             {% endif %}
             <a href="{% url 'about' %}" class="dropdown-item">A propos</a>
@@ -82,7 +82,7 @@
             <li>
               <a class="dropdown-item" href="{% url 'profile' %}">Compte</a>
             </li>
-            {% if user.role == 'gestionaire' %}
+            {% if user.role == 'manager' %}
 
             <li>
               <hr class="dropdown-divider" />

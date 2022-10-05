@@ -23,9 +23,15 @@
 
     <div class="col-md-6 col-lg-4" data-wow-delay="0.1s">
       <div class="service-item">
-        <div class="overflow-hidden">
-          <img class="img-fluid" src="img/blog.jpg" alt="" />
-        </div>
+        <img
+          class="img-fluid"
+          src="{% if article.image %} 
+                {{ article.image.url }} 
+             {% else %} 
+                {% static 'img/team-1.jpg' %} 
+             {% endif %} "
+          alt="article Image"
+        />
         <div class="p-4 text-center border border-5 border-light border-top-0">
           <h4 class="mb-3">{{article.title}}</h4>
           {% if article.subtitle %}
@@ -40,4 +46,10 @@
     </div>
     {% endfor %}
   </div>
+
+  <a
+    href="{% url 'sch_articles'  school.id %}"
+    class="btn btn-primary py-3 px-5 me-3 animated fadeIn mx-auto"
+    >Voir Plus</i
+  ></a>
 </div>

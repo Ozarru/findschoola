@@ -1,4 +1,5 @@
 {% load static %}
+
 <head>
   <title>Findschola</title>
 
@@ -33,4 +34,35 @@
 
   <!-- Page Specific JS -->
   <script src="{% static 'js/app.js' %}" defer="true"></script>
+  <style>
+    body > div > div.app-header {
+      background-color: #0e2e50 !important;
+    }
+
+    #app-sidepanel > div {
+      background-color: #0e2e50 !important;
+      box-shadow: none;
+    }
+
+    a.nav-link.active {
+      background-color: #13ba01 !important;
+    }
+
+    #menu-accordion > li > a {
+      background-color: #0e2e50;
+      color: white !important;
+    }
+
+    #app-sidepanel > div > div > nav > ul > li {
+      background-color: #0e2e50 !important;
+      color: white !important;
+    }
+
+    #app-sidepanel > div > div > nav > ul > li > a {
+      color: white !important;
+    }
+    .nav-link.active {
+      color: white !important;
+    }
+  </style>
 </head>

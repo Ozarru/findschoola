@@ -3,17 +3,16 @@
   <div class="sidepanel-inner d-flex flex-column">
     <a class="app-logo" href="{% url 'home' %}">
       <img
-        class="img-fluid"
-        src=" {% static 'img/logo-new.png' %}"
+        class="img-fluid py-2 mx-2"
+        src=" {% static 'img/logo-lg.png' %}"
         alt="Icon"
         style="width: 200px"
       />
     </a>
-    <!--//app-branding-->
 
     <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
       <ul class="app-menu list-unstyled accordion" id="menu-accordion">
-        {% if user.role == 'gestionaire' %}
+        {% if user.role == 'manager' %}
         <li class="nav-item">
           <a class="nav-link {{dash_page}}" href="{% url 'dashboard' %}">
             <span class="nav-icon">
@@ -31,7 +30,7 @@
             <span class="nav-icon">
               <i class="fa-solid fa-graduation-cap"></i>
             </span>
-            <span class="nav-link-text">Profil d'Ecole </span>
+            <span class="nav-link-text">Mon Etablissement </span>
           </a>
         </li>
 
@@ -45,11 +44,41 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {{sch_blog_page}}" href="{% url 'sch_blog' %}">
+          <a class="nav-link {{sch_articles_page}}" href="{% url 'articles' %}">
             <span class="nav-icon">
               <i class="fa-solid fa-newspaper"></i>
             </span>
             <span class="nav-link-text">Articles</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {{sch_teachers_page}}" href="{% url 'teachers' %}">
+            <span class="nav-icon">
+              <i class="fa-solid fa-chalkboard-user"></i>
+            </span>
+            <span class="nav-link-text">Enseignants</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {{sch_classes_page}}" href="{% url 'classes' %}">
+            <span class="nav-icon">
+              <i class="fa-solid fa-school"></i>
+            </span>
+            <span class="nav-link-text">Classes</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link {{sch_structures_page}}"
+            href="{% url 'structures' %}"
+          >
+            <span class="nav-icon">
+              <i class="fa-solid fa-building"></i>
+            </span>
+            <span class="nav-link-text">Structures</span>
           </a>
         </li>
 

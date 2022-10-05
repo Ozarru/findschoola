@@ -127,7 +127,7 @@ def limitation_of_liability(req):
 
 
 def tariff(req):
-    if req.user.is_authenticated is False or req.user.role != 'gestionaire':
+    if req.user.is_authenticated is False or req.user.role != 'manager':
         return redirect('home')
 
     context = {

@@ -1,38 +1,10 @@
+import logging
 from .models import *
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from .forms import CreateSchForm
-# from .filters import SchoolFilter
-# from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-# from django.views.generic import ListView, DetailView, CreateView, UpdateView
-
-
-# class SchoolCreateView(LoginRequiredMixin, CreateView):
-#     model = School
-#     fields = ('crest', 'thumbnail', 'banner', 'name', 'email', 'website', 'address',
-#               'tel', 'cel', 'moto', 'year_founded',)
-
-#     def form_valid(self, form):
-#         form.instance.manager = self.request.user
-#         return super().form_valid(form)
-
-
-# class SchoolUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-#     model = School
-#     fields = ('__all__')
-#     exclude = ('manager',)
-
-#     def form_valid(self, form):
-#         form.instance.manager = self.request.user
-#         return super().form_valid(form)
-
-#     def test_func(self):
-#         school = self.get_object()
-#         if self.request.user == school.manager:
-#             return True
-#         return False
+from .forms import SchoolForm
 
 
 @login_required(login_url='login')
@@ -45,14 +17,14 @@ def create_school(req):
     if has_school:
         return redirect('home')
 
-    form = CreateSchForm
     if req.method == 'POST':
-        form = CreateSchForm(req.POST)
+        form = SchoolForm(req.POST)
+        form.instance.manager = user
         if form.is_valid():
             form.save()
             return redirect('my_school')
     context = {
-        "add_school_page": "active", "title": 'add_school', "user": user, "form": form}
+        "sch_profile_page": "active", "title": 'add_school', "user": user, "form": form}
     return render(req, 'schools/school_form.html', context)
 
 
@@ -63,14 +35,14 @@ def edit_school(req):
     if not school and user.role != 'manager':
         return redirect('home')
 
-    form = CreateSchForm(instance=school)
+    form = SchoolForm(instance=school)
     if req.method == 'POST':
-        form = CreateSchForm(req.POST, instance=school)
+        form = SchoolForm(req.POST, instance=school)
         if form.is_valid():
             form.save()
             return redirect('my_school')
     context = {
-        "add_school_page": "active", "title": 'add_school', "school": school, "user": user, "form": form}
+        "sch_profile_page": "active", "title": 'add_school', "school": school, "user": user, "form": form}
     return render(req, 'schools/school_form.html', context)
 
 
@@ -175,6 +147,23 @@ def mySchool(req):
         'advantages': advantages
     }
     return render(req, 'schools/detail.html', context)
+
+
+@login_required(login_url='login')
+def articles(req, pk):
+    is_manager = False
+    school = School.objects.get(id=pk)
+    # people
+    articles = school.article_set.all()
+
+    context = {
+        "schools_page": "active",
+        'title': 'school',
+        'school': school,
+        'is_manager': is_manager,
+        'articles': articles,
+    }
+    return render(req, 'schools/articles.html', context)
 
 
 @login_required(login_url='login')

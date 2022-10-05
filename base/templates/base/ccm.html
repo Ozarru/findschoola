@@ -1,26 +1,27 @@
 {% extends 'main.html' %} {% load static %} {% block content %}
 
-        <!-- Header Start -->
-        <div class="container-fluid header bg-white p-0">
-          <div class="row g-0 align-items-center flex-column-reverse flex-md-row" id="bg-color">
-              <div class="col-md-6 p-5 mt-lg-5">
-                  <h1 class="display-5 animated fadeIn mb-4">Comment ça marche ?</h1> 
-                      <nav aria-label="breadcrumb animated fadeIn">
-                      <ol class="breadcrumb text-uppercase">
-                          <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
-                          <li class="breadcrumb-item">INFOS</a></li>
-                          <li class="breadcrumb-item text-body active" aria-current="page">Comment ça marche</li>
-                      </ol>
-                  </nav>
-              </div>
-              <div class="col-md-6 animated fadeIn">
-                  <img class="img-fluid" src="{% static 'img/ccm.jpg' %}" alt="">
-              </div>
-          </div>
+  <!-- Header Start -->
+  <div class="container-fluid header bg-white p-0">
+    <div class="row g-0 align-items-center flex-column-reverse flex-md-row" id="bg-color">
+      <div class="col-md-6 p-5 mt-lg-5">
+        <h1 class="display-5 animated fadeIn mb-4">Comment ça marche ?</h1>
+        <nav aria-label="breadcrumb animated fadeIn">
+          <ol class="breadcrumb text-uppercase">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Accueil</a></li>
+            <li class="breadcrumb-item">INFOS</a></li>
+            <li class="breadcrumb-item text-body active" aria-current="page">Comment ça marche</li>
+          </ol>
+        </nav>
       </div>
-      <!-- Header End -->
-<!-- ccm Start -->
-<div class="container-xxl py-5">
+      <div class="col-md-6 animated fadeIn">
+        <img class="img-fluid" src="{% static 'img/ccm.jpg' %}" alt="">
+      </div>
+    </div>
+  </div>
+  <!-- Header End -->
+
+  <!-- ccm Start -->
+  <div class="container-xxl py-5">
   <div class="container">
     <div class="row g-5">
       <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
@@ -31,9 +32,9 @@
           >
             <i class="fa fa-user-check fa-2x text-primary"></i>
           </div>
-          <h1 class="display-1 text-light mb-0">01</h1>
+          <h1 class="display-1 mb-0">01</h1>
         </div>
-        <h5>Ajoutez votre ecole</h5>
+        <h5>Gestionnaires</h5>
       </div>
       <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
         <div class="d-flex align-items-center justify-content-between mb-2">
@@ -41,11 +42,11 @@
             class="d-flex align-items-center justify-content-center bg-light"
             style="width: 60px; height: 60px"
           >
-            <i class="fa fa-check fa-2x text-primary"></i>
+          <i class="fa fa-user-check fa-2x text-primary"></i>
           </div>
-          <h1 class="display-1 text-light mb-0">02</h1>
+          <h1 class="display-1 mb-0">02</h1>
         </div>
-        <h5>Choisissez un plan</h5>
+        <h5>Proffesseurs</h5>
       </div>
       <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
         <div class="d-flex align-items-center justify-content-between mb-2">
@@ -53,11 +54,11 @@
             class="d-flex align-items-center justify-content-center bg-light"
             style="width: 60px; height: 60px"
           >
-            <i class="fa fa-drafting-compass fa-2x text-primary"></i>
+          <i class="fa fa-user-check fa-2x text-primary"></i>
           </div>
-          <h1 class="display-1 text-light mb-0">03</h1>
+          <h1 class="display-1 mb-0">03</h1>
         </div>
-        <h5>Devenez plus visible</h5>
+        <h5>Parents</h5>
       </div>
       <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
         <div class="d-flex align-items-center justify-content-between mb-2">
@@ -65,103 +66,96 @@
             class="d-flex align-items-center justify-content-center bg-light"
             style="width: 60px; height: 60px"
           >
-            <i class="fa fa-people fa-2x text-primary"></i>
+          <i class="fa fa-user-check fa-2x text-primary"></i>
           </div>
-          <h1 class="display-1 text-light mb-0">04</h1>
+          <h1 class="display-1 mb-0">04</h1>
         </div>
-        <h5>Gagnez de nouveaux clients</h5>
+        <h5>Etudiants</h5>
       </div>
     </div>
   </div>
-</div>
-<!-- ccm Start -->
+  </div>
+  <!-- ccm Start -->
+  
+  <!-- Why Choose us Start -->
+  <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
+    <div class="container feature px-lg-0">
+      <div class="row g-0 mx-lg-0">
+        <div class="col-lg-6 feature-text py-5 wow fadeIn" data-wow-delay="0.5s">
+          <div class="p-lg-5 ps-lg-0">
+            <div class="section-title text-start">
+              <h1 class="display-7 mb-4">Pour les gestionaires d'école</h1>
+            </div>
+            <p class="mb-4 pb-2">
+              Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
+              diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet
+              lorem sit clita duo justo erat amet
+            </p>
+            <div class="row g-4">
+              <div class="col-6">
+                <div class="d-flex align-items-center">
+                  <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
+                    style="width: 60px; height: 60px">
+                    <i class="fa fa-check fa-2x text-primary"></i>
+                  </div>
+                  <div class="ms-4">
+                    <h1 class="display-1 mb-0">01</h1>
+                    <p class="mb-2">Ajoutez votre</p>
+                    <h5 class="mb-0">Ecole</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="d-flex align-items-center">
+                  <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
+                    style="width: 60px; height: 60px">
+                    <i class="fa fa-user-check fa-2x text-primary"></i>
+                  </div>
+                  <div class="ms-4">
+                    <h1 class="display-1 mb-0">02</h1>
+                    <p class="mb-2">Choisissez un</p>
+                    <h5 class="mb-0">Plan</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="d-flex align-items-center">
+                  <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
+                    style="width: 60px; height: 60px">
+                    <i class="fa fa-drafting-compass fa-2x text-primary"></i>
+                  </div>
+                  <div class="ms-4">
+                    <h1 class="display-1 mb-0">03</h1>
+                    <p class="mb-2">Devenez plus</p>
+                    <h5 class="mb-0">Visible</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="d-flex align-items-center">
+                  <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
+                    style="width: 60px; height: 60px">
+                    <i class="fa fa-headphones fa-2x text-primary"></i>
+                  </div>
+                  <div class="ms-4">
+                    <h1 class="display-1 mb-0">04</h1>
+                    <p class="mb-2">Gagnez plus de </p>
+                    <h5 class="mb-0">Clients</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 pe-lg-0" style="min-height: 400px">
+          <div class="position-relative h-100">
+            <img class="position-absolute img-fluid w-100 h-100" src="{% static 'img/schola.avif' %}"
+              style="object-fit: cover" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Why Choose us End -->
 
-<!-- Why Choose us Start -->
-<div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
-  <div class="container feature px-lg-0">
-    <div class="row g-0 mx-lg-0">
-      <div class="col-lg-6 feature-text py-5 wow fadeIn" data-wow-delay="0.5s">
-        <div class="p-lg-5 ps-lg-0">
-          <div class="section-title text-start">
-            <h1 class="display-5 mb-4">Pourquoi creer un compte avec nous</h1>
-          </div>
-          <p class="mb-4 pb-2">
-            Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
-            diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet
-            lorem sit clita duo justo erat amet
-          </p>
-          <div class="row g-4">
-            <div class="col-6">
-              <div class="d-flex align-items-center">
-                <div
-                  class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
-                  style="width: 60px; height: 60px"
-                >
-                  <i class="fa fa-check fa-2x text-primary"></i>
-                </div>
-                <div class="ms-4">
-                  <p class="mb-2">Plus de</p>
-                  <h5 class="mb-0">Visibilité</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="d-flex align-items-center">
-                <div
-                  class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
-                  style="width: 60px; height: 60px"
-                >
-                  <i class="fa fa-user-check fa-2x text-primary"></i>
-                </div>
-                <div class="ms-4">
-                  <p class="mb-2">Creative</p>
-                  <h5 class="mb-0">Designers</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="d-flex align-items-center">
-                <div
-                  class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
-                  style="width: 60px; height: 60px"
-                >
-                  <i class="fa fa-drafting-compass fa-2x text-primary"></i>
-                </div>
-                <div class="ms-4">
-                  <p class="mb-2">Free</p>
-                  <h5 class="mb-0">Consultation</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="d-flex align-items-center">
-                <div
-                  class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
-                  style="width: 60px; height: 60px"
-                >
-                  <i class="fa fa-headphones fa-2x text-primary"></i>
-                </div>
-                <div class="ms-4">
-                  <p class="mb-2">Customer</p>
-                  <h5 class="mb-0">Support</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 pe-lg-0" style="min-height: 400px">
-        <div class="position-relative h-100">
-          <img
-            class="position-absolute img-fluid w-100 h-100"
-            src="{% static 'img/schola.avif' %}"
-            style="object-fit: cover"
-            alt=""
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Why Choose us End -->
 {% endblock %}
