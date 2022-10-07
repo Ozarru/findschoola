@@ -1,4 +1,6 @@
 from accounts.models import CustomUser
+from base.forms import AdvertForm
+from base.models import Advert
 from .models import *
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404, redirect, render
@@ -9,8 +11,14 @@ from schools.forms import *
 
 @login_required(login_url='login')
 def dashboard(req):
+    user = req.user
+    school = School.objects.get(manager=user)
+    teachers = Teacher.objects.filter(school=school).count()
+    if not school and user.role != 'manager':
+        return redirect('home')
+
     context = {
-        "dash_page": "active", "title": 'dashboard'}
+        "dash_page": "active", "title": 'dashboard', 'school': school, 'teachers': teachers}
     return render(req, 'dashboard/index.html', context)
 
 
@@ -21,10 +29,17 @@ def settings(req):
     return render(req, 'dashboard/settings.html', context)
 
 
-@login_required(login_url='login')
 def enquiries(req):
+    user_ads = Advert.objects.filter(author=req.user)
+    form = AdvertForm()
+    if req.method == 'POST':
+        form = AdvertForm(req.POST)
+        form.instance.author = req.user
+        if form.is_valid():
+            form.save()
+            return redirect('ads')
     context = {
-        "enquiries_page": "active", "title": 'enquiries'}
+        "enquiries_page": "active", "title": 'user_ads', "user_ads": user_ads, "form": form}
     return render(req, 'dashboard/enquiries.html', context)
 
 
@@ -59,7 +74,7 @@ def articles(req):
 def classes(req):
     user = req.user
     school = School.objects.get(manager=user)
-    classes = Classroom.objects.filter(school=school)
+    classrooms = Classroom.objects.filter(school=school)
     if not school and user.role != 'manager':
         return redirect('home')
 
@@ -71,7 +86,7 @@ def classes(req):
             form.save()
             return redirect('my_school')
     context = {
-        "sch_classes_page": "active", "title": 'classes', "classes": classes, "form": form}
+        "sch_classes_page": "active", "title": 'classrooms', "classrooms": classrooms, "form": form}
     return render(req, 'dashboard/classes.html', context)
 
 

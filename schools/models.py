@@ -91,6 +91,8 @@ class School(models.Model):
     levels = models.ManyToManyField(EduLevel, blank=True)
     success_rate = models.IntegerField(default='0', blank=True, null=True)
     professors = models.IntegerField(default='0', blank=True, null=True)
+    students = models.IntegerField(default='0', blank=True, null=True)
+    formations = models.IntegerField(default='0', blank=True, null=True)
     divisions = models.IntegerField(default='0', blank=True, null=True)
     systems = models.IntegerField(default='0', blank=True, null=True)
 

@@ -216,6 +216,14 @@
       {% endfor %}
       <!--  -->
       {% endif %}
+      <!-- htmx modal integration -->
+      <div id="modal" class="modal fade" tabindex="-1">
+        <div
+          id="dialog"
+          class="modal-dialog modal-dialog-centered"
+          hx-target="this"
+        ></div>
+      </div>
       <!--  -->
       {% block content %} {% endblock %}
       <!--  -->
@@ -237,7 +245,8 @@
 
       <!-- Template Javascript -->
       <script src="{% static 'js/main.js' %}"></script>
-      <script src="{% static 'js/form.js' %}"></script>
+      <script src="{% static 'js/main.js' %}"></script>
+      <script src="{% static 'js/dialog.js' %}"></script>
     </div>
   </body>
 </html>

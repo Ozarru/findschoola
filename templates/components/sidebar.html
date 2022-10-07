@@ -35,15 +35,6 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {{notices_page}}" href="{% url 'notices' %}">
-            <span class="nav-icon">
-              <i class="fa-solid fa-bell"></i>
-            </span>
-            <span class="nav-link-text">Notifications</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
           <a class="nav-link {{sch_articles_page}}" href="{% url 'articles' %}">
             <span class="nav-icon">
               <i class="fa-solid fa-newspaper"></i>
@@ -91,21 +82,39 @@
           </a>
           <!--//nav-link-->
         </li>
-        {% endif %}
 
         <li class="nav-item">
           <a class="nav-link {{enquiries_page}}" href="{% url 'enquiries' %}">
             <span class="nav-icon">
               <i class="fa-solid fa-clipboard-question"></i>
             </span>
-            <span class="nav-link-text">Demandes</span>
+            <span class="nav-link-text">Mes Offres</span>
+          </a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link {{enquiries_page}}" href="{% url 'enquiries' %}">
+            <span class="nav-icon">
+              <i class="fa-solid fa-clipboard-question"></i>
+            </span>
+            <span class="nav-link-text">Mes Demandes</span>
+          </a>
+        </li>
+        {% endif %}
+
+        <li class="nav-item">
+          <a class="nav-link {{notices_page}}" href="{% url 'notices' %}">
+            <span class="nav-icon">
+              <i class="fa-solid fa-bell"></i>
+            </span>
+            <span class="nav-link-text">Notifications</span>
           </a>
         </li>
       </ul>
       <!--//app-menu-->
     </nav>
     <!--//app-nav-->
-    <div class="app-sidepanel-footer">
+    <div class="">
       <nav class="app-nav app-nav-footer">
         <ul class="app-menu footer-menu list-unstyled">
           <li class="nav-item">

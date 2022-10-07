@@ -6,34 +6,111 @@
     <div class="app-wrapper">
       {% include 'dashboard_base.html' %}
       <div class="app-content pt-3 p-md-3 p-lg-4 container">
-        <div
-          class="tab-pane fade show active"
-          id="general"
-          role="tabpanel"
-          aria-labelledby="general-tab"
+        <!-- tabs nav -->
+        <nav
+          id="orders-table-tab"
+          class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4"
         >
-          <div class="row gx-3">
-            <div class="mb-4 col-12 col-lg-6">
+          <a
+            class="flex-sm-fill text-sm-center nav-link active"
+            id="tab-1"
+            data-bs-toggle="tab"
+            href="#articles"
+            role="tab"
+            aria-controls="articles"
+            aria-selected="true"
+            >Mes Articles</a
+          >
+          <a
+            class="flex-sm-fill text-sm-center nav-link"
+            id="tab-2"
+            data-bs-toggle="tab"
+            href="#form"
+            role="tab"
+            aria-controls="form"
+            aria-selected="false"
+            >Ajouter un Article</a
+          >
+        </nav>
+        <!-- tabs -->
+        <div class="tab-content" id="orders-table-tab-content">
+          <!--tab-1-->
+          <div
+            class="tab-pane fade show active"
+            id="articles"
+            role="tabpanel"
+            aria-labelledby="tab-1"
+          >
+            <div class="row g-3">
+              {% for article in articles %}
               <div
-                class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                class="col-lg-4 col-md-6 wow fadeInUp rounded"
+                data-wow-delay="0.1s"
               >
-                <form
-                  class="px-4 w-100"
-                  method="POST"
-                  action=""
-                  enctype="multipart/form-data"
-                >
-                  {% csrf_token %}
-                  <h3 class="app-page-title my-4">Ajoutez un article</h3>
-                  <!--  -->
-                  <div class="py-2">{{form|crispy}}</div>
+                <div class="service-item bg-light overflow-hidden h-100">
+                  <a href="{% url 'blogpost' article.id %}">
+                    <img
+                      class="img-fluid"
+                      src="{% if article.image %} 
+                              {{ article.image.url }} 
+                           {% else %} 
+                              {% static 'img/article.jpg' %} 
+                           {% endif %} "
+                      alt="article Image"
+                    />
+                  </a>
 
-                  <input
-                    class="btn app-btn-primary mx-2 my-4"
-                    type="submit"
-                    value="Poster"
-                  />
-                </form>
+                  <div
+                    class="service-text position-relative text-center h-100 p-4 bg-white rounded-bottom"
+                  >
+                    <h4 class="mb-3">{{article.title}}</h4>
+                    {% if article.subtitle %}
+                    <h6 class="mb-2 text-gray">{{article.subtitle}}</h6>
+                    {% endif %}
+                    <p>{{article.content}}</p>
+                    <a
+                      class="btn app-btn-dark"
+                      href="{% url 'blogpost' article.id %}"
+                    >
+                      Lire la suite<i class="fa fa-arrow-right ms-2"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {% endfor %}
+            </div>
+          </div>
+          <!--tab-2-->
+          <div
+            class="tab-pane fade"
+            id="form"
+            role="tabpanel"
+            aria-labelledby="tab-2"
+          >
+            <div class="row gx-3">
+              <div class="mb-4 col-12 col-lg-6">
+                <div
+                  class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                >
+                  <form
+                    class="px-4 w-100"
+                    method="POST"
+                    action=""
+                    enctype="multipart/form-data"
+                  >
+                    {% csrf_token %}
+                    <h3 class="app-page-title my-4">Nouveau article</h3>
+                    <!--  -->
+                    <div class="py-2">{{form|crispy}}</div>
+
+                    <input
+                      class="btn app-btn-primary mx-2 my-4"
+                      type="submit"
+                      value="Poster"
+                    />
+                  </form>
+                </div>
               </div>
             </div>
           </div>

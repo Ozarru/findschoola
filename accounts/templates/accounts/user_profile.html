@@ -22,9 +22,9 @@
               class="flex-sm-fill text-sm-center nav-link active"
               id="tab-1"
               data-bs-toggle="tab"
-              href="#general"
+              href="#profil"
               role="tab"
-              aria-controls="general"
+              aria-controls="profil"
               aria-selected="true"
               >Mon Profil</a
             >
@@ -32,9 +32,9 @@
               class="flex-sm-fill text-sm-center nav-link"
               id="tab-2"
               data-bs-toggle="tab"
-              href="#academique"
+              href="#formulaire"
               role="tab"
-              aria-controls="academique"
+              aria-controls="formulaire"
               aria-selected="false"
               >Mes Activités</a
             >
@@ -45,7 +45,7 @@
 
             <div
               class="tab-pane fade show active"
-              id="general"
+              id="profil"
               role="tabpanel"
               aria-labelledby="tab-1"
             >
@@ -141,50 +141,11 @@
 
             <div
               class="tab-pane fade"
-              id="academique"
+              id="formulaire"
               role="tabpanel"
               aria-labelledby="tab-2"
             >
-              <div class="tab-content container-xxl py-5">
-                <!-- demands -->
-                <div id="tab-1" class="tab-pane fade show p-0 active">
-                  <h1
-                    class="text-center mb-5 wow fadeInUp"
-                    data-wow-delay="0.1s"
-                  >
-                    {% if user.role == 'gestionaire' %} Mes Offres {% else %}
-                    Mes Demandes {% endif %}
-                  </h1>
-                  <div class="row g-4">
-                    {% for ad in user_ads %}
-
-                    <div
-                      class="col-md-6 col-lg-4 wow fadeInUp"
-                      data-wow-delay="0.1s"
-                    >
-                      <div class="service-item">
-                        <div class="overflow-hidden">
-                          <img
-                            class="img-fluid"
-                            src="{% static 'img/request.webp' %}"
-                            alt=""
-                          />
-                        </div>
-                        <div
-                          class="p-4 text-center border border-5 border-light border-top-0"
-                        >
-                          <h4 class="mb-3">{{ad.title}}</h4>
-                          <p>{{ad.content}}</p>
-                          <a class="fw-medium" href=""
-                            >Read More<i class="fa fa-arrow-right ms-2"></i
-                          ></a>
-                        </div>
-                      </div>
-                    </div>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
+              <div class="tab-content container-xxl py-5"></div>
             </div>
           </div>
         </div>

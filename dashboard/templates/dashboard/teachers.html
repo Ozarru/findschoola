@@ -6,34 +6,97 @@
     <div class="app-wrapper">
       {% include 'dashboard_base.html' %}
       <div class="app-content pt-3 p-md-3 p-lg-4 container">
-        <div
-          class="tab-pane fade show active"
-          id="general"
-          role="tabpanel"
-          aria-labelledby="general-tab"
+        <!-- tabs nav -->
+        <nav
+          id="orders-table-tab"
+          class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4"
         >
-          <div class="row gx-3">
-            <div class="mb-4 col-12 col-lg-6">
-              <div
-                class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
-              >
-                <form
-                  class="px-4 w-100"
-                  method="POST"
-                  action=""
-                  enctype="multipart/form-data"
+          <a
+            class="flex-sm-fill text-sm-center nav-link active"
+            id="tab-1"
+            data-bs-toggle="tab"
+            href="#teachers"
+            role="tab"
+            aria-controls="teachers"
+            aria-selected="true"
+            >Mes teachers</a
+          >
+          <a
+            class="flex-sm-fill text-sm-center nav-link"
+            id="tab-2"
+            data-bs-toggle="tab"
+            href="#form"
+            role="tab"
+            aria-controls="form"
+            aria-selected="false"
+            >Ajouter un teacher</a
+          >
+        </nav>
+        <!-- tabs -->
+        <div class="tab-content" id="orders-table-tab-content">
+          <!--tab-1-->
+          <div
+            class="tab-pane fade show active"
+            id="teachers"
+            role="tabpanel"
+            aria-labelledby="tab-1"
+          >
+            <div class="row g-4">
+              {% for teacher in teachers %}
+              <div class="col-lg-3 col-md-6" data-wow-delay="0.1s">
+                <div class="team-item rounded overflow-hidden">
+                  <div class="position-relative">
+                    <img
+                      class="img-fluid"
+                      src="{% if teacher.image %} 
+                          {{ teacher.image.url }} 
+                       {% else %} 
+                          {% static 'img/team-1.jpg' %} 
+                       {% endif %} "
+                      alt="Teacher Image"
+                    />
+                  </div>
+                  <div class="text-center p-3 bg-white">
+                    <h6 class="fw-bold">
+                      {{teacher.designation|title}} {{teacher.fullname}}
+                    </h6>
+                    <small>{{teacher.subjects|title}}</small>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <!--tab-2-->
+          <div
+            class="tab-pane fade"
+            id="form"
+            role="tabpanel"
+            aria-labelledby="tab-2"
+          >
+            <div class="row gx-3">
+              <div class="mb-4 col-12 col-lg-6">
+                <div
+                  class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
                 >
-                  {% csrf_token %}
-                  <h3 class="app-page-title my-4">Ajoutez un enseignant</h3>
-                  <!--  -->
-                  <div class="py-2">{{form|crispy}}</div>
+                  <form
+                    class="px-4 w-100"
+                    method="POST"
+                    action=""
+                    enctype="multipart/form-data"
+                  >
+                    {% csrf_token %}
+                    <h3 class="app-page-title my-4">Nouveau teacher</h3>
+                    <!--  -->
+                    <div class="py-2">{{form|crispy}}</div>
 
-                  <input
-                    class="btn app-btn-primary mx-2 my-4"
-                    type="submit"
-                    value="Poster"
-                  />
-                </form>
+                    <input
+                      class="btn app-btn-primary mx-2 my-4"
+                      type="submit"
+                      value="Poster"
+                    />
+                  </form>
+                </div>
               </div>
             </div>
           </div>

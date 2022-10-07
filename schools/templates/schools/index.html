@@ -90,68 +90,9 @@
         {% endfor %}
       </ul>
     </div>
-    <div class="fade show p-0 active">
-      <div class="row g-4">
-        {% for school in schools %}
-        <div
-          class="bg-white col-lg-4 col-md-6 wow fadeInUp"
-          data-wow-delay="0.1s"
-        >
-          <div class="property-item rounded overflow-hidden bg-light">
-            <div class="position-relative overflow-hidden">
-              <a href="{% url 'school' school.id %}"
-                ><img
-                  class="img"
-                  height="300"
-                  width="420"
-                  src="{% if school.thumbnail %} 
-                        {{ school.thumbnail.url }} 
-                        {% else %} 
-                          {% static 'img/etb-college-lycee.jpg' %} 
-                          {% endif %}"
-                  alt="School Thumbnail"
-              /></a>
-              <div
-                class="bg-light text-primary rounded-top position-absolute start-0 bottom-0 mx-4 pe-4 pt-2"
-              >
-                <ul>
-                  {% for level in school.levels.all %}
-                  <!--  -->
-                  <li>{{level.name|title}}</li>
-
-                  <!--  -->
-                  {% endfor %}
-                </ul>
-              </div>
-            </div>
-            <div class="p-4 pb-0">
-              <a class="d-block h5 mb-2" href="{% url 'school' school.id %}"
-                >{{school.name|title}}</a
-              >
-              <p>
-                <i class="fa fa-map-marker-alt text-primary me-2"></i
-                >{{school.address|title}}
-              </p>
-            </div>
-            <div class="d-flex border-top">
-              <small class="flex-fill text-center border-end py-2"
-                ><i class="fa fa-user text-primary me-2"></i
-                >{{school.professors|title}} Professeurs</small
-              >
-              <small class="flex-fill text-center border-end py-2"
-                ><i class="fa fa-school text-primary me-2"></i
-                >{{school.divisions|title}} Divisions</small
-              >
-              <small class="flex-fill text-center py-2"
-                ><i class="fa fa-bookmark text-primary me-2"></i
-                >{{school.systems|title}} Cursus</small
-              >
-            </div>
-          </div>
-          <!--  -->
-        </div>
-        {% endfor %}
-      </div>
+    <!-- htmx integration -->
+    <div hx-get="{% url 'sch_list' %}" hx-trigger="load">
+      <p>Loading...</p>
     </div>
   </div>
 </div>

@@ -1,22 +1,21 @@
+from http.client import HTTPResponse
 import logging
 from .models import *
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from .forms import SchoolForm
+from .forms import *
 
 
 @login_required(login_url='login')
 def create_school(req):
     user = req.user
-    has_school = School.objects.get(manager=user)
-    if user.role != 'manager':
+    school = School.objects.get(manager=user)
+    if school and user.role != 'manager':
         return redirect('home')
 
-    if has_school:
-        return redirect('home')
-
+    form = SchoolForm()
     if req.method == 'POST':
         form = SchoolForm(req.POST)
         form.instance.manager = user
@@ -44,6 +43,12 @@ def edit_school(req):
     context = {
         "sch_profile_page": "active", "title": 'add_school', "school": school, "user": user, "form": form}
     return render(req, 'schools/school_form.html', context)
+
+
+def sch_list(req):
+    schools = School.objects.all()
+    context = {'schools': schools}
+    return render(req, 'components/sch_list.html', context)
 
 
 def schools(req):
@@ -197,3 +202,26 @@ def levelsMod(req, pk):
             return redirect('my_school')
     else:
         return render(req, 'schools/levels_mod.html', context)
+
+
+# modal views
+
+@login_required(login_url='login')
+def add_teacher(req):
+    user = req.user
+    school = School.objects.get(manager=user)
+    if not school and user.role != 'manager':
+        return redirect('home')
+
+    if req.method == 'POST':
+        form = TeacherForm(req.POST)
+        print(form.instance.fullname)
+        # if form.is_valid():
+        #     form.instance.school = school
+        #     form.save()
+        #     return redirect('/')
+        #     # return HTTPResponse(status_code=200)
+    else:
+        form = TeacherForm()
+    context = {"form": form}
+    return render(req, 'schools/teacher_form.html', context)

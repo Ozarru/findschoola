@@ -6,34 +6,102 @@
     <div class="app-wrapper">
       {% include 'dashboard_base.html' %}
       <div class="app-content pt-3 p-md-3 p-lg-4 container">
-        <div
-          class="tab-pane fade show active"
-          id="general"
-          role="tabpanel"
-          aria-labelledby="general-tab"
+        <!-- tabs nav -->
+        <nav
+          id="orders-table-tab"
+          class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4"
         >
-          <div class="row gx-3">
-            <div class="mb-4 col-12 col-lg-6">
+          <a
+            class="flex-sm-fill text-sm-center nav-link active"
+            id="tab-1"
+            data-bs-toggle="tab"
+            href="#classrooms"
+            role="tab"
+            aria-controls="classrooms"
+            aria-selected="true"
+            >Mes Salle de classe</a
+          >
+          <a
+            class="flex-sm-fill text-sm-center nav-link"
+            id="tab-2"
+            data-bs-toggle="tab"
+            href="#form"
+            role="tab"
+            aria-controls="form"
+            aria-selected="false"
+            >Ajouter une Salle de classe</a
+          >
+        </nav>
+        <!-- tabs -->
+        <div class="tab-content" id="orders-table-tab-content">
+          <!--tab-1-->
+          <div
+            class="tab-pane fade show active"
+            id="classrooms"
+            role="tabpanel"
+            aria-labelledby="tab-1"
+          >
+            <div class="row g-4">
+              {% for classroom in classrooms %}
               <div
-                class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                class="col-lg-3 col-md-6 wow fadeInUp rounded"
+                data-wow-delay="0.1s"
               >
-                <form
-                  class="px-4 w-100"
-                  method="POST"
-                  action=""
-                  enctype="multipart/form-data"
-                >
-                  {% csrf_token %}
-                  <h3 class="app-page-title my-4">Ajoutez une classe</h3>
-                  <!--  -->
-                  <div class="py-2">{{form|crispy}}</div>
+                <div class="overflow-hidden h-100">
+                  <a href="{% url 'blogpost' classroom.id %}">
+                    <img
+                      class="img-fluid"
+                      src="{% if classroom.image %} 
+                              {{ classroom.image.url }} 
+                           {% else %} 
+                              {% static 'img/classroom.webp' %} 
+                           {% endif %} "
+                      alt="classroom Image"
+                    />
+                  </a>
 
-                  <input
-                    class="btn app-btn-primary mx-2 my-4"
-                    type="submit"
-                    value="Poster"
-                  />
-                </form>
+                  <div class="text-center h-100 p-3 bg-white">
+                    <h6 class="fw-bold">{{classroom.name}}</h6>
+                    <p>{{classroom.size}} eleve(s)</p>
+                  </div>
+                </div>
+              </div>
+
+              {% endfor %}
+            </div>
+          </div>
+
+          <!--tab-2-->
+
+          <div
+            class="tab-pane fade"
+            id="form"
+            role="tabpanel"
+            aria-labelledby="tab-2"
+          >
+            <div class="row gx-3">
+              <div class="mb-4 col-12 col-lg-6">
+                <div
+                  class="app-card app-card-account shadow-sm d-flex flex-column align-items-start"
+                >
+                  <form
+                    class="px-4 w-100"
+                    method="POST"
+                    action=""
+                    enctype="multipart/form-data"
+                  >
+                    {% csrf_token %}
+                    <h3 class="app-page-title my-4">Nouveau classroom</h3>
+                    <!--  -->
+                    <div class="py-2">{{form|crispy}}</div>
+
+                    <input
+                      class="btn app-btn-primary mx-2 my-4"
+                      type="submit"
+                      value="Poster"
+                    />
+                  </form>
+                </div>
               </div>
             </div>
           </div>
